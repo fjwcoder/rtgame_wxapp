@@ -1,0 +1,95 @@
+<view class="container p-bottom">
+    <scroll-view scroll-y="true">
+
+        <!-- 保单信息 -->
+        <view class="b-f">
+
+            <view class="flow-checkout-header b-f dis-flex">
+                <view class="flow-header-left padding-box" wx:if="{{define_list.length > 0}}">
+                    <view class='folding-box'>
+                        <view class='title_details'>投保人信息</view>
+                        <view class='insurance_details'><text class='xinghao'>*</text><input type="text" placeholder="请校验投保人姓名({{user_name}})" class='ipn_bor' bindinput='getInputUsName' /></view>
+                        <view class='insurance_details' style="padding-left:6.38px;">性别：{{user_sex}} <text class='_age'>年龄：{{user_age}} 岁</text></view>
+                        <view class='insurance_details'><text class='xinghao'>*</text><input type="number" placeholder="请校验投保人身份证号" class='ipn_bor' bindinput='getInputUsIdcard' maxlength='18'/></view>
+                        <view class='insurance_details' style="padding-left:6.38px;">电话：{{user_mobile}}</view>
+                        <view class='insurance_details' style="padding-left:6.38px;">详细地址：{{user_address}}</view>
+                        <view class='insurance_details' style="padding-left:6.38px;">身份证期限：{{user_s_date}} — {{user_o_date}}</view>
+                        <view class='insurance_details' style="padding-left:6.38px;">与被保人关系:{{relationship_to_baby[index_a]}}</view>
+                        <view class='title_details'>被保人信息</view>
+                        <view class='insurance_details'><text class='xinghao'>*</text><input type="text" placeholder="请校验被保人姓名({{baby_name}})" class='ipn_bor' bindinput='getInputBabyName' /></view>
+                        <view class='insurance_details' style="padding-left:6.38px;">性别：{{baby_sex}} <text class="_age">年龄：{{baby_age}} 岁</text></view>
+                        <view class='insurance_details'><text class='xinghao'>*</text><input type="number" placeholder="请校验被保人身份证号" class='ipn_bor' bindinput='getInputBabyIdcard' maxlength='18'/></view>
+                        <view class='insurance_details' style="padding-left:6.38px;">详细地址：{{baby_address}}</view>
+                        <view class='insurance_details' style="padding-left:6.38px;">身份证期限：{{baby_s_date}} — {{baby_o_date}}</view>
+                        <view class='insurance_details' style="padding-left:6.38px;">与投保人关系：{{relationship_to_baby[index_a]}}</view>
+                    </view>
+                </view>
+
+                <view class="flow-all-money b-f padding-box m-top20" wx:else style='width: 100%;'>
+                    <navigator class="list b-f" hover-class="none" url="../defpolicy/create">
+                        <view class="dis-flex flow-all-list">
+                            <text class="flex-five">添加保单信息</text>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+
+        </view>
+
+
+
+
+
+
+
+
+        <!-- 保险信息 -->
+        <view class="order-cont b-f m-top20">
+            <view class="padding-box b-f">
+                <view class="order-header dis-flex">
+                    <view class="flex-box t-l">
+                        <text class="title">保险信息</text>
+                    </view>
+                </view>
+            </view>
+
+            <view wx:for="{{insurance_list}}" wx:for-item="item" wx:key="this">
+                <view class="padding-box b-f" style=' overflow: hidden'>
+
+                    <!-- <view class='baoxian'>
+          <image mode="scaleToFill" src="{{item.headimgurl}}" style='height: {{img_width}}px; width: {{img_width}}px; margin-top: 5px;margin-right:50rpx;'></image>
+        </view> -->
+                    <view class='baoxian'>
+                        <image mode="widthFix" src="{{item.headimgurl}}" style=' width: 100px; margin-top: 5px;margin-right:50rpx;'></image>
+                    </view>
+                    <view class='baoxian1' style="padding-top:20rpx">
+                        <view class='mingcheng'>{{item.name}}</view>
+                        <view class='xiangqing'>保费：{{item.price}}</view>
+                        <view class='xiangqing'>保额：{{item.pay_limit}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+
+        <!-- 订单金额 -->
+        <view class="flow-all-money b-f padding-box m-top20"  style="margin-bottom:20px;">
+            <view class="dis-flex flow-all-list">
+                <text class="flex-five">保险总金额：</text>
+                <text class="flex-five col-m t-r">￥{{price_sum}}</text>
+            </view>
+            <view class="dis-flex flow-all-list-cont">
+                <text class="flex-five col-7">赔付总金额：</text>
+                <text class="flex-five col-m t-r">￥{{pay_limit_sum}}</text>
+            </view>
+        </view>
+
+    </scroll-view>
+
+    <view class="flow-fixed-footer b-f">
+        <view class="buy_btn">
+            <view disabled="{{disabled}}" bindtap='saveData'>生成订单</view>
+        </view>
+    </view>
+
+</view>

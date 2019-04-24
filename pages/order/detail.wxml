@@ -1,0 +1,46 @@
+<view class='folding-box'>
+
+    <view class='box_a'>
+      <view class='title_details'>订单信息</view>
+      <view class='insurance_details'>保险名称:<text class='col_r'>{{insurance_name}}</text></view>
+      <view class='insurance_details'>保险详情：<text class='col_r'>{{insurance_description}}</text></view>
+      <view class='insurance_details'>订单编号：<text class='col_r'>{{insurance_order_id}}</text></view>
+      <view class='insurance_details'>订单金额：<text class='col_r'>{{pay_money}}</text></view>
+       <view class='insurance_details'>赔付金额：<text class='col_r'>{{pay_limit}}</text></view>
+    </view>
+
+    <view class='box_a'>
+      <view class='title_details'>投保人信息</view>
+      <view class='insurance_details'>姓名:<text class='col_r'>{{user_name}}</text></view>
+      <view class='insurance_details'>性别：<text class='col_r'>{{user_sex}}</text></view>
+      <view class='insurance_details'>年龄：<text class='col_r'>{{user_age}}</text></view>
+      <view class='insurance_details'>详细地址：<text class='col_r'>{{user_address}}</text></view>
+      <view class='insurance_details'>电话：<text class='col_r'>{{user_mobile}}</text></view>
+      <view class='insurance_details'>身份证号：<text class='col_r'>{{user_id_card}}</text></view>
+      <view class='insurance_details'>身份证期限：<text class='col_r'>{{user_s_date}}—{{user_o_date}}</text></view>
+      <view class='insurance_details'>与被保人关系:<text class='col_r'>{{relationship_to_baby[index_a]}}</text></view>
+     
+     </view>
+
+     <view class='box_a'> 
+      <view class='title_details'>被保人信息</view>
+      <view class='insurance_details'>姓名：<text class='col_r'>{{baby_name}}</text></view>
+      <view class='insurance_details'>性别：<text class='col_r'>{{baby_sex}}</text></view>
+      <view class='insurance_details'>年龄：<text class='col_r'>{{baby_age}}</text></view>
+      <view class='insurance_details'>详细地址：<text class='col_r'>{{baby_address}}</text></view>
+      <view class='insurance_details'>身份证号：<text class='col_r'>{{baby_id_card}}</text></view>
+      <view class='insurance_details'>身份证期限：<text class='col_r'>{{baby_s_date}}—{{baby_o_date}}</text></view>
+      <view class='insurance_details'>与投保人关系：<text class='col_r'>{{relationship_to_baby[index_a]}}</text></view>
+    </view>
+
+
+    <view class='box_a'> 
+      <view class='title_details'>保单预览图</view>
+      <view class='insurance_details'>保单预览图区域</view>
+    </view>
+
+    <!-- <navigator class='mar' url='../lipei/index?baby_name={{baby_name}}&user_name={{user_name}}&insurance_name={{insurance_name}}&order_id={{insurance_order_id}}&user_id_card={{user_id_card}}'>
+        <view class="order-bt" >申请理赔</view>
+        <view class='air_box'></view>
+    </navigator> -->
+</view>

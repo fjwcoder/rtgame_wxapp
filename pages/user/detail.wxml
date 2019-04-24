@@ -1,0 +1,140 @@
+<view class="container">
+  <view class="common-header-xian"></view>
+  <!-- 表单 -->
+  <form bindreset="formReset" bindsubmit="saveData">
+    <view class="address-cont-title b-f b-b">
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">姓名</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input name="us_name" placeholder="请输入真实姓名" value="{{name}}" maxlength='4'></input>
+        </view>
+      </view>
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">性别</text>
+        </view>
+        <view class="right-cont dis-flex kuandu'">
+          <picker bindchange="chengeSex" value="{{index}}" range="{{gender_arrey}}" name="sex" style='width:100%'>
+            <text wx:if="{{gender_arrey[index]}}" class="f-30 kuandu">{{gender_arrey[index]}}</text>
+            <text wx:else class="f-30 col-7">选择性别</text>
+          </picker>
+        </view>
+      </view>
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">年龄</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input name="us_age" placeholder="请输入年龄" value="{{age}}" maxlength='2' type='number'></input>
+        </view>
+      </view>
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">国籍</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input name="country" value="中国" disabled='ture'></input>
+        </view>
+      </view>
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">手机号</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input maxlength="11" name="mobile" placeholder="请输入联系电话" type="number" value="{{mobile}}"></input>
+        </view>
+      </view>
+
+      <view class="list address-box dis-flex b-b">
+        <view class="left-name">
+          <text class="f-30">身份证号</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input maxlength="18" name="id_card" placeholder="请输入身份证号" value="{{id_card}}"></input>
+        </view>
+      </view>
+
+
+      <view class="list address-box dis-flex">
+        <view class="left-name">
+          <text class="f-30">证件期限</text>
+        </view>
+        <view class="right-cont dis-flex" style='width: 32%;'>
+          <picker mode="date" value="{{date}}" start="2010-10-01" end="2020-01-01" bindchange="bindIdCardSDateChange" name="id_card_begintime">
+            <text wx:if="{{s_date}}" class="f-30">{{s_date}}</text>
+            <text wx:else class="f-30 col-7">开始时间</text>
+          </picker>
+        </view>
+        <view class="right-cont dis-flex" style='width: 32%;'>
+          <picker mode="date" value="{{date}}" start="2010-10-01" end="2020-01-01" bindchange="bindIdCardODateChange" name="id_card_endtime">
+            <text wx:if="{{o_date}}" class="f-30">{{o_date}}</text>
+            <text wx:else class="f-30 col-7">结束时间</text>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="address-cont-title b-f b-b">
+      <view class="dis-flex list address-box  b-b">
+        <view class="left-name">
+          <text class="f-30">所在地区</text>
+        </view>
+        <view class="address-cont-box dis-flex kuandu">
+          <picker mode="region" bindchange="bindRegionChange" name="area" style='width:100%'>
+            <text wx:if="{{region}}" class="f-30">{{region}}</text>
+            <text wx:else class="f-30 col-7">选择省、市、区</text>
+          </picker>
+        </view>
+      </view>
+      <view class="dis-flex list address-box">
+        <view class="left-name">
+          <text class="f-30">详细地址</text>
+        </view>
+        <view class="right-cont dis-flex">
+          <input name="address_detail" placeholder="请输入街道小区楼层" type="text" value="{{detail}}" style='width:100%'></input>
+        </view>
+      </view>
+    </view>
+    
+    <view class="padding-box m-top35 profile-btn">
+      <button formType="submit" disabled="{{disabled}}">保存</button>
+    </view>
+    <!-- <view class="padding-box m-top20 ">
+      <button formType="reset">取消</button>
+    </view> -->
+
+  </form>
+
+  <!-- 快捷导航 -->
+  <!-- <view class="filter-menu {{nav_select?'active':''}}">
+    <view class="filter-menu-list ts-5">
+      <custom-ul>
+        <custom-li bindtap="nav" data-index="home">
+          <text class="iconfont icon-home"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="fenlei">
+          <text class="iconfont icon-fenlei"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="cart">
+          <text class="iconfont icon-cart"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="profile">
+          <text class="iconfont icon-profile"></text>
+        </custom-li>
+        <custom-li class="w"></custom-li>
+      </custom-ul>
+    </view>
+    <view bindtap="commonNav" class="filter-menu-title"></view>
+  </view> -->
+
+
+
+</view>

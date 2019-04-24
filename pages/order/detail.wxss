@@ -1,0 +1,46 @@
+.insurance_details {
+  font-size: 26rpx;
+  line-height: 48rpx;
+  color: #444;
+}
+
+.title_details {
+  width: 100%;
+  text-align: center;
+  line-height: 50rpx;
+  color: #1ac189;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.col_r {
+  color: #1ac189;
+  margin-left: 10rpx;
+}
+
+.folding-box {
+  /* padding: 20rpx; */
+}
+
+.box_a {
+  width: 88%;
+  margin: 20rpx auto;
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 20px;
+  box-shadow: -5rpx 8rpx 5rpx rgba(0, 0, 0, 0.1);
+}
+
+.order-bt {
+  width:40%;
+  margin: 20px auto;
+  border-radius: 999px;
+  color: #fff;
+  line-height: 46px;
+  text-align: center;
+  font-size: 34rpx;
+   box-shadow: 1px 5px 15px rgba(50, 50, 50, 0.3);
+}
+.mar{
+  margin-bottom: 30rpx;
+}

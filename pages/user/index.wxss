@@ -1,0 +1,234 @@
+.user-header .user-bg-box {
+    width: 100%;
+    background: #fff;
+    display: block;
+    height: 230rpx;
+    overflow: hidden;
+}
+
+.user-header .header-bg {
+    width: 100%;
+    height: 750rpx;
+    animation-name: shop;
+    animation-duration: 18s;
+    animation-iteration-count: infinite;
+    filter: blur(5px);
+    overflow: hidden;
+    display: block;
+}
+
+.header-img-box {
+    width: 140rpx;
+    height: 140rpx;
+    border: 2px solid #fff;
+    margin: 0rpx auto 0;
+    border-radius: 100%;
+    overflow: hidden;
+    box-shadow: 1px 0px 5px rgba(50, 50, 50, 0.3);
+    margin-top: -115rpx;
+}
+
+.user-admin {
+    display: block;
+    width: 190rpx;
+    font-size: 32rpx;
+    text-align: center;
+    margin: 4rpx 0 0 0;
+    color: #444;
+}
+
+.user-tag {
+    top: -8rpx;
+    right: 40rpx;
+    font-size: 22rpx;
+    background: #ff495e;
+    text-align: center;
+    line-height: 28rpx;
+    color: #fff;
+    border-radius: 100%;
+    min-height: 30rpx;
+    min-width: 30rpx;
+    padding: 1rpx;
+}
+
+.user-order-cont {
+    padding: 25rpx 0;
+    box-shadow: 1px 0px 5px rgba(50, 50, 50, 0.3);
+    color: #777;
+    font-size: 30rpx;
+    border-top: 1rpx solid #eee;
+}
+
+.user-order-cont .orderListIcon {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding-top: 10rpx;
+    color: #999;
+    font-size: 34rpx;
+}
+
+.user-order-cont .listCont {
+    display: block;
+    font-size: 24rpx;
+    color: #999;
+    text-align: center;
+    padding-top: 4rpx;
+}
+
+.user-order-cont .moneyListNum {
+    text-align: center;
+    color: #f42424;
+    font-size: 38rpx;
+    padding: 0 15rpx;
+}
+
+.user-order-title .common-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -20rpx;
+    font-size: 34rpx;
+    color: #777;
+}
+
+.user-order-title {
+    border-bottom: 1rpx solid #eee;
+    padding: 8rpx 0;
+    position: relative;
+}
+
+/* asd */
+
+.user-list {
+    padding: 30rpx 15rpx;
+}
+
+.user-list .li .common-icon {
+    font-size: 46rpx;
+}
+
+.user-list-service {
+    padding: 30rpx 0 0 0;
+}
+
+.user-list-service .li {
+    padding-bottom: 45rpx;
+}
+
+/* .wx-popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+}
+.popup-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+ 
+  width: 90%;
+  max-width: 600rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
+  box-sizing: bordre-box;
+  transform: translate(-50%, -50%); 
+  overflow: hidden;
+  background: #fff;
+}
+  .tel{
+    padding: 20rpx;
+    float: left;
+  }
+  .fasong{
+    float: left;
+  }
+  tel1{
+    padding: 20rpx;
+    clear: left;
+  } */
+
+modal input {
+    padding: 0 20rpx;
+    border: 1px solid #eee;
+    height: 40px;
+}
+
+.tel {
+    margin-bottom: 10rpx
+}
+
+.btn1 {
+    float: right;
+    width: 40%;
+    font-size: 0.8rem;
+    background-color: rgb(80, 223, 80);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10rpx;
+}
+
+.yanzhengma {
+    float: left;
+    width: 50%;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.color_block_1 {
+    background: linear-gradient(to bottom right, rgba(251, 176, 59, 1), rgba(255, 130, 105, 1));
+}
+
+.color_block_2 {
+    background: linear-gradient(to bottom right, rgba(248, 117, 237, 1), rgba(155, 0, 207, 1));
+}
+
+.color_block_3 {
+    background: linear-gradient(to bottom right, rgba(14, 215, 173, 1), rgba(57, 202, 135, 1));
+}
+
+.color_block_4 {
+    background: linear-gradient(to bottom right, rgba(101, 175, 240, 1), rgba(61, 150, 232, 1));
+}
+
+.us_info_box {
+    justify-content: center;
+}
+.user-order{
+  margin-bottom: 14rpx;
+}
+.float_item {
+    width: calc(calc(100% / 3) - 28rpx);
+    height: 200rpx;
+    float: left;
+    margin: 14rpx;
+    border-radius: 20rpx;
+}
+.text_box{
+  text-align: center;
+  padding-top: 20rpx;
+}
+.text_a {
+    color: #eee;
+    font-size: 28rpx;
+    
+}
+.icon_box{
+  text-align: center;
+  padding-top: 50rpx;
+}
+.iconfont{
+  color: white;
+  font-size: 60rpx;
+  text-align: center;
+  align-items: center;
+  
+}
+.jiantou{
+  font-size: 24rpx;
+}

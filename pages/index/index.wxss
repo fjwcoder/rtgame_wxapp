@@ -1,0 +1,45 @@
+/* 搜索框组件 */
+@import "components/search/search.wxss";
+
+/* banner组件 */
+@import "components/banner/banner.wxss";
+
+.col_banner {
+  width: 100%;
+  height: 300rpx;
+  background-color: #1ac189;
+}
+
+.chang_jx {
+  width: 100%;
+  height: 200rpx;
+  background-image: url(https://i.loli.net/2019/04/01/5ca175ac31c74.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%；;
+}
+
+.chang_jx image {
+  width: 100%;
+  height: 200px;
+}
+
+.slides {
+  width: 90%;
+  height: 280rpx;
+  position: absolute;
+  top: 60rpx;
+  left: 5%;
+  box-shadow: #999 0 3px 10px;
+  border-radius: 20rpx;
+}
+
+.s_banner {
+  width: 100%;
+border-radius: 20rpx;
+height: 280rpx;
+}
+
+.img_banner {
+  width: 100%;
+  border-radius: 20rpx;
+}
