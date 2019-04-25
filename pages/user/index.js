@@ -32,7 +32,7 @@ Page({
 
     // 获取当前用户信息
 
-    //this.getUserDetail();
+    this.getUserDetail();
 
 
     // console.log(wx.getStorageSync('user_id'));
