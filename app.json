@@ -8,7 +8,8 @@
     "pages/search/index",
     "pages/user/index",
     "pages/user/help",
-    "pages/user/detail"
+    "pages/user/detail",
+    "pages/gamehall/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -29,8 +30,8 @@
         "selectedIconPath": "images/home-active.png"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "投保",
+        "pagePath": "pages/gamehall/index",
+        "text": "大厅",
         "iconPath": "images/baoxian.png",
         "selectedIconPath": "images/abaoxian.png"
       },

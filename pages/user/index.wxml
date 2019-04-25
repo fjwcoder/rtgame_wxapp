@@ -44,7 +44,8 @@
       </view>
     </view>
   </view>
-  <view class='us_info_box'>
+<!-- 块型菜单 -->
+  <!-- <view class='us_info_box'>
     <view class='float_item color_block_1'>
       <navigator class="" url="../user/detail">
         <view class='icon_box'>
@@ -96,79 +97,78 @@
     <view class="clearfix"></view>
 
 
+  </view> -->
+
+<!-- 块型菜单 end -->
+<!-- card-menu卡片 -->
+<view class="cu-list menu sm-border card-menu margin-top">
+  <view class="cu-item arrow">
+    <view class="content">
+      <text class="cuIcon-profile text-grey"></text>
+      <text class="text-grey">我的信息</text>
+    </view>
   </view>
-
-
-
-
-  <!--
-  <view class="m-top20">
-    <navigator url="../user/detail">
-      <view class="user-order-title dis-flex b-f m-top20">
-        <view class="flex-box">
-          <text class="iconfont icon-wode common-icon"></text>
-          <text class="user-orderName h4">我的信息</text>
-        </view>
-        <view class="flex-box">
-          <view class="user-orderContBox">
-            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-
-
-    <navigator url="../baby/index">
-      <view class="user-order-title dis-flex b-f m-top20">
-        <view class="flex-box">
-          <text class="iconfont icon-yinger common-icon"></text>
-          <text class="user-orderName h4">宝宝列表</text>
-        </view>
-        <view class="flex-box">
-          <view class="user-orderContBox">
-            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-
-    <navigator url="../defpolicy/index">
-      <view class="user-order-title dis-flex b-f m-top20">
-        <view class="flex-box">
-          <text class="iconfont icon-baodan common-icon"></text>
-          <text class="user-orderName h4">保单列表</text>
-        </view>
-        <view class="flex-box">
-          <view class="user-orderContBox">
-            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-    <navigator url="../user/help">
-      <view class="user-order-title dis-flex b-f">
-        <view class="flex-box">
-          <text class="iconfont icon-help common-icon"></text>
-          <text class="user-orderName h4">我的帮助</text>
-        </view>
-        <view class="flex-box">
-          <view class="user-orderContBox">
-            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
-          </view>
-        </view>
-      </view>
+  <view wx:if="{{ show }}" class="cu-item arrow">
+    <button class="cu-btn content" open-type="contact">
+      <text class="cuIcon-btn text-olive"></text>
+      <text class="text-grey">我要代练</text>
+    </button>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="form" open-type="redirect">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">Navigator 跳转</text>
     </navigator>
   </view>
-  <!--
-    <view class="wx-popup" hidden="{{flag}}">
-    <view class='popup-container'>
-      <input  placeholder="请输入您的手机号" placeholder-style="color:#e2e2e2;" class='tel' maxlength='11'></input>
-      <button class='fasong'>发送</button>
-      <input  placeholder="请输入您接收到的验证码" placeholder-style="color:#e2e2e2;" class='tel1' maxlength='6'></input>
-      <button>确定绑定</button>
+  <view class="cu-item arrow">
+    <view class="content">
+      <text class="cuIcon-service text-pink"></text>
+      <text class="text-grey">平台客服</text>
     </view>
+    
+  </view>
+  <view class="cu-item arrow">
+    <view class="content">
+      <text class="cuIcon-btn text-green"></text>
+      <text class="text-grey">按钮</text>
     </view>
-  -->
+    <view class="action">
+      <button class="cu-btn round bg-green shadow">
+        <text class="cuIcon-upload"></text> 上传</button>
+    </view>
+  </view>
+  <view class="cu-item arrow">
+    <view class="content">
+      <text class="cuIcon-tagfill text-red"></text>
+      <text class="text-grey">标签</text>
+    </view>
+    <view class="action">
+      <view class="cu-tag round bg-orange light">音乐</view>
+      <view class="cu-tag round bg-olive light">电影</view>
+      <view class="cu-tag round bg-blue light">旅行</view>
+    </view>
+  </view>
+  <view class="cu-item arrow">
+    <view class="content">
+      <text class="cuIcon-warn text-green"></text>
+      <text class="text-grey">文本</text>
+    </view>
+    <view class="action">
+      <text class="text-grey text-sm">小目标还没有实现！</text>
+    </view>
+  </view>
+  <view class="cu-item">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-clothesfill text-blue margin-right-xs"></text> 多行Item</view>
+      <view class="text-gray text-sm">
+        <text class="cuIcon-infofill margin-right-xs"></text> 小目标还没有实现！</view>
+    </view>
+    <view class="action">
+      <switch class="switch-sex sm" bindchange="switchSex"></switch>
+    </view>
+  </view>
+</view>
 
 
 

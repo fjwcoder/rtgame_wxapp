@@ -81,6 +81,7 @@ App({
   /**
    * 执行用户登录
    */
+  
   doLogin: function() {
     // 保存当前页面
     let pages = getCurrentPages();

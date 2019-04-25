@@ -12,10 +12,10 @@
 
     </block>
     <view class='slides'>
-      <swiper autoplay='true' circular indicator-dots indicator-active-color='#1ac189'class='s_banner'>
+      <swiper autoplay='true' circular indicator-dots indicator-active-color='#1ac189' class='s_banner'>
         <swiper-item wx:for="{{swiperList}}" wx:key="{{index}}">
           <navigator>
-            <image src='{{item.imgSrc}}'mode="widthFix"class='img_banner'></image>
+            <image src='{{item.imgSrc}}' mode="widthFix" class='img_banner'></image>
           </navigator>
         </swiper-item>
       </swiper>
@@ -39,12 +39,95 @@
         </navigator>
       </scroll-view>
     </view> -->
+    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
+      <view class="action">
+        <text class="cuIcon-title text-orange "></text> 接单列表
+      </view>
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item border_bottom">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <view class="content">
+          <view class="text-grey">黄金一1星——钻石五1星</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">
+							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
+        </view>
+      </view>
 
+      <view class="cu-item border_bottom">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <view class="content">
+          <view class="text-grey">黄金一1星——钻石五1星</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">
+							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
+        </view>
+      </view>
+
+      <view class="cu-item border_bottom">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <view class="content">
+          <view class="text-grey">黄金一1星——钻石五1星</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">
+							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
+        </view>
+      </view>
+
+
+      <view class="cu-item border_bottom">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <view class="content">
+          <view class="text-grey">黄金一1星——钻石五1星</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">
+							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
+        </view>
+      </view>
+
+
+      <view class="cu-item border_bottom">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <view class="content">
+          <view class="text-grey">黄金一1星——钻石五1星</view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">
+							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+            </text>
+          </view>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
+        </view>
+      </view>
+
+    </view>
     <!-- 全部保险 -->
 
     <view class="title-hrbg" style="margin-top:10rpx">
-      
-     
+
+
     </view>
     <view class="category-list">
       <navigator class="list b-f" hover-class="none" url="../insurance/detail?insurance_id={{item.insurance_id}}" wx:for="{{list}}" wx:key="this">
@@ -64,7 +147,7 @@
 
     <!-- 底线 -->
     <view class="title-footer p-r">
-      <text class="f-24 col-9 cont">我是有底线的</text>
+      <text class="f-24 col-9 cont">暂时没有更多订单~~</text>
       <view class="hr"></view>
     </view>
   </scroll-view>

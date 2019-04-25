@@ -14,6 +14,7 @@ Page({
     codename: '获取验证码',
     input_disabled: false,
     hiddenmodalput: true, //modal的隐藏
+    show:true,
   },
 
 
@@ -30,7 +31,10 @@ Page({
   onShow: function() {
 
     // 获取当前用户信息
-    this.getUserDetail();
+
+    //this.getUserDetail();
+
+
     // console.log(wx.getStorageSync('user_id'));
     // console.log(wx.getStorageSync('user_token'));
 

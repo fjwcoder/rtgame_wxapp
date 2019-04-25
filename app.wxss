@@ -1,5 +1,8 @@
 /* common.wxss */
 @import "/utils/common.wxss";
+/* color UI */
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
 /* @import "./wxParse/wxParse.wxss"; */
 .common-header-xian {
   border-top: 1rpx solid #eee;
