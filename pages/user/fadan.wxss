@@ -1,0 +1,14 @@
+/* pages/user/fadan.wxss */
+.picker_text{
+    color: rgb(99, 99, 99)
+}
+.btn_saveData{
+    width:80%;
+    background-color: #00d181;
+    line-height: 46px;
+    color: white;
+    margin: 20px auto;
+}
+.border-top{
+    border-top: #eee solid 1rpx;
+}

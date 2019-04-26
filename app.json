@@ -9,7 +9,8 @@
     "pages/user/index",
     "pages/user/help",
     "pages/user/detail",
-    "pages/gamehall/index"
+    "pages/gamehall/index",
+    "pages/user/fadan"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

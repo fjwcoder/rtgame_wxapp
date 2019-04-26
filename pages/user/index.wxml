@@ -101,23 +101,23 @@
 
 <!-- 块型菜单 end -->
 <!-- card-menu卡片 -->
-<view class="cu-list menu sm-border card-menu margin-top">
+<view class="cu-list menu sm-border card-menu margin-top margin-bottom">
   <view class="cu-item arrow">
-    <view class="content">
+    <navigator class="content" hover-class='none' url='detail'>
       <text class="cuIcon-profile text-grey"></text>
       <text class="text-grey">我的信息</text>
-    </view>
+    </navigator>
   </view>
   <view wx:if="{{ show }}" class="cu-item arrow">
-    <button class="cu-btn content" open-type="contact">
+    <button class="cu-btn content">
       <text class="cuIcon-btn text-olive"></text>
-      <text class="text-grey">我要代练</text>
+      <text class="text-grey">申请代练</text>
     </button>
   </view>
   <view class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="form" open-type="redirect">
+    <navigator class="content" hover-class="none" url="fadan">
       <text class="cuIcon-discoverfill text-orange"></text>
-      <text class="text-grey">Navigator 跳转</text>
+      <text class="text-grey">我要发单</text>
     </navigator>
   </view>
   <view class="cu-item arrow">

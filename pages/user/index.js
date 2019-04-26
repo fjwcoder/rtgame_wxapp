@@ -153,9 +153,10 @@ Page({
    * 取消
    */
   quxiao: function() {
-    this.setData({
-      hiddenmodalput: true
-    })
+   wx.showToast({
+     title: '您必须绑定手机号才可使用',
+     icon:'none'
+   })
   },
   //提交表单信息
 
