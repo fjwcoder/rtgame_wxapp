@@ -109,10 +109,10 @@
     </navigator>
   </view>
   <view wx:if="{{ show }}" class="cu-item arrow">
-    <button class="cu-btn content">
+    <navigator class="content" hover-class="none" url="dailian_apply">
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
-    </button>
+    </navigator>
   </view>
   <view class="cu-item arrow">
     <navigator class="content" hover-class="none" url="fadan">
