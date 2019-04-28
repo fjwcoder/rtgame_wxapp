@@ -1,4 +1,4 @@
-// pages/user/special .js
+// pages/inputInformation/aovspecial.js
 Page({
 
   /**
