@@ -21,3 +21,17 @@ position:relative;
 height:60rpx;
 line-height:60rpx;
 }
+.yulan_BT{
+    color: #555;
+    display: block;
+    width: 100%;
+    font-size: 32rpx;
+    line-height: 30px;
+    text-align: center;
+    padding-bottom: 5px;
+    
+}
+.air_text{
+    width: 28%;
+    display:inline-block;
+}

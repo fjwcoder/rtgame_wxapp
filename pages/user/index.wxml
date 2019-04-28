@@ -115,7 +115,7 @@
     </navigator>
   </view>
   <view class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="../inputInformation/aovinfo">
+    <navigator class="content" hover-class="none" url="../inputInformation/aovinfo?gid=2">
       <text class="cuIcon-discoverfill text-orange"></text>
       <text class="text-grey">我要发单</text>
     </navigator>
