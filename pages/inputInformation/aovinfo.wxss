@@ -1,6 +1,7 @@
 /* pages/user/fadan.wxss */
 .picker_text{
-    color: rgb(99, 99, 99)
+    color: #555;
+    font-size: 30rpx;
 }
 .btn_saveData{
     width:80%;
@@ -11,4 +12,12 @@
 }
 .border-top{
     border-top: #eee solid 1rpx;
+}
+.card_title{
+    text-align:justify;
+padding-right:30rpx;
+font-size:30rpx;
+position:relative;
+height:60rpx;
+line-height:60rpx;
 }

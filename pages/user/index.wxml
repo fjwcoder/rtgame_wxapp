@@ -1,4 +1,4 @@
-<view class="container m-b5">
+45<view class="container m-b5">
   <view class="user-header p-r">
     <view class="user-bg-box">
       <!-- <image class="header-bg" src="{{userInfo.avatarUrl}}"></image> -->
@@ -115,7 +115,7 @@
     </button>
   </view>
   <view class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="fadan">
+    <navigator class="content" hover-class="none" url="../inputInformation/aovinfo">
       <text class="cuIcon-discoverfill text-orange"></text>
       <text class="text-grey">我要发单</text>
     </navigator>

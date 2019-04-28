@@ -10,7 +10,8 @@
     "pages/user/help",
     "pages/user/detail",
     "pages/gamehall/index",
-    "pages/user/fadan"
+    "pages/inputInformation/aovinfo",
+    "pages/inputInformation/aovspecial "
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -45,5 +46,6 @@
     ],
     "position": "bottom"
   },
-  "debug": false
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
 }

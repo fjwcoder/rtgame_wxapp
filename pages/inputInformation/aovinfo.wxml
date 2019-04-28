@@ -1,0 +1,136 @@
+<!-- pages/user/fadan.wxml -->
+<view class="cu-bar justify-left bg-white margin-top">
+    <view class="action sub-title">
+        <text class="text-xl text-bold text-green">选择服务</text>
+        <text class="bg-green" style="width:2rem"></text>
+        <!-- last-child选择器 -->
+    </view>
+</view>
+<view class="cu-card article {{isCard?'no-card':''}}">
+    <view class="cu-item shadow" style="padding-bottom:0;">
+        <view class="cu-form-group border-top">
+            <view class="card_title">代练类型</view>
+            <picker mode="selector" bindchange="selectService" value="{{ServiceIndex}}" range="{{ServiceArray}}">
+                <view class="picker_text">{{ServiceArray[ServiceIndex]}}</view>
+            </picker>
+        </view>
+        <view wx:if="{{input_hidden}}" class="cu-form-group">
+            <view class="card_title">当前段位</view>
+            <input bindinput="getSPlace"></input>
+        </view>
+        <view wx:if="{{picker_hidden}}" class="cu-form-group">
+            <view class="card_title">当前分数</view>
+            <input value="{{initialNum}}" bindblur="getInitial" type="number"></input>
+        </view>
+        <view wx:if="{{input_hidden}}" class="cu-form-group">
+            <view class="card_title">目标段位</view>
+            <input bindinput="getOPlace"></input>
+        </view>
+        <view wx:if="{{picker_hidden}}" class="cu-form-group border-top">
+            <view class="card_title">目标分数</view>
+            <picker mode="selector" bindchange="modifyScore" value="{{index}}" range="{{scoreArr}}">
+                <view class="picker_text">{{score?score:"请选择"}}</view>
+            </picker>
+        </view>
+        <view class="cu-form-group">
+            <view class="card_title">订单佣金</view>
+            <input bindblur="getSalary" value="{{salary}}" type="number"></input>
+            <button class="cu-btn bg-grey shadow round sm">佣金参考</button>
+        </view>
+    </view>
+</view>
+<view class="cu-bar justify-left bg-white margin-top">
+    <view class="action sub-title">
+        <text class="text-xl text-bold text-green">填写信息</text>
+        <text class="bg-green" style="width:2rem"></text>
+        <!-- last-child选择器 -->
+    </view>
+</view>
+<!-- 填写信息区域 -->
+<form bindsubmit="saveData">
+    <view class="cu-form-group border-top">
+        <view class="title">选择区服</view>
+        <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker_text">
+                {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">游戏账号</view>
+        <input placeholder="请输入您的游戏账号" name="game_account"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">游戏密码</view>
+        <input placeholder="请输入您的游戏密码" name="game_password" password="{{true}}"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">角色名字</view>
+        <input placeholder="请输入您的角色名字" name="game_user"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">英雄数量</view>
+        <input placeholder="请输入您的英雄数量" bindblur="getHeroesNum" value="{{heroNum}}" name="hreonum" type="number"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">铭文等级</view>
+        <input placeholder="请输入您的铭文等级" bindblur="getRuneNum" value="{{runeNum}}" type="number" name="runenum"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">手机号码</view>
+        <input placeholder="请输入您的手机号" type="number" value="{{mobileNum}}" maxlength="11" name="user_mobile"></input>
+        <view class="cu-capsule radius">
+            <view class="cu-tag bg-blue">+86</view>
+            <view class="cu-tag line-blue">中国大陆</view>
+        </view>
+    </view>
+    <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
+    <view class="cu-form-group margin-top">
+        <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入您的账号相关详情及说明" name="info"></textarea>
+    </view>
+    <button form-type="submit" class="btn_saveData">提交</button>
+</form>
+<view class="cu-modal bottom-modal {{showMol}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white">
+            <view class="action text-blue" bindtap="hideModal">取消</view>
+            <view class="action text-green">确定</view>
+        </view>
+        <view class="padding-xl bg-green light">
+            <view class="basis-xl bg-green  radius light text-center">
+            <text class="text-black  padding-bottom">订单信息预览</text>
+            <view class=" text-df  padding-bottom">游戏区服：王者荣耀 {{plantformNameList[multiIndex[0]]}} {{_values["area_name"]}}</view>
+            <view class=" text-df  padding-bottom">当前段位：{{_values["hreonum"]}}</view>
+            <view class=" text-df  padding-bottom">目标段位：{{server_info.server_end_info}}</view>
+            <view class=" text-df  padding-bottom">游戏账号：{{_values["game_account"]}}</view>
+            <view class=" text-df  padding-bottom">游戏密码：{{_values["game_password"]}}</view>
+            <view class=" text-df  padding-bottom">角色名字：{{_values["game_user"]}}</view>
+            <view class=" text-df  padding-bottom">英雄数量：{{_values["hreonum"]}} 个</view>
+            <view class=" text-df  padding-bottom">铭文等级：{{_values["runenum"]}}</view>
+            <view class=" text-df  padding-bottom">手机号码：{{_values["user_mobile"]}}</view>
+            <view class=" text-df  padding-bottom">佣金：{{_values["dataArr"][0]["server_price"]}} 元</view>
+            <view class=" text-df  padding-bottom">更多详情：{{_values["info"]}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class="cu-modal {{showMol}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">Modal标题</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      Modal 内容。
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view> -->
