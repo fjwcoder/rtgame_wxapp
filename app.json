@@ -11,7 +11,8 @@
     "pages/user/detail",
     "pages/gamehall/index",
     "pages/inputInformation/aovinfo",
-    "pages/inputInformation/aovspecial "
+    "pages/inputInformation/aovspecial",
+    "pages/user/dailian_apply"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
