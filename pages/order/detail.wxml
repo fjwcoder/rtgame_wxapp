@@ -22,7 +22,7 @@
           <text class='col_r' else wx:if="{{step === 4}}">完成</text>
         </view>
         <view class="step_payview" wx:if="{{step === 1}}">                     
-          <text bindtap="payOrder" class="btn-main" data-oid="{{item.id}}" data-orderid="{{item.order_id}}">付款</text>
+          <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
           <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
         </view>
       </view>

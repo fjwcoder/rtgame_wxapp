@@ -34,9 +34,10 @@ Page({
    */
   onLoad: function (options) {
     this.data.order_id = options.order_id;
-    this.data.o_id =parseInt(options.o_id);
+    this.data.oid =parseInt(options.o_id);
     this.setData({
-      order_id: options.order_id
+      order_id: options.order_id,
+      oid: this.data.oid
     });
     this.getOrderDetail(options.order_id,parseInt(options.o_id));
   },
@@ -47,30 +48,9 @@ Page({
   getOrderDetail: function (order_id,o_id) {
    
     let _this = this;
-    // let values;
-    // values.order_id = order_id;
-    // values.oid = o_id;
-    // values.user_token = App.getGlobalData('user_token')
     App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), oid :o_id , order_id :order_id }, function (result) {
       console.log(result)
       _this.setData({
-
-        // game_name: '',
-        // game_img: '',
-        // plantform_name: '',
-        // area_name: '',
-        // game_info: '',
-        // special_info: '',
-        // pay_money: '',
-        // user_mobile: '',
-        // game_account: '',
-        // waiter_name: '',
-        // waiter_headimgurl: '',
-        // step: '1',
-        // create_time: '',
-        // pay_time: '',
-        // finish_time: '',
-
         game_name: result.data.game_name,
         game_img: result.data.game_img ,
         plantform_name: result.data.plantform_name,
@@ -127,30 +107,37 @@ Page({
    */
   payOrder: function (e) {
     let _this = this;
-    let order_id = _this.data.order_id;
-
+    let oid = e.currentTarget.dataset.oid;
+    let order_id = e.currentTarget.dataset.orderid;
+    console.log("oid=="+oid);
+    console.log("order_id==" + order_id);
     // 显示loading
     wx.showLoading({ title: '正在处理...', });
-    App._post_form('user.order/pay', { order_id }, function (result) {
-      if (result.code === -10) {
-        App.showError(result.msg);
-        return false;
-      }
-      // 发起微信支付
-      wx.requestPayment({
-        timeStamp: result.data.timeStamp,
-        nonceStr: result.data.nonceStr,
-        package: 'prepay_id=' + result.data.prepay_id,
-        signType: 'MD5',
-        paySign: result.data.paySign,
-        success: function (res) {
-          _this.getOrderDetail(order_id);
-        },
-        fail: function () {
-          App.showError('订单未支付');
-        },
+    App._post_form('payment/orderPay', {
+        user_token: App.getGlobalData('user_token'),
+        order_id: order_id,
+        oid: oid 
+      }, function (result) {
+        console.log(result);
+        if (result.code !== 200) {
+          App.showError(result.msg);
+          return false;
+        }
+        // 发起微信支付
+        wx.requestPayment({
+          timeStamp: result.data.timeStamp,
+          nonceStr: result.data.nonceStr,
+          package: 'prepay_id=' + result.data.prepay_id,
+          signType: 'MD5',
+          paySign: result.data.paySign,
+          success: function (res) {
+            _this.getOrderDetail(order_id);
+          },
+          fail: function () {
+            App.showError('订单未支付');
+          },
+        });
       });
-    });
   },
 
   /**
