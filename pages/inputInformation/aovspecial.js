@@ -26,7 +26,7 @@ Page({
 
     game_index: '',
     multiArray: [],
-    multiIndex: [0, 0, 0],
+    multiIndex: [0, 0],
     time: '12:01',
     date: '2018-12-25',
     region: ['广东省', '广州市', '海珠区'],
@@ -146,7 +146,7 @@ Page({
     })
   },
   MultiColumnChange(e) {
-    let _data = this.data;
+
     let data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -161,10 +161,11 @@ Page({
         break;
       case 2:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[2]];
+     
         break;
       case 3:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[3]];
-        break;
+          break;
     }
 
     this.setData(data);

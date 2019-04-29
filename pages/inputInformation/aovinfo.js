@@ -302,11 +302,13 @@ Page({
       case 3:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[3]];
         break;
+
     }
 
     this.setData(data);
     console.log(this.data.multiIndex)
   },
+
   /**
    * 佣金
    */
