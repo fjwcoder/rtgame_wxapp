@@ -1,4 +1,4 @@
-<!-- pages/user/fadan.wxml -->
+
 <view class="cu-bar justify-left bg-white margin-top">
     <view class="action sub-title">
         <text class="text-xl text-bold text-green">选择服务</text>
@@ -32,10 +32,14 @@
                 <view class="picker_text">{{score?score:"请选择"}}</view>
             </picker>
         </view>
+        <view wx:if="{{winNumShow}}" class="cu-form-group">
+            <view class="card_title">当前胜点</view>
+            <input bindblur="getWinNum" type="number" maxlength="3" value="{{win_num}}"></input>
+        </view>
         <view class="cu-form-group">
             <view class="card_title">订单佣金</view>
             <input bindblur="getSalary" value="{{salary}}" type="number"></input>
-            <button class="cu-btn bg-grey shadow round sm">佣金参考</button>
+            <button class="cu-btn bg-grey shadow round sm" bindtap="jumpPriceReference">佣金参考</button>
         </view>
     </view>
 </view>
@@ -72,7 +76,7 @@
         <view class="title">英雄数量</view>
         <input placeholder="请输入您的英雄数量" bindblur="getHeroesNum" value="{{heroNum}}" name="hreonum" type="number"></input>
     </view>
-    <view class="cu-form-group">
+    <view  wx:if="{{!winNumShow}}" class="cu-form-group">
         <view class="title">铭文等级</view>
         <input placeholder="请输入您的铭文等级" bindblur="getRuneNum" value="{{runeNum}}" type="number" name="runenum"></input>
     </view>
@@ -94,22 +98,23 @@
     <view class="cu-dialog">
         <view class="cu-bar bg-white">
             <view class="action text-blue" bindtap="hideModal">取消</view>
-            <view class="action text-green">确定</view>
+            <view class="action text-green" bindtap="submitData">确定</view>
         </view>
-        <view class="padding-xl bg-green light">
-            <view class="basis-xl bg-green  radius light text-center">
-            <text class="text-black  padding-bottom">订单信息预览</text>
-            <view class=" text-df  padding-bottom">游戏区服：王者荣耀 {{plantformNameList[multiIndex[0]]}} {{_values["area_name"]}}</view>
-            <view class=" text-df  padding-bottom">当前段位：{{_values["hreonum"]}}</view>
-            <view class=" text-df  padding-bottom">目标段位：{{server_info.server_end_info}}</view>
-            <view class=" text-df  padding-bottom">游戏账号：{{_values["game_account"]}}</view>
-            <view class=" text-df  padding-bottom">游戏密码：{{_values["game_password"]}}</view>
-            <view class=" text-df  padding-bottom">角色名字：{{_values["game_user"]}}</view>
-            <view class=" text-df  padding-bottom">英雄数量：{{_values["hreonum"]}} 个</view>
-            <view class=" text-df  padding-bottom">铭文等级：{{_values["runenum"]}}</view>
-            <view class=" text-df  padding-bottom">手机号码：{{_values["user_mobile"]}}</view>
-            <view class=" text-df  padding-bottom">佣金：{{_values["dataArr"][0]["server_price"]}} 元</view>
-            <view class=" text-df  padding-bottom">更多详情：{{_values["info"]}}</view>
+        <view class="padding-xl bg-gray light">
+            <view class="basis-xl     radius light text-left">
+                <text class="yulan_BT">订单信息预览</text>
+                <view class=" text-df  padding-bottom"><text class="air_text">游戏区服：</text>{{game_name}} {{plantformNameList[multiIndex[0]]}} {{_values["area_name"]}} </view>
+                <view class=" text-df  padding-bottom"><text class="air_text">代练类型：</text> {{server_info.server_type}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">当前段位：</text>{{server_info.server_begin_info}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">目标段位：</text>{{server_info.server_end_info}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">游戏账号：</text>{{_values["game_account"]}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">游戏密码：</text>{{_values["game_password"]}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">角色名字：</text>{{_values["game_user"]}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">英雄数量：</text>{{_values["hreonum"]}} 个</view>
+                <view  wx:if="{{!winNumShow}}" class=" text-df  padding-bottom"><text class="air_text">铭文等级：</text>{{_values["runenum"]}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">手机号码：</text>{{_values["user_mobile"]}}</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">佣金：</text>{{server_info.server_price}}元</view>
+                <view class=" text-df  padding-bottom"><text class="air_text">更多详情：</text>{{_values["info"]}}</view>
             </view>
         </view>
     </view>

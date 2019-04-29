@@ -6,9 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    gid: 2, //游戏id 由上个页面传入
+
     ServiceIndex: "0", //选择服务picker初始值
     ServiceArray: [], //picker代练列表
-    s_id: 1, //当前选择代练类型的id  默认排位赛
+    s_id: null, //当前选择代练类型的id  默认排位赛
     input_hidden: true,
     picker_hidden: false, //代练类型为巅峰赛的时候显示picker隐藏input
     initialNum: '', //巅峰赛当前分数
@@ -37,17 +39,25 @@ Page({
 
     showMol: null,
 
-    server_info: {}
-
+    server_info: {},
+    winNumShow: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      gid: parseInt(options.gid),
+      game_name: options.gid === "1" ? '王者荣耀' : '英雄联盟',
+      s_id: options.gid === "1" ? 1 : 4,
+    })
+    wx.setNavigationBarTitle({
+      title: this.data.game_name + '代练'
+    })
     this.getGameServer();
     this.getServerList();
-    console.log(this.autoincrementArray(36))
+    this.winNum_show(this.data.gid); //胜点输入框显示     options.pid
   },
 
   /**
@@ -71,61 +81,53 @@ Page({
     let _this = this;
     App._post_form('game/getGameServer', {
       user_token: App.getGlobalData('user_token'),
-      gid: 1
+      gid: _this.data.gid
     }, function (result) {
       console.log(result);
-
-      //var plantformList = _this.nameGetOutAreaName(result.data.plantform,1)
       _this.setData({
-        plantformNumArr: _this.splitGame(result.data.plantform, "area_num"),
         plantformNameList: _this.splitGame(result.data.plantform, "name"),
         plantformIndexList: _this.splitGame(result.data.plantform, "id"),
-        // area_name_list:area_name_list
 
-        // game_index_list: _this.splitGame(result.data.game, 'id'),
-        // game_name_list: _this.splitGame(result.data.game, 'cname'),
-        // plantform_index_list: _this.splitPlantform(result.data.plantform, 'id'),
-        // plantform_name_list: _this.splitPlantform(result.data.plantform, 'name'),
-        // area_name_list: _this.splitArea(result.data.area, 'name'),
       });
+
+      if (result.data.area.length < 1) {
+        _this.setData({
+          plantformNumArr: _this.splitGame(result.data.plantform, "area_num"),
+        })
+        var area_name_list = []
+        for (var i = 1; i <= 4; i++) {
+          var item = _this.autoincrementArr(_this.data.plantformNumArr[i - 1])
+          area_name_list[i] = []
+          //area_name_list[i].push(item)
+          area_name_list[i] = item
+        }
+        _this.setData({
+          area_name_list: area_name_list
+        })
+      }
+      if (result.data.area.length > 0) {
+        _this.setData({
+          area_name_list: _this.split_area(result.data.area, 'name'),
+        })
+      }
       console.log(_this.data.plantformNameList)
       console.log(_this.data.plantformIndexList)
-      // 向area_name_list添加王者荣耀大区数据
-      // var area_name_list = _this.data.area_name_list
-      // //var aovLsit = _this.nameGetOutAreaNum(result.data.plantform, 1); //找出所有gid为1的对象
-      // area_name_list[1] = []
-      // for (var i = 1; i <= plantformList.length; i++) {
-      //   var item = _this.autoincrementArr(plantformList[i - 1].area_num)
-      //   area_name_list[1][i] = []
-      //   //aovname[i].push(item)
-      //   area_name_list[1][i] = item
-      // }
-      console.log(_this.data.plantformNumArr)
-      var area_name_list = []
-      for (var i = 1; i <= 4; i++) {
-        var item = _this.autoincrementArr(_this.data.plantformNumArr[i - 1])
-        area_name_list[i] = []
-        //area_name_list[i].push(item)
-        area_name_list[i] = item
-      }
-      console.log(area_name_list)
       var multiArray = [];
       multiArray[0] = _this.data.plantformNameList;
-      multiArray[1] = area_name_list[_this.data.plantformIndexList[0]];
+      multiArray[1] = _this.data.area_name_list[_this.data.plantformIndexList[0]];
 
       _this.setData({
         multiArray: multiArray,
-        area_name_list: area_name_list
-      });
-      // console.log(_this.data.multiArray);
-
-      // console.log(_this.data.plantform_name_list);
-      // console.log(_this.data.plantform_index_list);
-      console.log(_this.data.plantformIndexList);
-      console.log(_this.data.plantformNameList);
-      console.log(_this.data.area_name_list);
-
+      })
     })
+  },
+  /**
+   * 跳转价格参考页面
+   */
+  jumpPriceReference: function () {
+    wx.navigateTo({
+      url: 'price_ref'
+    });
   },
   /**
    * 获取代练类型列表
@@ -133,7 +135,7 @@ Page({
   getServerList: function () {
     let _this = this
     App._post_form('game/getGServerList', {
-      gid: 1
+      gid: _this.data.gid
     }, function (result) {
       console.log(result)
       _this.setData({
@@ -144,54 +146,93 @@ Page({
   },
 
   /**
-   * 选择服务
+   * 王者荣耀选择服务
    */
   selectService: function (e) {
     console.log(e)
-    if (e.detail.value === "2") {
-      wx.showModal({
-        title: '提示',
-        content: '您确定要选择其它代练吗？',
-        showCancel: true,
-        cancelText: '取消',
-        cancelColor: '#000000',
-        confirmText: '确定',
-        confirmColor: '#3CC51F',
-        success: (result) => {
-          if (result.confirm) {
-            wx.navigateTo({
-              url: 'aovspecial '
-            });
-          }
-        },
+    if (this.data.gid === 1) {
+      if (e.detail.value === "2") {
+        wx.showModal({
+          title: '提示',
+          content: '您确定要选择其它代练吗？',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '#000000',
+          confirmText: '确定',
+          confirmColor: '#3CC51F',
+          success: (result) => {
+            if (result.confirm) {
+              wx.navigateTo({
+                url: 'aovspecial?gid=' + this.data.gid
+              });
+            }
+          },
+        });
+      } else if (e.detail.value === "1") {
+        this.setData({
+          ServiceIndex: e.detail.value,
+          s_id: this.data.ServiceIndexArray[e.detail.value],
+          s_place: '',
+          o_place: '',
+          card_input_titleS: '当前分数',
+          card_input_titleO: '目标分数',
+          input_hidden: false,
+          picker_hidden: true,
+          numOrText: "number",
 
-      });
-
-    } else if (e.detail.value === "1") {
+          scoreArr: this.autoincrementArray(36)
+        })
+        console.log(this.data.s_place)
+        console.log(this.data.o_place)
+      } else {
+        this.setData({
+          ServiceIndex: e.detail.value,
+          s_id: this.data.ServiceIndexArray[e.detail.value],
+          card_input_titleS: '当前段位',
+          card_input_titleO: '目标段位',
+          input_hidden: true,
+          picker_hidden: false,
+        })
+      }
+    } else if (this.data.gid === 2) {
+      if (e.detail.value === "2") {
+        wx.showModal({
+          title: '提示',
+          content: '您确定要选择其它代练吗？',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '#000000',
+          confirmText: '确定',
+          confirmColor: '#3CC51F',
+          success: (result) => {
+            if (result.confirm) {
+              wx.navigateTo({
+                url: 'aovspecial?gid=' + this.data.gid
+              });
+            }
+          },
+        });
+      } else {
+        this.setData({
+          ServiceIndex: e.detail.value,
+          s_id: this.data.ServiceIndexArray[e.detail.value],
+        })
+        console.log(this.data.ServiceIndexArray[e.detail.value])
+        console.log(this.data.s_id)
+      }
+    }
+  },
+  /**
+   * 胜点输入框显示
+   */
+  winNum_show: function (pid) {
+    if (pid === 2) {
       this.setData({
-        ServiceIndex: e.detail.value,
-        s_id: this.data.ServiceIndexArray[e.detail.value],
-        s_place: '',
-        o_place: '',
-        card_input_titleS: '当前分数',
-        card_input_titleO: '目标分数',
-        input_hidden: false,
-        picker_hidden: true,
-        numOrText: "number",
-
-        scoreArr: this.autoincrementArray(36)
+        winNumShow: true
       })
-      console.log(this.data.s_place)
-      console.log(this.data.o_place)
     } else {
       this.setData({
-        ServiceIndex: e.detail.value,
-        s_id: this.data.ServiceIndexArray[e.detail.value],
-        card_input_titleS: '当前段位',
-        card_input_titleO: '目标段位',
-        input_hidden: true,
-        picker_hidden: false,
-        numOrText: "text",
+        winNumShow: false
       })
     }
   },
@@ -287,6 +328,26 @@ Page({
     }
   },
   /**
+   * 胜点输入
+   */
+  getWinNum: function (e) {
+    if (e.detail.value < 1 || e.detail.value > 100) {
+      wx.showToast({
+        title: '请输入0-100之间的整数',
+        icon: 'none',
+        duration: 1500,
+        mask: false,
+      });
+      this.setData({
+        win_num: ''
+      })
+    } else {
+      this.setData({
+        win_num: e.detail.value
+      })
+    }
+  },
+  /**
    * 巅峰赛当前值
    */
   getInitial: function (e) {
@@ -313,7 +374,7 @@ Page({
    * 英雄数量
    */
   getHeroesNum: function (e) {
-    if (e.detail.value > 100 || e.detail.value < 1) {
+    if (e.detail.value > 200 || e.detail.value < 1) {
       this.setData({
         heroNum: ''
       })
@@ -340,78 +401,137 @@ Page({
    */
   saveData: function (e) {
     let _this = this
-    // //弹窗
+    //弹窗
     // this.setData({
     //   showMol: 'show'
     // })
+    // return false;
     var server = {};
-    var data_arr = [] //dataArray的元素
+    var data_arr = {} //dataArray的元素
     //pid
     var pid = this.data.plantformIndexList[this.data.multiIndex[0]];
     //area_name = arr[pid][index]
     // var area_name = this.data.area_name_list[pid][this.data.multiIndex[1]]
-    data_arr["server_id"] = this.data.s_id //服务id
-    if (this.data.s_id === 1) { //如果选择段位赛
-      server.server_begin_info = data_arr["begin_info"] = this.data.s_place //当前段位（当前分值）
-      server.server_end_info = data_arr["end_info"] = this.data.o_place
+    data_arr.server_id = this.data.s_id //服务id
+    if (_this.data.gid === 1) {
+      server.server_type = _this.data.s_id === 1 ? '排位赛' : '巅峰赛'
+      if (_this.data.s_id === 1) { //如果选择段位赛
+        server.server_begin_info = data_arr.begin_info = _this.data.s_place //当前段位（当前分值）
+        server.server_end_info = data_arr.end_info = _this.data.o_place
+      } else
+      // if (_this.data.s_id === 2) 
+      { //巅峰赛 
+        server.server_begin_info = data_arr.begin_info = _this.data.initialNum //当前段位（当前分值）         
+        server.server_end_info = data_arr.end_info = _this.data.score
+      }
+    } else {
+      server.server_type = _this.data.s_id === 4 ? '单双排' : '灵活排位'
+      server.server_begin_info = data_arr.begin_info = _this.data.s_place + ',' + _this.data.win_num + '胜点' //当前段位（当前分值）
+      server.server_end_info = data_arr.end_info = _this.data.o_place
+      server.win_num = _this.data.win_num
     }
-    if (this.data.s_id === 2) { //巅峰赛 
-      server.server_begin_info = data_arr["begin_info"] = this.data.initialNum //当前段位（当前分值）         
-      server.server_end_info = data_arr["end_info"] = this.data.score
+    server.server_price = data_arr.server_price = _this.data.salary //佣金
+    var dataArray = {
+      0: data_arr
     }
-    server.server_price = data_arr["server_price"] = this.data.salary //佣金
-    var dataArr = []
-    dataArr.push(data_arr)
-    // console.log(dataArr);
+    // dataArray = {data_arr};
+    // console.log(dataArray);
     var values = e.detail.value
     // console.log(values);
-    values["dataArr"] = dataArr
-    // console.log(values);
+    values.dataArray = JSON.stringify(dataArray)
+    if (_this.data.gid === 2) {
+      if (server.win_num === '' || server.win_num === undefined) {
+        App.showError("当前胜点不可为空")
+        return false;
+      }
+    }
+    console.log(values, dataArray)
+
     // return false;
-    //表单验证
-    if (_this.validation(values) === false) {
+    // 表单验证
+    if (_this.validation(values, data_arr) === false) {
       App.showError(this.data.error);
       return false;
     }
 
-    values["user_token"] = App.getGlobalData('user_token')
-    values["game_id"] = 1
-    values["plantform_id"] = pid
-    values["area_name"] = this.data.area_name_list[pid][this.data.multiIndex[1]]
-    values["game_info"] = '英雄数量：' + values["hreonum"] + ',' + '铭文等级：' + values["runenum"] + ',' + '详细说明：' + values["info"]
+
+
+    values.user_token = App.getGlobalData('user_token')
+    values.game_id = _this.data.gid
+    values.plantform_id = pid
+    values.area_name = this.data.area_name_list[pid][this.data.multiIndex[1]]
+    _this.data.gid === 1 ? values.game_info = '英雄数量：' + values["hreonum"] + ',' + '铭文等级：' + values["runenum"] + ',' + '详细说明：' + values["info"] : values.game_info = '英雄数量：' + values["hreonum"] + ',' + '详细说明：' + values["info"]
     console.log(values);
-    console.log(values["dataArr"][0]["server_price"])
+    //console.log(values["dataArray"][0]["server_price"])
+
+
     //弹窗
     this.setData({
-      _values:values,
+      _values: values,
       showMol: 'show',
-      data_arr:data_arr,
       server_info: server
     })
-    console.log(this.data)
+    // console.log(this.data)
     //console.log(area_name)
     // console.log(pid)
     // console.log(e)
     // console.log(values)
     // console.log(this.data._values)
-    
+
 
 
   },
+
+  /**
+   * 预览确定  提交后台
+   */
+
+  submitData: function () {
+    var values = this.data._values
+    console.log(values)
+    App._post_form('order/creatorders', values, function (result) {
+      console.log(result.data.oid)
+      console.log(result.data.order_id)
+
+
+      if (result.code === 200) {
+        App._post_form('payment/orderPay', {
+          user_token: values.user_token,
+          oid: result.data.oid,
+          order_id: result.data.order_id
+        }, function (res) {
+          console.log(res)
+          if(res.code === 200){
+            wx.requestPayment({
+              timeStamp: res.data.timeStamp,
+              nonceStr:res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              
+            });
+              
+          }
+        })
+
+      }
+    })
+  },
+
   /**
    * 表单验证
    */
 
-  validation: function (values) {
-    if (values["dataArr"][0]["begin_info"] === '' || values["dataArr"][0]["begin_info"] === undefined) {
+  validation: function (values, arr) {
+    if (arr["begin_info"] === '' || arr["begin_info"] === undefined) {
       this.data.error = '当前段位(分数)不可为空';
       return false;
     }
-    if (values["dataArr"][0]["end_info"] === '' || values["dataArr"][0]["end_info"] === undefined) {
+    if (arr["end_info"] === '' || arr["end_info"] === undefined) {
       this.data.error = '目标段位(分数)不可为空';
       return false;
     }
-    if (values["dataArr"][0]["server_price"] === '' || values["dataArr"][0]["server_price"] === undefined) {
+    if (arr["server_price"] === '' || arr["server_price"] === undefined) {
       this.data.error = '佣金不可为空';
       return false;
     }
@@ -474,14 +594,14 @@ Page({
   /**
    * 遍历二维数组，提取元素成为一维数组（带条件）
    */
-  splitPlantform: function (arr, key) {
+  split_area: function (arr, key) {
     var data = [];
     arr.map(function (value, index) {
-      if (data.hasOwnProperty(value.gid)) {
-        data[value.gid].push(value[key]);
+      if (data.hasOwnProperty(value.pid)) {
+        data[value.pid].push(value[key]);
       } else {
-        data[value.gid] = [];
-        data[value.gid].push(value[key]);
+        data[value.pid] = [];
+        data[value.pid].push(value[key]);
       }
     });
     return data;

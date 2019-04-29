@@ -1,0 +1,6 @@
+<!--pages/inputInformation/price_ref.wxml-->
+<text>pages/inputInformation/price_ref.wxml</text>
+<text class="" selectable="false" space="false" decode="false">
+价格参考.........
+</text>
+  
