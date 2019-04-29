@@ -34,8 +34,14 @@ Page({
    */
   onLoad: function (options) {
     this.data.order_id = options.order_id;
+<<<<<<< HEAD
     this.data.o_id = options.o_id;
     this.getOrderDetail(options.order_id, options.o_id);
+=======
+    this.data.o_id =parseInt(options.o_id);
+    console.log(this.data.o_id)
+    this.getOrderDetail(options.order_id,parseInt(options.o_id));
+>>>>>>> 91846d00b3df5faa0ceb4851de1dbe22836ebd0d
   },
 
   /**
@@ -48,7 +54,7 @@ Page({
     // values.order_id = order_id;
     // values.oid = o_id;
     // values.user_token = App.getGlobalData('user_token')
-    App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), order_id :order_id, oid :o_id }, function (result) {
+    App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), oid :o_id , order_id :order_id }, function (result) {
       console.log(result)
       _this.setData({
 

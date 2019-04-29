@@ -302,11 +302,13 @@ Page({
       case 3:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[3]];
         break;
+
     }
 
     this.setData(data);
     console.log(this.data.multiIndex)
   },
+
   /**
    * 佣金
    */
@@ -501,19 +503,25 @@ Page({
           order_id: result.data.order_id
         }, function (res) {
           console.log(res)
-          if(res.code === 200){
+          if (res.code === 200) {
             wx.requestPayment({
               timeStamp: res.data.timeStamp,
-              nonceStr:res.data.nonceStr,
+              nonceStr: res.data.nonceStr,
               package: res.data.package,
               signType: res.data.signType,
               paySign: res.data.paySign,
-              
+              success(res) {
+                console.log(res)
+              },
+              fail(res) {
+                console.log(res)
+              }
             });
-              
+          } else {
+            App.showError(res.data.msg)
+
           }
         })
-
       }
     })
   },

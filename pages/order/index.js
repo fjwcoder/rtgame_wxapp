@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    step: '0',
+    step: null,
     status: '1',
     list: [],
   },
@@ -16,8 +16,11 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    this.data.step = options.type || '0';
-    this.setData({ dataType: this.data.step });
+    this.data.step = parseInt(options.type);
+    this.setData({ 
+      dataType:options.type, 
+      step:parseInt(options.type)
+    });
   },
 
   /**
@@ -33,85 +36,11 @@ Page({
    */
   getOrderList: function (step, status) {
     let _this = this;
-    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'), step: step, status: status }, function (result) {
+    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'), step: _this.data.step }, function (result) {
       console.log(result)
      
       _this.setData({
-        // list:result.data
-        list:[
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '0',
-            status: '1',
-            create_time: '2019-01-01'
-          },
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '1',
-            status: '1',
-            create_time: '2019-01-01'
-          },
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '2',
-            status: '1',
-            create_time: '2019-01-01'
-          },
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '3',
-            status: '1',
-            create_time: '2019-01-01'
-          },
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '4',
-            status: '1',
-            create_time: '2019-01-01'
-          },
-          {
-            id: '1',
-            order_id: 'num001',
-            img: '',
-            game_name: '测试游戏名称',
-            plantform_name: 'IOS微信',
-            area_name: '测试区服名称',
-            pay_money: '￥100',
-            step: '0',
-            status: '2',
-            create_time: '2019-01-01'
-          }
-        ]
+         list:result.data
       })
       console.log(_this.data.list)
     });
@@ -121,7 +50,10 @@ Page({
    * 切换标签
    */
   bindHeaderTap: function (e) {
-    this.setData({ dataType: e.target.dataset.type });
+    console.log(e)
+    this.setData({
+       dataType: e.target.dataset.type 
+      });
     this.data.step = e.target.dataset.type;
     if(this.data.step === '6'){
       this.setData({status: '2'});
