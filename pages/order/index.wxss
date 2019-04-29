@@ -117,6 +117,7 @@
   float: right;
    margin-top: 10px;
    margin-bottom: 10px;
+   margin-right:10rpx;
 }
 
 .btn-main {
@@ -129,6 +130,7 @@
   float: right;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-right:10rpx;
 }
 
 .user-orderJtou {

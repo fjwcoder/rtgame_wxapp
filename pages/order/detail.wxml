@@ -2,11 +2,19 @@
 
     <view class='box_a'>
       <view class='title_details'>订单信息</view>
-      <view class='insurance_details'>保险名称:<text class='col_r'>{{insurance_name}}</text></view>
-      <view class='insurance_details'>保险详情：<text class='col_r'>{{insurance_description}}</text></view>
-      <view class='insurance_details'>订单编号：<text class='col_r'>{{insurance_order_id}}</text></view>
-      <view class='insurance_details'>订单金额：<text class='col_r'>{{pay_money}}</text></view>
-       <view class='insurance_details'>赔付金额：<text class='col_r'>{{pay_limit}}</text></view>
+      <view class='insurance_details'>订单编号：<text class='col_r'>{{order_id}}</text></view>
+      <view class='insurance_details'>游戏名称：<text class='col_r'>{{game_name}}</text></view>
+      <view class='insurance_details'>游戏图片：<text class='col_r'>{{game_img}}</text></view>
+      <view class='insurance_details'>平台名称：<text class='col_r'>{{plantform_name}}</text></view>
+      <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
+       <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
+
+       
+      <view class='insurance_details'>订单编号：<text class='col_r'>{{order_id}}</text></view>
+      <view class='insurance_details'>游戏名称：<text class='col_r'>{{game_name}}</text></view>
+      <view class='insurance_details'>平台名称：<text class='col_r'>{{plantform_name}}</text></view>
+      <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
+       <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
     </view>
 
     <view class='box_a'>

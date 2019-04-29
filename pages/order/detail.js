@@ -62,7 +62,7 @@ Page({
     // values.order_id = order_id;
     // values.oid = o_id;
     // values.user_token = App.getGlobalData('user_token')
-    App._post_form('insurance/getInsuranceOrderDetail', { user_token : App.getGlobalData('user_token'), order_id :order_id, oid :o_id }, function (result) {
+    App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), order_id :order_id, oid :o_id }, function (result) {
       console.log(result)
       _this.setData({
         user_name: result.data.user_name,

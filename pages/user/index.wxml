@@ -1,4 +1,4 @@
-45<view class="container m-b5">
+<view class="container m-b5">
   <view class="user-header p-r">
     <view class="user-bg-box">
       <!-- <image class="header-bg" src="{{userInfo.avatarUrl}}"></image> -->
@@ -9,13 +9,13 @@
     <view class="user-order">
       <view class="user-order-cont dis-flex">
         <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=all">
+          <navigator hover-class="navigator-hover" url="../order/index?type=0">
             <text class="iconfont icon-form orderListIcon "></text>
             <text class="listCont">全部订单</text>
           </navigator>
         </view>
         <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=payment">
+          <navigator hover-class="navigator-hover" url="../order/index?type=1">
             <text class="iconfont icon-daifukuan orderListIcon "></text>
             <text class="listCont">待付款</text>
             <text class="user-tag p-a" wx:if="{{orderCount.payment > 0}}">{{orderCount.payment}}</text>
