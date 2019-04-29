@@ -16,8 +16,7 @@
         <view wx:if="{{list.length}}">
           <view class="m-top20 " wx:for="{{list}}" wx:key="this" wx:for-item='item' class='a_item'>
             <view style='display:flex;background:#ffffff;align-items: center;justify-content: center; '>
-              <image style="width: 120rpx; height: 120rpx; background-color: #eeeeee;float:left;margin-left:10rpx;border-radius: 6px;" mode="{{item.mode}}"
-                     src="{{item.src}}"></image>
+              <image style="width: 120rpx; height: 120rpx; background-color: #eeeeee;float:left;margin-left:10rpx;border-radius: 6px;" mode="{{item.mode}}" src="{{item.src}}"></image>
               <view style='float:left;width:100%;margin-left:20rpx;'>
                 <view style='display:flex;width:100%;margin-top:15rpx;font-size:28rpx;color:#121212;'>
                   <text class="title" style='float:left'>{{item.game_name}}</text>

@@ -11,33 +11,22 @@ Page({
     oid:'',
 
 
-    relationship_to_baby: ["父子", "父女", "母子", "母女"],//与被保人关系
-    user_name: '',
-    index_a:'',
-    user_sex: '',
-    user_address: '',
-    user_age: '',
+    game_name: '',
+    game_img: '',
+    plantform_name: '',
+    area_name: '',
+    game_info: '',
+    special_info: '',
+    pay_money: '',
     user_mobile: '',
-    user_id_card: '',
-    user_s_date: '', //投保人身份证开始时间
-    user_o_date: '', //投保人身份证结束时间
-    user_region: [], //投保人省市区
-    relationship_to_baby: ["父子", "父女", "母子", "母女"],//与被保人关系
-
-    baby_name: '',
-    baby_sex: '',
-    baby_age: '',
-    baby_region: '',
-    baby_address: '',
-    baby_id_card: '',
-    baby_s_date: '',
-    baby_o_date: '',
-    relationship_to_user: '',//与投保人关系
-
-    insurance_name:'',
-    insurance_description:'',
-    pay_money:'',
-    insurance_order_id:'',
+    game_account: '',
+    waiter_name: '',
+    waiter_headimgurl: '',
+    step: '1',
+    create_time: '',
+    pay_time: '',
+    finish_time: '',
+    server_list: []
   },
 
   /**
@@ -46,7 +35,6 @@ Page({
   onLoad: function (options) {
     this.data.order_id = options.order_id;
     this.data.o_id = options.o_id;
-    console.log(this.data.o_id)
     this.getOrderDetail(options.order_id, options.o_id);
   },
 
@@ -54,8 +42,6 @@ Page({
    * 获取订单详情
    */
   getOrderDetail: function (order_id,o_id) {
-    console.log(order_id);
-    console.log(o_id);
    
     let _this = this;
     // let values;
@@ -65,28 +51,41 @@ Page({
     App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), order_id :order_id, oid :o_id }, function (result) {
       console.log(result)
       _this.setData({
-        user_name: result.data.user_name,
-        user_sex: (result.data.user_sex === 1)?"男":"女" ,
-        user_age: result.data.user_age,
-        user_o_date: result.data.user_id_card_endtime,
-        user_s_date: result.data.user_id_card_begintime,
-        user_id_card: result.data.user_id_card,
-        user_address: result.data.user_address.split(",")[3],
-        user_mobile: result.data.user_mobile,
-        index_a: result.data.relationship_to_baby - 1,
-        user_address: result.data.user_address,
-        baby_name: result.data.baby_name,
-        baby_age: result.data.baby_age,
-        baby_id_card: result.data.baby_id_card,
-        baby_o_date: result.data.baby_id_card_endtime,
-        baby_s_date: result.data.baby_id_card_begintime,
-        baby_sex: (result.data.baby_sex === 1) ? "男" : "女",
-        baby_address: result.data.baby_address,
+
+        // game_name: '',
+        // game_img: '',
+        // plantform_name: '',
+        // area_name: '',
+        // game_info: '',
+        // special_info: '',
+        // pay_money: '',
+        // user_mobile: '',
+        // game_account: '',
+        // waiter_name: '',
+        // waiter_headimgurl: '',
+        // step: '1',
+        // create_time: '',
+        // pay_time: '',
+        // finish_time: '',
+
+        game_name: result.data.game_name,
+        game_img: result.data.game_img ,
+        plantform_name: result.data.plantform_name,
+        area_name: result.data.area_name,
+        game_info: result.data.game_info,
+        special_info: result.data.special_info,
         pay_money: result.data.pay_money,
-        insurance_name: result.data.insurance_name, 
-        insurance_description: result.data.insurance_description,
-        insurance_order_id: result.data.insurance_order_id,
-        pay_limit: result.data.pay_limit,
+
+        user_mobile: result.data.user_mobile,
+        game_account: result.data.game_account,
+        waiter_name: result.data.waiter_name,
+        waiter_headimgurl: result.data.waiter_headimgurl,
+        step: result.data.step,
+        create_time: result.data.create_time,
+        pay_time: result.data.pay_time,
+        finish_time: result.data.finish_time,
+        server_list: result.data.detail
+        
       })
     });
   },

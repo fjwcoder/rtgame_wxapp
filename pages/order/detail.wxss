@@ -1,13 +1,13 @@
 .insurance_details {
   font-size: 26rpx;
-  line-height: 48rpx;
+  line-height: 60rpx;
   color: #444;
 }
 
 .title_details {
   width: 100%;
   text-align: center;
-  line-height: 50rpx;
+  line-height: 70rpx;
   color: #1ac189;
   font-weight: bold;
   font-size: 28rpx;
@@ -43,4 +43,41 @@
 }
 .mar{
   margin-bottom: 30rpx;
+}
+.btn-default {
+  width: 100rpx;
+  height:40rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ccc;
+  font-size: 24rpx;
+  color: #555;
+  float: right;
+  margin-right:10rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.btn-main {
+  width: 100rpx;
+  height:40rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #1ac189;
+  font-size: 24rpx;
+  color: #1ac189;
+  margin-left: 10rpx;
+  float: right;
+  margin-right:10rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+.stepview {
+  display: flex;
+  font-size: 26rpx;
+  line-height: 48rpx;
+  color: #444;
+  align-items: center;
+  justify-content: center;
+}
+.step_payview {
+  flex: 1;
 }
