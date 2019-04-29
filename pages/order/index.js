@@ -31,7 +31,7 @@ Page({
    */
   getOrderList: function (dataType) {
     let _this = this;
-    App._post_form('insurance/getInsuranceOrderList', { user_token: App.getGlobalData('user_token') }, function (result) {
+    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'),step:0  }, function (result) {
       console.log(result)
      
       _this.setData({
@@ -45,6 +45,7 @@ Page({
    * 切换标签
    */
   bindHeaderTap: function (e) {
+    console.log(e)
     this.setData({ dataType: e.target.dataset.type });
     // 获取订单列表
     this.getOrderList(e.target.dataset.type);

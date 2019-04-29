@@ -54,7 +54,6 @@ Page({
       title: this.data.game_name + '代练'
     })
     this.getGameServer();
-    this.getServerList();
     this.runeNum_show(this.data.gid); //铭文数量输入框显示
   },
 
@@ -296,6 +295,8 @@ Page({
               paySign: res.data.paySign,
 
             });
+          }else{
+            App.showError(res.data.nonceStr)
           }
         })
       }

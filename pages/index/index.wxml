@@ -1,6 +1,4 @@
 <view class="container">
-
-
   <scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
     <view class="col_banner"></view>
     <block wx:for="{{items}}" wx:for-item="item" wx:for-index="item_key" wx:key="this">
@@ -9,7 +7,6 @@
         <include src="components/search/search.wxml" />
       </block>
       <!-- banner轮播 -->
-
     </block>
     <view class='slides'>
       <swiper autoplay='true' circular indicator-dots indicator-active-color='#1ac189' class='s_banner'>
@@ -39,9 +36,39 @@
         </navigator>
       </scroll-view>
     </view> -->
+   <view class="cu-bar bg-white "style='margin-top:70rpx;margin-bottom:2rpx;'>
+    <view class="action border-title">
+      <text class="text-xl text-bold text-blue">游戏代练</text>
+      <text class="bg-gradual-blue" style="width:3rem"></text>
+    </view>
+  </view>
+    <view class="cu-list grid col-3 no-border">
+      <view class="cu-item">
+        <navigator url="../inputInformation/aovinfo?gid=1">
+          <view class="cuIcon-upstagefill text-blue">
+            <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+              <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+            </view>
+          </view>
+          <text>王者荣耀</text>
+        </navigator>
+      </view>
+      <view class="cu-item">
+        <navigator url="../inputInformation/aovinfo?gid=2">
+          <view class="cuIcon-discoverfill text-orange">
+            <!-- <image src="../../images/wzry.png" class="png" mode="aspectFit"></image> -->
+            <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+              <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+            </view>
+          </view>
+          <text>英雄联盟</text>
+        </navigator>
+      </view>
+    </view>
     <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
       <view class="action">
-        <text class="cuIcon-title text-orange "></text> 接单列表
+        <text class="cuIcon-title text-orange "></text>
+        接单列表
       </view>
     </view>
     <view class="cu-list menu-avatar">
@@ -51,7 +78,8 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
+              50.00元
             </text>
           </view>
         </view>
@@ -59,14 +87,14 @@
           <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
         </view>
       </view>
-
       <view class="cu-item border_bottom">
         <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
         <view class="content">
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
+              50.00元
             </text>
           </view>
         </view>
@@ -74,14 +102,14 @@
           <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
         </view>
       </view>
-
       <view class="cu-item border_bottom">
         <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
         <view class="content">
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
+              50.00元
             </text>
           </view>
         </view>
@@ -89,15 +117,14 @@
           <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
         </view>
       </view>
-
-
       <view class="cu-item border_bottom">
         <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
         <view class="content">
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
+              50.00元
             </text>
           </view>
         </view>
@@ -105,15 +132,14 @@
           <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
         </view>
       </view>
-
-
       <view class="cu-item border_bottom">
         <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
         <view class="content">
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-							<text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
+              50.00元
             </text>
           </view>
         </view>
@@ -121,14 +147,9 @@
           <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button>
         </view>
       </view>
-
     </view>
     <!-- 全部保险 -->
-
-    <view class="title-hrbg" style="margin-top:10rpx">
-
-
-    </view>
+    <view class="title-hrbg" style="margin-top:10rpx"></view>
     <view class="category-list">
       <navigator class="list b-f" hover-class="none" url="../insurance/detail?insurance_id={{item.insurance_id}}" wx:for="{{list}}" wx:key="this">
         <view class="left">
@@ -144,17 +165,14 @@
         </view>
       </navigator>
     </view>
-
     <!-- 底线 -->
     <view class="title-footer p-r">
       <text class="f-24 col-9 cont">暂时没有更多订单~~</text>
       <view class="hr"></view>
     </view>
   </scroll-view>
-
   <!-- 返回顶部 -->
   <view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
     <text class="iconfont icon-fanhuidingbu"></text>
   </view>
-
 </view>
