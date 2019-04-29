@@ -27,7 +27,7 @@
   margin: 20rpx auto;
   background-color: #fff;
   padding: 20rpx;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: -5rpx 8rpx 5rpx rgba(0, 0, 0, 0.1);
 }
 

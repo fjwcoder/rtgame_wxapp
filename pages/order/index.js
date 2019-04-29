@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataType: 'all',
+    step: '0',
+    status: '1',
     list: [],
   },
 
@@ -14,8 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.dataType = options.type || 'all';
-    this.setData({ dataType: this.data.dataType });
+    console.log(options);
+    this.data.step = options.type || '0';
+    this.setData({ dataType: this.data.step });
   },
 
   /**
@@ -23,19 +25,93 @@ Page({
    */
   onShow: function () {
     // 获取订单列表
-    this.getOrderList(this.data.dataType);
+    this.getOrderList(this.data.step);
   },
 
   /**
    * 获取订单列表
    */
-  getOrderList: function (dataType) {
+  getOrderList: function (step, status) {
     let _this = this;
-    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'),step:0  }, function (result) {
+    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'), step: step, status: status }, function (result) {
       console.log(result)
      
       _this.setData({
-        list:result.data
+        // list:result.data
+        list:[
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '0',
+            status: '1',
+            create_time: '2019-01-01'
+          },
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '1',
+            status: '1',
+            create_time: '2019-01-01'
+          },
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '2',
+            status: '1',
+            create_time: '2019-01-01'
+          },
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '3',
+            status: '1',
+            create_time: '2019-01-01'
+          },
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '4',
+            status: '1',
+            create_time: '2019-01-01'
+          },
+          {
+            id: '1',
+            order_id: 'num001',
+            img: '',
+            game_name: '测试游戏名称',
+            plantform_name: 'IOS微信',
+            area_name: '测试区服名称',
+            pay_money: '￥100',
+            step: '0',
+            status: '2',
+            create_time: '2019-01-01'
+          }
+        ]
       })
       console.log(_this.data.list)
     });
@@ -47,8 +123,13 @@ Page({
   bindHeaderTap: function (e) {
     console.log(e)
     this.setData({ dataType: e.target.dataset.type });
+    this.data.step = e.target.dataset.type;
+    if(this.data.step === '6'){
+      this.setData({status: '2'});
+    }
+    
     // 获取订单列表
-    this.getOrderList(e.target.dataset.type);
+    this.getOrderList(this.data.step, this.data.status);
   },
 
   /**
@@ -96,12 +177,17 @@ Page({
 
     let _this = this;
     let post = [];
-    let order_id = e.currentTarget.dataset.id;
+    let oid = e.currentTarget.dataset.oid;
+    let order_id = e.currentTarget.dataset.order_id;
+    console.log(e);
+    console.log("oid=="+oid);
+    console.log("order_id=="+order_id);
     // 显示loading
     wx.showLoading({ title: '正在处理...', });
-    App._post_form('payment/insurancePay', { 
+    App._post_form('payment/orderPay', { 
       user_token: App.getGlobalData('user_token'),
-      order_id: order_id
+      order_id: order_id,
+      oid: oid
      }, function (result) {
 console.log(result);
       if (result.code !== 200) {
