@@ -22,7 +22,7 @@ Page({
     game_account: '',
     waiter_name: '',
     waiter_headimgurl: '',
-    step: '1',
+    step: 0,
     create_time: '',
     pay_time: '',
     finish_time: '',
@@ -34,14 +34,11 @@ Page({
    */
   onLoad: function (options) {
     this.data.order_id = options.order_id;
-<<<<<<< HEAD
-    this.data.o_id = options.o_id;
-    this.getOrderDetail(options.order_id, options.o_id);
-=======
     this.data.o_id =parseInt(options.o_id);
-    console.log(this.data.o_id)
+    this.setData({
+      order_id: options.order_id
+    });
     this.getOrderDetail(options.order_id,parseInt(options.o_id));
->>>>>>> 91846d00b3df5faa0ceb4851de1dbe22836ebd0d
   },
 
   /**

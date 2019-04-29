@@ -45,22 +45,22 @@
   margin-bottom: 30rpx;
 }
 .btn-default {
-  width: 100rpx;
-  height:40rpx;
-  border-radius: 20rpx;
+  width: 120rpx;
+  height:50rpx;
+  border-radius: 25rpx;
   border: 1rpx solid #ccc;
   font-size: 24rpx;
   color: #555;
   float: right;
   margin-right:10rpx;
   text-align: center;
-  line-height: 40rpx;
+  line-height: 50rpx;
 }
 
 .btn-main {
-  width: 100rpx;
-  height:40rpx;
-  border-radius: 20rpx;
+  width: 120rpx;
+  height:50rpx;
+  border-radius: 25rpx;
   border: 1rpx solid #1ac189;
   font-size: 24rpx;
   color: #1ac189;
@@ -68,7 +68,7 @@
   float: right;
   margin-right:10rpx;
   text-align: center;
-  line-height: 40rpx;
+  line-height: 50rpx;
 }
 .stepview {
   display: flex;
@@ -79,5 +79,7 @@
   justify-content: center;
 }
 .step_payview {
+  width: 100%;
   flex: 1;
+  float: left;
 }
