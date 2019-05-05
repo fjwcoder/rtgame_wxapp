@@ -1,5 +1,8 @@
 let App = getApp();
-
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
 Page({
 
   /**
@@ -49,7 +52,10 @@ Page({
    
     let _this = this;
     App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), oid :o_id , order_id :order_id }, function (result) {
-      console.log(result)
+      console.log(result);
+      var createTime = _this.timeStampToDate(result.data.create_time, 'Y-M-D h:m:s');
+      var payTime = _this.timeStampToDate(result.data.pay_time, 'Y-M-D h:m:s');
+      var finishTime = _this.timeStampToDate(result.data.finish_time, 'Y-M-D h:m:s');
       _this.setData({
         game_name: result.data.game_name,
         game_img: result.data.game_img ,
@@ -64,25 +70,17 @@ Page({
         waiter_name: result.data.waiter_name,
         waiter_headimgurl: result.data.waiter_headimgurl,
         step: result.data.step,
-        create_time: result.data.create_time,
-        pay_time: result.data.pay_time,
-        finish_time: result.data.finish_time,
-        server_list: result.data.detail
+        create_time: createTime,
+        pay_time: payTime,
+        finish_time: finishTime,
+        server_list: result.data.detail,
         
       })
     });
   },
 
+  
 
-  /**
-   * 跳转理赔页面
-   */
-  // claimApplication:function(){
-  //   wx.navigateTo({
-      
-  //     url: '../lipei/index'
-  //   })
-  // },
   /**
    * 取消订单
    */
@@ -159,5 +157,26 @@ Page({
     });
   },
 
+  timeStampToDate:function (number, format) {
+    if(number === ""){
+      return "";
+    }
+    var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+    var returnArr = [];
+    var date = new Date(number * 1000);
+    returnArr.push(date.getFullYear());
+    returnArr.push(formatNumber(date.getMonth() + 1));
+    returnArr.push(formatNumber(date.getDate()));
 
+    returnArr.push(formatNumber(date.getHours()));
+    returnArr.push(formatNumber(date.getMinutes()));
+    returnArr.push(formatNumber(date.getSeconds()));
+
+    for(var i in returnArr) {
+      format = format.replace(formateArr[i], returnArr[i]);
+    }
+    return format;
+  }
+  
 });
+
