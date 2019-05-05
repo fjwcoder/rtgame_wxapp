@@ -494,8 +494,6 @@ Page({
     App._post_form('order/creatorders', values, function (result) {
       console.log(result.data.oid)
       console.log(result.data.order_id)
-
-
       if (result.code === 200) {
         App._post_form('payment/orderPay', {
           user_token: values.user_token,
@@ -514,7 +512,9 @@ Page({
                 console.log(res)
               },
               fail(res) {
-                console.log(res)
+                wx.navigateTo({
+                  url:'../order/index?type=1'
+                })
               }
             });
           } else {

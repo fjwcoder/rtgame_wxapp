@@ -47,7 +47,7 @@ Page({
     this.data.order_id = options.order_id;
     this.data.o_id =parseInt(options.o_id);
     console.log(this.data.o_id)
-    this.getOrderDetail(options.order_id,parseInt(options.o_id));
+  this.getOrderDetail(options.order_id,parseInt(options.o_id));
   },
 
   /**

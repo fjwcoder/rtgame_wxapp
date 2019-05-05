@@ -152,12 +152,7 @@ Page({
   /**
    * 取消
    */
-  quxiao: function() {
-   wx.showToast({
-     title: '您必须绑定手机号才可使用',
-     icon:'none'
-   })
-  },
+ 
   //提交表单信息
 
   bindMobile: function() {

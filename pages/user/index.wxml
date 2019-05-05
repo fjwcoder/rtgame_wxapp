@@ -172,7 +172,7 @@
 
 
 
-  <modal hidden="{{hiddenmodalput}}" title="完善资料" confirm-text="提交" cancel-text="取消" bindcancel="cancelM" bindconfirm="bindMobile" bindcancel='quxiao'>
+  <modal hidden="{{hiddenmodalput}}" title="完善资料" confirm-text="提交" bindconfirm="bindMobile" >
     <input disabled='{{input_disabled}}' class='tel' bindinput='getPhoneValue' type='text' placeholder="请输入您的手机号" value='{{phone}}' auto-focus maxlength='11' />
 
     <input class='yanzhengma' bindinput='getCodeValue' type='number' placeholder="验证码" maxlength='6' />

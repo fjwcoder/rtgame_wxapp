@@ -54,7 +54,6 @@ Page({
       title: this.data.game_name + '代练'
     })
     this.getGameServer();
-    this.runeNum_show(this.data.gid); //铭文数量输入框显示
   },
 
   /**
@@ -146,7 +145,7 @@ Page({
     })
   },
   MultiColumnChange(e) {
-
+    let _data = this.data;
     let data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -294,7 +293,14 @@ Page({
               package: res.data.package,
               signType: res.data.signType,
               paySign: res.data.paySign,
-
+              success(res) {
+                console.log(res)
+              },
+              fail(res) {
+                wx.navigateTo({
+                  url:'../order/index?type=1'
+                })
+              }
             });
           }else{
             App.showError(res.data.nonceStr)

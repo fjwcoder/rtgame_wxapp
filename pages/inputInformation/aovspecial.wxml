@@ -5,7 +5,7 @@
         <!-- last-child选择器 -->
     </view>
 </view>
-<view class="cu-card article {{isCard?'no-card':''}}">
+<view class="cu-card article">
     <view class="cu-item shadow" style="padding-bottom:0;">
         <view class="cu-form-group border-top">
             <view class="card_title">代练类型</view>
@@ -15,7 +15,6 @@
             <view class="card_title">任务要求</view>
             <input bindinput="getTaskDemand" placeholder="请输入您的任务要求"></input>
         </view>
-        
         <view class="cu-form-group">
             <view class="card_title">订单佣金</view>
             <input bindblur="getSalary" value="{{salary}}" type="number"></input>
@@ -34,45 +33,49 @@
 </view>
 <!-- 填写信息区域 -->
 <form bindsubmit="saveData">
-    <view class="cu-form-group border-top">
-        <view class="title">选择区服</view>
-        <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="picker_text">
-                {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+    <view class="cu-card article">
+        <view class="cu-item shadow" style="padding-bottom:0;">
+            <view class="cu-form-group border-top">
+                <view class="card_title">选择区服</view>
+                <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view class="picker_text">
+                        {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+                    </view>
+                </picker>
             </view>
-        </picker>
-    </view>
-    <view class="cu-form-group">
-        <view class="title">游戏账号</view>
-        <input placeholder="请输入您的游戏账号" name="game_account"></input>
-    </view>
-    <view class="cu-form-group">
-        <view class="title">游戏密码</view>
-        <input placeholder="请输入您的游戏密码" name="game_password" password="{{true}}"></input>
-    </view>
-    <view class="cu-form-group">
-        <view class="title">角色名字</view>
-        <input placeholder="请输入您的角色名字" name="game_user"></input>
-    </view>
-    <view class="cu-form-group">
-        <view class="title">英雄数量</view>
-        <input placeholder="请输入您的英雄数量" bindblur="getHeroesNum" value="{{heroNum}}" name="hreonum" type="number"></input>
-    </view>
-    <view wx:if="{{runeNum_show}}" class="cu-form-group">
-        <view class="title">铭文等级</view>
-        <input placeholder="请输入您的铭文等级" bindblur="getRuneNum" value="{{runeNum}}" type="number" name="runenum"></input>
-    </view>
-    <view class="cu-form-group">
-        <view class="title">手机号码</view>
-        <input placeholder="请输入您的手机号" type="number" value="{{mobileNum}}" maxlength="11" name="user_mobile"></input>
-        <view class="cu-capsule radius">
-            <view class="cu-tag bg-blue">+86</view>
-            <view class="cu-tag line-blue">中国大陆</view>
+            <view class="cu-form-group">
+                <view class="card_title">游戏账号</view>
+                <input placeholder="请输入您的游戏账号" name="game_account"></input>
+            </view>
+            <view class="cu-form-group">
+                <view class="card_title">游戏密码</view>
+                <input placeholder="请输入您的游戏密码" name="game_password" password="{{true}}"></input>
+            </view>
+            <view class="cu-form-group">
+                <view class="card_title">角色名字</view>
+                <input placeholder="请输入您的角色名字" name="game_user"></input>
+            </view>
+            <view class="cu-form-group">
+                <view class="card_title">英雄数量</view>
+                <input placeholder="请输入您的英雄数量" bindblur="getHeroesNum" value="{{heroNum}}" name="hreonum" type="number"></input>
+            </view>
+            <view wx:if="{{runeNum_show}}" class="cu-form-group">
+                <view class="card_title">铭文等级</view>
+                <input placeholder="请输入您的铭文等级" bindblur="getRuneNum" value="{{runeNum}}" type="number" name="runenum"></input>
+            </view>
+            <view class="cu-form-group">
+                <view class="card_title">手机号码</view>
+                <input placeholder="请输入您的手机号" type="number" value="{{mobileNum}}" maxlength="11" name="user_mobile"></input>
+                <view class="cu-capsule radius">
+                    <view class="cu-tag bg-blue">+86</view>
+                    <view class="cu-tag line-blue">中国大陆</view>
+                </view>
+            </view>
+            <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
+            <view class="cu-form-group margin-top">
+                <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入您的账号相关详情及说明" name="info"></textarea>
+            </view>
         </view>
-    </view>
-    <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
-    <view class="cu-form-group margin-top">
-        <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入您的账号相关详情及说明" name="info"></textarea>
     </view>
     <button form-type="submit" class="btn_saveData">提交</button>
 </form>
