@@ -109,7 +109,7 @@ Page({
     let _this = this;
     let post = [];
     let oid = e.currentTarget.dataset.oid;
-    let order_id = e.currentTarget.dataset.order_id;
+    let order_id = e.currentTarget.dataset.orderid;
     console.log(e);
     console.log("oid=="+oid);
     console.log("order_id=="+order_id);
@@ -120,7 +120,7 @@ Page({
       order_id: order_id,
       oid: oid
      }, function (result) {
-console.log(result);
+      console.log(result);
       if (result.code !== 200) {
         App.showError(result.msg);
         return false;

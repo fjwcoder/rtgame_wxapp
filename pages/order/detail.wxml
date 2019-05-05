@@ -1,54 +1,61 @@
-<view class='folding-box'>
+<view class='folding-box'  style="margin-bottom:20rpx">
 
     <view class='box_a'>
       <view class='title_details'>订单信息</view>
-      <view class='insurance_details'>订单编号：<text class='col_r'>{{order_id}}</text></view>
-      <view class='insurance_details'>游戏名称：<text class='col_r'>{{game_name}}</text></view>
-      <view class='insurance_details'>游戏图片：<text class='col_r'>{{game_img}}</text></view>
-      <view class='insurance_details'>平台名称：<text class='col_r'>{{plantform_name}}</text></view>
-      <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
-       <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
-
-       
+      <view class='title_details'>
+        <image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;border-radius:100%;overflow:hidden;" mode="{{item.mode}}" src="{{game_img}}"></image>
+      </view>
       <view class='insurance_details'>订单编号：<text class='col_r'>{{order_id}}</text></view>
       <view class='insurance_details'>游戏名称：<text class='col_r'>{{game_name}}</text></view>
       <view class='insurance_details'>平台名称：<text class='col_r'>{{plantform_name}}</text></view>
       <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
-       <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
+      <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
+      <view class='insurance_details'>特殊信息/要求：<text class='col_r'>{{special_info}}</text></view>
+      <view class='insurance_details'>订单总金额：<text class='col_r'>￥{{pay_money}}</text></view>
+      <view class='insurance_details'>用户联系方式：<text class='col_r'>{{user_mobile}}</text></view>
+      <view class='insurance_details'>游戏账号：<text class='col_r'>{{game_account}}</text></view>
+      <view class='stepview'>
+        <view style='float:left;'>订单进度：
+          <text class='col_r' wx:if="{{step === 1}}">未付款</text>
+          <text class='col_r' else wx:if="{{step === 2}}">待分配</text>
+          <text class='col_r' else wx:if="{{step === 3}}">代练中</text>
+          <text class='col_r' else wx:if="{{step === 4}}">完成</text>
+        </view>
+        <view class="step_payview" wx:if="{{step === 1}}">                     
+          <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
+          <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
+        </view>
+      </view>
+      <view class='insurance_details'>订单创建时间：<text class='col_r'>{{create_time}}</text></view>
+      <view class='insurance_details'>支付时间：<text class='col_r'>{{pay_time}}</text></view>
+      <view class='insurance_details'>完成时间：<text class='col_r'>{{finish_time}}</text></view>
     </view>
 
     <view class='box_a'>
-      <view class='title_details'>投保人信息</view>
-      <view class='insurance_details'>姓名:<text class='col_r'>{{user_name}}</text></view>
-      <view class='insurance_details'>性别：<text class='col_r'>{{user_sex}}</text></view>
-      <view class='insurance_details'>年龄：<text class='col_r'>{{user_age}}</text></view>
-      <view class='insurance_details'>详细地址：<text class='col_r'>{{user_address}}</text></view>
-      <view class='insurance_details'>电话：<text class='col_r'>{{user_mobile}}</text></view>
-      <view class='insurance_details'>身份证号：<text class='col_r'>{{user_id_card}}</text></view>
-      <view class='insurance_details'>身份证期限：<text class='col_r'>{{user_s_date}}—{{user_o_date}}</text></view>
-      <view class='insurance_details'>与被保人关系:<text class='col_r'>{{relationship_to_baby[index_a]}}</text></view>
-     
-     </view>
-
-     <view class='box_a'> 
-      <view class='title_details'>被保人信息</view>
-      <view class='insurance_details'>姓名：<text class='col_r'>{{baby_name}}</text></view>
-      <view class='insurance_details'>性别：<text class='col_r'>{{baby_sex}}</text></view>
-      <view class='insurance_details'>年龄：<text class='col_r'>{{baby_age}}</text></view>
-      <view class='insurance_details'>详细地址：<text class='col_r'>{{baby_address}}</text></view>
-      <view class='insurance_details'>身份证号：<text class='col_r'>{{baby_id_card}}</text></view>
-      <view class='insurance_details'>身份证期限：<text class='col_r'>{{baby_s_date}}—{{baby_o_date}}</text></view>
-      <view class='insurance_details'>与投保人关系：<text class='col_r'>{{relationship_to_baby[index_a]}}</text></view>
+      <view class='title_details'>代练人员信息</view>
+      <view class='title_details'>
+        <image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;border-radius:100%;overflow:hidden;" mode="{item.mode}}" src="{{waiter_headimgurl}}"></image>
+      </view>
+      <view class='insurance_details'>代练人员名称：<text class='col_r'>{{waiter_name}}</text></view>
     </view>
-
 
     <view class='box_a'> 
-      <view class='title_details'>保单预览图</view>
-      <view class='insurance_details'>保单预览图区域</view>
+      <view class='title_details'>服务信息</view>
+      <view wx:if="{{server_list.length}}">
+        <view class="m-top20 " wx:for="{{server_list}}" wx:key="this" wx:for-item='item' class='a_item'>
+          <view class='insurance_details'>服务名称：<text class='col_r'>{{item.server_name}}</text></view>
+          <view class='insurance_details'>未代练前的信息：<text class='col_r'>{{item.begin_info}}</text></view>
+          <view class='insurance_details'>代练要达到的目标：<text class='col_r'>{{item.end_info}}</text></view>
+          <view class='insurance_details'>代练服务的金额：<text class='col_r'>￥{{item.server_price}}</text></view>
+          <view class='insurance_details'>
+            截图：
+            <view wx:for="{{item.server_img}}" wx:key="this" wx:for-item = 'img_item'>
+              <image style="width: 200rpx; height: 200rpx; background-color: #eeeeee;" mode="{{item.mode}}" src="{{img_item}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>  
+      <view wx:else>未填写服务信息</view>
     </view>
-
-    <!-- <navigator class='mar' url='../lipei/index?baby_name={{baby_name}}&user_name={{user_name}}&insurance_name={{insurance_name}}&order_id={{insurance_order_id}}&user_id_card={{user_id_card}}'>
-        <view class="order-bt" >申请理赔</view>
-        <view class='air_box'></view>
-    </navigator> -->
+    
 </view>

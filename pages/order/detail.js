@@ -1,5 +1,8 @@
 let App = getApp();
-
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
 Page({
 
   /**
@@ -11,33 +14,22 @@ Page({
     oid:'',
 
 
-    relationship_to_baby: ["父子", "父女", "母子", "母女"],//与被保人关系
-    user_name: '',
-    index_a:'',
-    user_sex: '',
-    user_address: '',
-    user_age: '',
+    game_name: '',
+    game_img: '',
+    plantform_name: '',
+    area_name: '',
+    game_info: '',
+    special_info: '',
+    pay_money: '',
     user_mobile: '',
-    user_id_card: '',
-    user_s_date: '', //投保人身份证开始时间
-    user_o_date: '', //投保人身份证结束时间
-    user_region: [], //投保人省市区
-    relationship_to_baby: ["父子", "父女", "母子", "母女"],//与被保人关系
-
-    baby_name: '',
-    baby_sex: '',
-    baby_age: '',
-    baby_region: '',
-    baby_address: '',
-    baby_id_card: '',
-    baby_s_date: '',
-    baby_o_date: '',
-    relationship_to_user: '',//与投保人关系
-
-    insurance_name:'',
-    insurance_description:'',
-    pay_money:'',
-    insurance_order_id:'',
+    game_account: '',
+    waiter_name: '',
+    waiter_headimgurl: '',
+    step: 0,
+    create_time: '',
+    pay_time: '',
+    finish_time: '',
+    server_list: []
   },
 
   /**
@@ -45,62 +37,50 @@ Page({
    */
   onLoad: function (options) {
     this.data.order_id = options.order_id;
-    this.data.o_id =parseInt(options.o_id);
-    console.log(this.data.o_id)
-  this.getOrderDetail(options.order_id,parseInt(options.o_id));
+    //this.data.oid =parseInt(options.o_id);
+    this.setData({
+      order_id: options.order_id,
+      oid: parseInt(options.o_id)
+    });
+    this.getOrderDetail(options.order_id,parseInt(options.o_id));
   },
 
   /**
    * 获取订单详情
    */
   getOrderDetail: function (order_id,o_id) {
-    console.log(order_id);
-    console.log(o_id);
    
     let _this = this;
-    // let values;
-    // values.order_id = order_id;
-    // values.oid = o_id;
-    // values.user_token = App.getGlobalData('user_token')
     App._post_form('order/getOrderDetail', { user_token : App.getGlobalData('user_token'), oid :o_id , order_id :order_id }, function (result) {
-      console.log(result)
+      console.log(result);
+      var createTime = _this.timeStampToDate(result.data.create_time, 'Y-M-D h:m:s');
+      var payTime = _this.timeStampToDate(result.data.pay_time, 'Y-M-D h:m:s');
+      var finishTime = _this.timeStampToDate(result.data.finish_time, 'Y-M-D h:m:s');
       _this.setData({
-        user_name: result.data.user_name,
-        user_sex: (result.data.user_sex === 1)?"男":"女" ,
-        user_age: result.data.user_age,
-        user_o_date: result.data.user_id_card_endtime,
-        user_s_date: result.data.user_id_card_begintime,
-        user_id_card: result.data.user_id_card,
-        user_address: result.data.user_address.split(",")[3],
-        user_mobile: result.data.user_mobile,
-        index_a: result.data.relationship_to_baby - 1,
-        user_address: result.data.user_address,
-        baby_name: result.data.baby_name,
-        baby_age: result.data.baby_age,
-        baby_id_card: result.data.baby_id_card,
-        baby_o_date: result.data.baby_id_card_endtime,
-        baby_s_date: result.data.baby_id_card_begintime,
-        baby_sex: (result.data.baby_sex === 1) ? "男" : "女",
-        baby_address: result.data.baby_address,
+        game_name: result.data.game_name,
+        game_img: result.data.game_img ,
+        plantform_name: result.data.plantform_name,
+        area_name: result.data.area_name,
+        game_info: result.data.game_info,
+        special_info: result.data.special_info,
         pay_money: result.data.pay_money,
-        insurance_name: result.data.insurance_name, 
-        insurance_description: result.data.insurance_description,
-        insurance_order_id: result.data.insurance_order_id,
-        pay_limit: result.data.pay_limit,
+
+        user_mobile: result.data.user_mobile,
+        game_account: result.data.game_account,
+        waiter_name: result.data.waiter_name,
+        waiter_headimgurl: result.data.waiter_headimgurl,
+        step: result.data.step,
+        create_time: createTime,
+        pay_time: payTime,
+        finish_time: finishTime,
+        server_list: result.data.detail,
+        
       })
     });
   },
 
+  
 
-  /**
-   * 跳转理赔页面
-   */
-  // claimApplication:function(){
-  //   wx.navigateTo({
-      
-  //     url: '../lipei/index'
-  //   })
-  // },
   /**
    * 取消订单
    */
@@ -125,30 +105,37 @@ Page({
    */
   payOrder: function (e) {
     let _this = this;
-    let order_id = _this.data.order_id;
-
+    let oid = e.currentTarget.dataset.oid;
+    let order_id = e.currentTarget.dataset.orderid;
+    console.log("oid=="+oid);
+    console.log("order_id==" + order_id);
     // 显示loading
     wx.showLoading({ title: '正在处理...', });
-    App._post_form('user.order/pay', { order_id }, function (result) {
-      if (result.code === -10) {
-        App.showError(result.msg);
-        return false;
-      }
-      // 发起微信支付
-      wx.requestPayment({
-        timeStamp: result.data.timeStamp,
-        nonceStr: result.data.nonceStr,
-        package: 'prepay_id=' + result.data.prepay_id,
-        signType: 'MD5',
-        paySign: result.data.paySign,
-        success: function (res) {
-          _this.getOrderDetail(order_id);
-        },
-        fail: function () {
-          App.showError('订单未支付');
-        },
+    App._post_form('payment/orderPay', {
+        user_token: App.getGlobalData('user_token'),
+        order_id: order_id,
+        oid: oid 
+      }, function (result) {
+        console.log(result);
+        if (result.code !== 200) {
+          App.showError(result.msg);
+          return false;
+        }
+        // 发起微信支付
+        wx.requestPayment({
+          timeStamp: result.data.timeStamp,
+          nonceStr: result.data.nonceStr,
+          package: 'prepay_id=' + result.data.prepay_id,
+          signType: 'MD5',
+          paySign: result.data.paySign,
+          success: function (res) {
+            _this.getOrderDetail(order_id);
+          },
+          fail: function () {
+            App.showError('订单未支付');
+          },
+        });
       });
-    });
   },
 
   /**
@@ -170,5 +157,26 @@ Page({
     });
   },
 
+  timeStampToDate:function (number, format) {
+    if(number === ""){
+      return "";
+    }
+    var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+    var returnArr = [];
+    var date = new Date(number * 1000);
+    returnArr.push(date.getFullYear());
+    returnArr.push(formatNumber(date.getMonth() + 1));
+    returnArr.push(formatNumber(date.getDate()));
 
+    returnArr.push(formatNumber(date.getHours()));
+    returnArr.push(formatNumber(date.getMinutes()));
+    returnArr.push(formatNumber(date.getSeconds()));
+
+    for(var i in returnArr) {
+      format = format.replace(formateArr[i], returnArr[i]);
+    }
+    return format;
+  }
+  
 });
+
