@@ -1,0 +1,68 @@
+<view class="container m-b5">
+  <view class="goods-detail-box">
+    <view class="header f-28 col-3">
+    <!-- 
+                "id": 20,
+                "order_id": "GPI429191776051307",
+                "game_name": "英雄联盟",
+                "plantform_name": "网通",
+                "area_name": "比尔吉沃特",
+                "game_info": "英雄数量：5,详细说明：58",
+                "special_info": "",
+                "pay_money": "4151.00",
+                "user_mobile": "17560386817",
+                "game_account": "52",
+                "step": 3,
+                "status": 1,
+                "create_time": "2019-04-29 14:26:17"
+    -->
+      <view catchtap="bindHeaderTap" class="{{dataType==='0'?'active':''}}" data-type="0">全部</view>
+      <block wx:for="{{gemeTypeList}}" wx:key="this" wx:for-item='item'>
+        <view bindtap="bindHeaderTap" class="{{dataType==='{{item.id}}'?'active':''}}" data-type="{{item.id}}">{{item.cname}}</view>
+      </block>
+      
+    </view>
+    
+    <scroll-view scroll-y="true" bindscrolltolower="onScrollLower" style="height:{{windowHeight}}" lower-threshold='200' scroll-top="{{scrollTop}}">
+      <view class="wrapper">
+        <view wx:if="{{list.length}}">
+          <view class="m-top20 " wx:for="{{list}}" wx:key="this" wx:for-item='item' class='a_item'>
+            <view style='display:flex;background:#ffffff;align-items: center;justify-content: center; '>
+              <view style='float:left;width:100%;margin-left:20rpx;'>
+                <view style='display:flex;width:100%;margin-top:15rpx;font-size:28rpx;color:#121212;'>
+                  <text class="title" style='float:left'>{{item.game_name}}</text>
+                </view>
+                <view style='display:flex;margin-top:10rpx;color:#a9a9a9; font-size:20rpx;'>               
+                    <text style='float:left'>{{item.plantform_name}}</text>
+                    <text style='float:left;margin-left:20rpx;'>{{item.area_name}}</text>                  
+                </view>
+                <view style="display:flex;align-items: center;justify-content: center;">
+                  <view style="float:left;color:#1ac189;font-size:24rpx;display:flex;">
+                    <text style='float:left'>￥  </text>
+                    <text style='float:left'>{{item.pay_money}}</text>
+                  </view>
+                  <view class="flex-box">                                      
+                    <view class="flex-box">
+                      <navigator url="detail?order_id={{item.order_id}}&o_id={{item.id}}">
+                        <view class="btn-default">详情 </view>
+                      </navigator>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+        <view wx:else>
+          <view class="yoshop-notcont">
+            <text class="iconfont icon-meiyougengduo"></text>
+            <text class="cont">亲，您还没有订单信息哦！</text>
+          </view>
+        </view>
+      </view>
+      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>  
+    </scroll-view>
+  </view>
+</view>

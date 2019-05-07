@@ -109,7 +109,7 @@
     </navigator>
   </view>
   <view wx:if="{{ show }}" class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="dailian_apply">
+    <navigator class="content" hover-class="none" url="../gamepractice/dailian_apply">
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
     </navigator>
@@ -125,7 +125,12 @@
       <text class="cuIcon-service text-pink"></text>
       <text class="text-grey">平台客服</text>
     </view>
-    
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../gamepractice/practicelist">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">抢单列表</text>
+    </navigator>
   </view>
   <view class="cu-item arrow">
     <view class="content">
