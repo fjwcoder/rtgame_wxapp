@@ -36,13 +36,13 @@
         </navigator>
       </scroll-view>
     </view> -->
-   <view class="cu-bar bg-white "style='margin-top:70rpx;margin-bottom:2rpx;'>
-    <view class="action border-title">
-      <text class="text-xl text-bold text-blue">游戏代练</text>
-      <text class="bg-gradual-blue" style="width:3rem"></text>
+    <view class="cu-bar bg-white " style='margin-top:70rpx;margin-bottom:2rpx;'>
+      <view class="action border-title">
+        <text class="text-xl text-bold text-blue">游戏代练</text>
+        <text class="bg-gradual-blue" style="width:3rem"></text>
+      </view>
     </view>
-  </view>
-    <view class="cu-list grid col-3 no-border">
+    <view class="cu-list grid col-2 no-border">
       <view class="cu-item">
         <navigator url="../inputInformation/aovinfo?gid=1">
           <view class="cuIcon-upstagefill text-blue">
@@ -65,10 +65,9 @@
         </navigator>
       </view>
     </view>
-    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
+    <!-- <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
       <view class="action">
-        <text class="cuIcon-title text-orange "></text>
-        接单列表
+        <text class="cuIcon-title text-orange "></text> 接单列表
       </view>
     </view>
     <view class="cu-list menu-avatar">
@@ -78,8 +77,7 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
-              50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
             </text>
           </view>
         </view>
@@ -93,8 +91,7 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
-              50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
             </text>
           </view>
         </view>
@@ -108,8 +105,7 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
-              50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
             </text>
           </view>
         </view>
@@ -123,8 +119,7 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
-              50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
             </text>
           </view>
         </view>
@@ -138,8 +133,7 @@
           <view class="text-grey">黄金一1星——钻石五1星</view>
           <view class="text-gray text-sm flex">
             <text class="text-cut">
-              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text>
-              50.00元
+              <text class="cuIcon-choicenessfill text-orange  margin-right-xs"></text> 50.00元
             </text>
           </view>
         </view>
@@ -166,11 +160,11 @@
       </navigator>
     </view>
     <!-- 底线 -->
-    <view class="title-footer p-r">
+    <!-- <view class="title-footer p-r">
       <text class="f-24 col-9 cont">暂时没有更多订单~~</text>
       <view class="hr"></view>
-    </view>
-  </scroll-view>
+    </view> -->
+  </scroll-view> -->
   <!-- 返回顶部 -->
   <view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
     <text class="iconfont icon-fanhuidingbu"></text>
