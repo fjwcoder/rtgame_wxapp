@@ -127,7 +127,7 @@
     </view>
     
   </view>
-  <view class="cu-item arrow">
+  <!-- <view class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-btn text-green"></text>
       <text class="text-grey">按钮</text>
@@ -167,7 +167,7 @@
     <view class="action">
       <switch class="switch-sex sm" bindchange="switchSex"></switch>
     </view>
-  </view>
+  </view> -->
 </view>
 
 

@@ -27,7 +27,7 @@ Page({
     App.setTitle();
 
     // 获取首页数据
-    this.getIndexData();
+    //this.getIndexData();
   },
 
   /**

@@ -6,7 +6,7 @@
 
 .col_banner {
   width: 100%;
-  height: 300rpx;
+  height: 270rpx;
   background-color: #1ac189;
 }
 
@@ -27,7 +27,7 @@
   width: 90%;
   height: 280rpx;
   position: absolute;
-  top: 60rpx;
+  top: 30rpx;
   left: 5%;
   box-shadow: #999 0 3px 10px;
   border-radius: 20rpx;
