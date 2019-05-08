@@ -7,7 +7,7 @@ Page({
    */
   data: {
     gid: 2, //游戏id 由上个页面传入
-
+    salary:50,//佣金默认值
     s_id: 2, //
     input_hidden: true,
     picker_hidden: false, //代练类型为巅峰赛的时候显示picker隐藏input

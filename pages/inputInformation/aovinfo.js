@@ -7,6 +7,7 @@ Page({
    */
   data: {
     gid: 2, //游戏id 由上个页面传入
+    salary:50,//订单佣金初始默认值
 
     ServiceIndex: "0", //选择服务picker初始值
     ServiceArray: [], //picker代练列表

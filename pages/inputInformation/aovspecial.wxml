@@ -17,7 +17,7 @@
         </view>
         <view class="cu-form-group">
             <view class="card_title">订单佣金</view>
-            <input bindblur="getSalary" value="{{salary}}" type="number"></input>
+            <input bindblur="getSalary" value="{{salary}}" type="number" placeholder="请输入您的佣金金额"></input>
             <button class="cu-btn bg-grey shadow round sm" bindtap="jumpPriceReference">
                 佣金参考
             </button>
@@ -73,7 +73,7 @@
             </view>
             <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
             <view class="cu-form-group margin-top">
-                <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入您的账号相关详情及说明" name="info"></textarea>
+                <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入更多账号资料及详情" name="info"></textarea>
             </view>
         </view>
     </view>
