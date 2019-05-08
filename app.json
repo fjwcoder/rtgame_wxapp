@@ -12,8 +12,9 @@
     "pages/gamehall/index",
     "pages/inputInformation/aovinfo",
     "pages/inputInformation/aovspecial",
-    "pages/user/dailian_apply",
-    "pages/inputInformation/price_ref"
+    "pages/gamepractice/dailian_apply",
+    "pages/inputInformation/price_ref",
+    "pages/gamepractice/practicelist"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
