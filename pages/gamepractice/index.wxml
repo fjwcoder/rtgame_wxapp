@@ -1,0 +1,16 @@
+<view class="big_box">
+    <navigator url="practicelist" hover-class="navigator-hover" open-type="navigate">
+        <view class="dating">
+            <view class="img_box">
+                <image class="dating_img" src="../../images/dating1.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+            </view>
+            <view class="_text text-shadow text-white">抢单大厅</view>
+        </view>
+    </navigator>
+    <navigator url="" hover-class="navigator-hover" open-type="navigate">
+        <view class="_ing">代练中</view>
+    </navigator>
+    <navigator url="" hover-class="navigator-hover" open-type="navigate">
+        <view class="_end">已完成</view>
+    </navigator>
+</view>

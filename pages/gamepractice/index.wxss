@@ -1,0 +1,55 @@
+/* pages/gamepractice/index.wxss */
+.big_box {
+    padding: 20px;
+    overflow: hidden;
+}
+
+.dating {
+    width: 100%;
+    margin: 0 auto;
+    height: 300rpx;
+    background-color: #1cbbb4;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+._ing,
+._end {
+    width: calc(50% - 10px);
+    height: 200rpx;
+    text-align: center;
+    line-height: 200rpx;
+    color: white;
+    float: left;
+    background-color: #f37b1d;
+    border-radius: 20px;
+}
+
+._ing {
+    margin-right: 20px;
+}
+
+.dating_img {
+    height: 300rpx;
+}
+
+.img_box {
+    overflow: hidden;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: -80rpx;
+}
+
+._text {
+    line-height: 300rpx;
+    position: absolute;
+    top:0;
+    right: 40px;
+    font-size: 60rpx;
+    font-weight: bold;
+}

@@ -7,33 +7,35 @@ Page({
    */
   data: {
     userInfo: {},
-    orderCount: {},
+    orderCount: {
+      received: 3
+    },
     phone: '', //手机号
     code: '', //验证码
     iscode: null, //用于存放验证码接口里获取到的code
     codename: '获取验证码',
     input_disabled: false,
     hiddenmodalput: true, //modal的隐藏
-    show:true,
+    show: true,
   },
 
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
     // 获取当前用户信息
 
     this.getUserDetail();
-
+    this.getUserIndex()
 
     // console.log(wx.getStorageSync('user_id'));
     // console.log(wx.getStorageSync('user_token'));
@@ -41,13 +43,27 @@ Page({
     this.setData({
       hiddenmodalput: this.isBindMobile()
     })
-    
-  },
 
+  },
+  /**
+   * 获取用户首页数据
+   */
+  getUserIndex: function () {
+    let _this = this
+    App._post_form("user/getUserIndex", {
+      user_token: App.getGlobalData("user_token")
+    }, function (result) {
+      console.log(result)
+      _this.setData({
+        orderCount: result.data.order_count,
+        waiterInfo:result.data.waiter_info
+      })
+    })
+  },
   /**
    * 获取当前用户信息
    */
-  getUserDetail: function() {
+  getUserDetail: function () {
 
     if (App.isLogin() === false) { // create by fjw in 19.3.22: 如果用户没有登录，就重新登录
       wx.hideNavigationBarLoading();
@@ -61,12 +77,12 @@ Page({
     //   this.setData(result.data);
     // });
   },
-  shows: function() {
+  shows: function () {
     this.setData({
       display: "block"
     })
   },
-  hides: function() {
+  hides: function () {
     this.setData({
       display: "none"
     })
@@ -74,10 +90,10 @@ Page({
   /**
    * 是否绑定手机号
    */
-  isBindMobile: function(){
+  isBindMobile: function () {
     // console.log(wx.getStorageSync('user_mobile'));
 
-    if (App.isLogin() && wx.getStorageSync('user_mobile') === '' || wx.getStorageSync('user_mobile') === null || wx.getStorageSync('user_mobile') === undefined){
+    if (App.isLogin() && wx.getStorageSync('user_mobile') === '' || wx.getStorageSync('user_mobile') === null || wx.getStorageSync('user_mobile') === undefined) {
       return false;
     } else {
       return true;
@@ -88,7 +104,7 @@ Page({
    * 获取手机号码
    */
 
-  getPhoneValue: function(e) {
+  getPhoneValue: function (e) {
     this.setData({
       phone: e.detail.value
     })
@@ -96,13 +112,13 @@ Page({
   /**
    * 获取输入验证码
    */
-  getCodeValue: function(e) {
+  getCodeValue: function (e) {
     this.setData({
       code: e.detail.value
     })
   },
 
-  getCode: function() {
+  getCode: function () {
     var _this = this;
     var myreg = /^(14[0-9]|13[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$$/;
     if (this.data.phone == "") {
@@ -116,7 +132,7 @@ Page({
 
     App._post_form("Common/sendSms", {
       mobile: this.data.phone
-    }, function(result) {
+    }, function (result) {
       console.log(result);
       if (result.code === 200) {
 
@@ -127,7 +143,7 @@ Page({
 
         // 3. 获取验证码按钮显示倒计时
         var num = 61;
-        var timer = setInterval(function() {
+        var timer = setInterval(function () {
           num--;
           if (num <= 0) {
             clearInterval(timer);
@@ -152,10 +168,10 @@ Page({
   /**
    * 取消
    */
- 
+
   //提交表单信息
 
-  bindMobile: function() {
+  bindMobile: function () {
     var _this = this;
     // if (_this.data.code.length !== 6) {
     //   wx.showToast({
@@ -169,7 +185,7 @@ Page({
       user_token: App.getGlobalData('user_token'),
       mobile: this.data.phone,
       yzm: this.data.code
-    }, function(result) {
+    }, function (result) {
 
       if (result.code === 200) {
         App.globalData.user_id = result.data.user_id;

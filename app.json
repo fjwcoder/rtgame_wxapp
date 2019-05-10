@@ -14,7 +14,8 @@
     "pages/inputInformation/aovspecial",
     "pages/gamepractice/dailian_apply",
     "pages/inputInformation/price_ref",
-    "pages/gamepractice/practicelist"
+    "pages/gamepractice/practicelist",
+    "pages/gamepractice/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
