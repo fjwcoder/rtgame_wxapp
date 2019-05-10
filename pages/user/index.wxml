@@ -109,10 +109,10 @@
     </navigator>
   </view>
   <view wx:if="{{ show }}" class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="../gamepractice/dailian_apply">
+    <view class="content" hover-class="none" bindtap='apply'>
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
-    </navigator>
+    </view>
   </view>
   <view class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../inputInformation/aovinfo?gid=2">
