@@ -19,14 +19,26 @@ Page({
     user_phone: '请输入手机号码',
     error: '',
     game_id_list: '请输入擅长的游戏',
-    age:'请输入年龄'
+    age:'',
+    gameList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    getGame();
 
+  },
+  getGame:function(){
+    let _this = this;
+    App._post_form('game/getGameList', { gid: 0 }, function (result) {
+      console.log(result)
+
+      _this.setData({
+        gameList: result.data
+      })
+    });
   },
   /**
    * 填写宝宝身份证号码

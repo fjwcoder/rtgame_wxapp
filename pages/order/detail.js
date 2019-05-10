@@ -56,6 +56,10 @@ Page({
       var createTime = _this.timeStampToDate(result.data.create_time, 'Y-M-D h:m:s');
       var payTime = _this.timeStampToDate(result.data.pay_time, 'Y-M-D h:m:s');
       var finishTime = _this.timeStampToDate(result.data.finish_time, 'Y-M-D h:m:s');
+      var waiter = result.data.waiter_name;
+      if (!waiter && typeof (waiter) != "undefined" && waiter != 0){  //代练人员为空
+        waiter = '暂未分配代练人员';
+      }
       _this.setData({
         game_name: result.data.game_name,
         game_img: result.data.game_img ,
@@ -67,7 +71,7 @@ Page({
 
         user_mobile: result.data.user_mobile,
         game_account: result.data.game_account,
-        waiter_name: result.data.waiter_name,
+        waiter_name: waiter,
         waiter_headimgurl: result.data.waiter_headimgurl,
         step: result.data.step,
         create_time: createTime,

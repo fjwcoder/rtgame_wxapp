@@ -21,9 +21,11 @@
           <text class='col_r' else wx:if="{{step === 3}}">代练中</text>
           <text class='col_r' else wx:if="{{step === 4}}">完成</text>
         </view>
-        <view class="step_payview" wx:if="{{step === 1}}">                     
-          <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
-          <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
+        <view class="step_payview"> 
+          <block wx:if="{{step === 1}}">
+            <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
+            <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
+          </block>                              
         </view>
       </view>
       <view class='insurance_details'>订单创建时间：<text class='col_r'>{{create_time}}</text></view>
