@@ -9,7 +9,7 @@ Page({
     gid: null,
     status: '1',
     list: [],
-    gemeTypeList:[],
+    gemeTypeList: [],
     num: 3, //分页时每页的条数
     page: 1, // 当前所在第几页
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
@@ -41,9 +41,9 @@ Page({
     this.getGameList(this.data.gid);
   },
 
-  getGameType: function(){
+  getGameType: function () {
     let _this = this;
-    App._post_form('game/getGameList', { gid:0 }, function (result) {
+    App._post_form('game/getGameList', { gid: 0 }, function (result) {
       console.log(result)
 
       _this.setData({
@@ -57,24 +57,30 @@ Page({
    */
   getGameList: function (gid) {
     let _this = this;
-    console.log("gid==" + _this.data.gid);
-    console.log("page==" + _this.data.page);
-    App._post_form('order/getHeldOrderList', { user_token: App.getGlobalData('user_token'), gid: _this.data.gid, limit: _this.data.num, page: _this.data.page, status:1, step:2}, function (result) {
+    console.log("gid=="+_this.data.gid);
+    App._post_form('waiter/waiterAssignOrder', { user_token: App.getGlobalData('user_token'), step: 3, gid: _this.data.gid,limit: _this.data.num, page: _this.data.page }, function (result) {
       console.log(result);
-      let resultdata = result.data.data;  
-      if(resultdata == false){
-        _this.setData({
-          searchLoadingComplete: true, //把“没有数据”设为true，显示  
-          searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
-        });
-      } else{
+      let resultdata = result.data.data;
+      if (resultdata == false) {
+        if (_this.data.page === 1) {
+          _this.setData({
+            searchLoadingComplete: false, //把“没有数据”设为true，显示  
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
+          });
+        } else {
+          _this.setData({
+            searchLoadingComplete: true, //把“没有数据”设为true，显示  
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
+          });
+        }
+      } else {
         let searchList = [];
         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加  
         _this.data.isFromSearch ? searchList = resultdata : searchList = _this.data.list.concat(resultdata)
         _this.setData({
           list: searchList, //获取数据数组  
           searchLoading: true   //把"上拉加载"的变量设为false，显示  
-        });  
+        });
       }
     });
   },
@@ -89,42 +95,25 @@ Page({
     });
     this.data.gid = e.target.dataset.type;
     this.data.page = 1;
-    this.data.searchLoading= false; //"上拉加载"的变量，默认false，隐藏  
-    this.data.searchLoadingComplete= false;  //“没有数据”的变量，默认false，隐藏  
-    this.data.isFromSearch= true; 
+    this.data.searchLoading = false; //"上拉加载"的变量，默认false，隐藏  
+    this.data.searchLoadingComplete = false;  //“没有数据”的变量，默认false，隐藏  
+    this.data.isFromSearch = true;
     // 获取订单列表
     this.getGameList(this.data.gid);
   },
 
-  onScrollLower: function(e){
+  onScrollLower: function (e) {
     let that = this;
     if (that.data.searchLoading && !that.data.searchLoadingComplete) {
-      that.setData({ 
+      that.setData({
         isFromSearch: false,  //触发到上拉事件，把isFromSearch设为为false  
       });
       this.data.gid = that.data.gid;
       this.data.page += 1;
       // 获取订单列表
       this.getGameList(this.data.gid);
-    }  
+    }
   }
-
- 
- 
-
-  /**
-   * 跳转订单详情页
-   */
-  // detail: function (e) {
-  //   let order_id = e.currentTarget.dataset.id;
-  //   wx.navigateTo({
-  //     url: '../order/detail?order_id=' + order_id
-  //   });
-  // },
-
-  // onPullDownRefresh: function () {
-  //   wx.stopPullDownRefresh();
-  // }
 
 
 });

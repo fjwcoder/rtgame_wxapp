@@ -15,7 +15,10 @@
     "pages/gamepractice/dailian_apply",
     "pages/inputInformation/price_ref",
     "pages/gamepractice/practicelist",
-    "pages/gamepractice/index"
+    "pages/gamepractice/index",
+    "pages/gamepractice/practicelist_accepted_ing",
+    "pages/gamepractice/practicelist_accepted_finish",
+    "pages/gamepractice/practicelist_detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

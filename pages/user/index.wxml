@@ -111,11 +111,16 @@
       <text class="text-grey">我的信息</text>
     </navigator>
   </view>
+<<<<<<< HEAD
   <view wx:if="{{ waiterInfo.waiter_id<1 }}" class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../gamepractice/dailian_apply">
+=======
+  <view wx:if="{{ show }}" class="cu-item arrow">
+    <view class="content" hover-class="none" bindtap='apply'>
+>>>>>>> 9f10fbb90a8b35bfeecf6c210d527153538b2856
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
-    </navigator>
+    </view>
   </view>
   <view class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../inputInformation/aovinfo?gid=2">
@@ -135,11 +140,25 @@
       <text class="text-grey">代练中心</text>
     </navigator>
   </view>
+<<<<<<< HEAD
   <view wx:if="{{ waiterInfo.waiter_id>0 && waiterInfo.status>1}}" class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-service text-pink"></text>
       <text class="text-grey">代练服务已锁定 请联系客服</text>
     </view>
+=======
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_ing">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">代练中的订单</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_finish">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">已完成的代练单</text>
+    </navigator>
+>>>>>>> 9f10fbb90a8b35bfeecf6c210d527153538b2856
   </view>
   <!-- <view class="cu-item arrow">
     <view class="content">

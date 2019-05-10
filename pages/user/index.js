@@ -164,6 +164,27 @@ Page({
     });
   },
 
+  apply:function(){
+    let _this = this;
+    App._post_form('waiter/waiterIndex', { user_token: App.getGlobalData('user_token') }, function (result) {
+      console.log(result);
+      var user_status = result.data.waiter_info.id;
+      console.log(user_status);
+      if(user_status === 0){
+        wx.redirectTo({
+          url: '../gamepractice/dailian_apply',
+        })
+      } else if(user_status === 1){
+        //显示代练中心
+      } else if (user_status === 2){
+        App.showError("锁定中，请联系客服");
+      } else if (user_status === 3) {
+        App.showError("申请中");
+      }
+      
+    });
+  },
+
 
   /**
    * 取消
