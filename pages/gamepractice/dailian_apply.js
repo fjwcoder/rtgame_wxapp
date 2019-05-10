@@ -27,7 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getGame();
+    this.getGame();
 
   },
   getGame:function(){
@@ -88,6 +88,9 @@ Page({
       user_phone: e.detail.value
     })
   },
+  checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+  },
 
   /**
    * 表单提交
@@ -95,10 +98,18 @@ Page({
   saveData: function (e) {
 
     let _this = this,
-      values = e.detail.value
+      values = e.detail.value;
+      console.log(values);
 
     // 处理性别
-    values.user_sex = (values.user_sex === 0) ? 1 : 2;
+    // values.user_sex = (values.user_sex === 0) ? 1 : 2;
+    let game = values.game_id_list;
+    let game_ids = '';
+    game.forEach(function (item, index) {
+      //这里的item就是从数组里拿出来的每一个每一组
+      game_ids += item + ',';
+    })
+    values.game_id_list = game_ids;
 
     // 表单验证
     if (!_this.validation(values)) {
@@ -131,27 +142,27 @@ Page({
    */
   validation: function (values) {
     console.log(values);
-    if (values.user_nikename === '') {
-      this.data.error = '昵称不能为空';
-      return false;
-    }
+    // if (values.user_nikename === '') {
+    //   this.data.error = '昵称不能为空';
+    //   return false;
+    // }
     if (values.id_card === "" || values.id_card.length < 18) {
       this.data.error = '身份证号码不合规范';
       return false;
     }
-    if (values.user_phone.length < 1) {
-      this.data.error = '手机号不能为空';
-      return false;
-    }
-    if (values.user_phone.length !== 11) {
-      this.data.error = '手机号长度有误';
-      return false;
-    }
-    let reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    if (!reg.test(values.user_phone)) {
-      this.data.error = '手机号不符合要求';
-      return false;
-    }
+    // if (values.user_phone.length < 1) {
+    //   this.data.error = '手机号不能为空';
+    //   return false;
+    // }
+    // if (values.user_phone.length !== 11) {
+    //   this.data.error = '手机号长度有误';
+    //   return false;
+    // }
+    // let reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    // if (!reg.test(values.user_phone)) {
+    //   this.data.error = '手机号不符合要求';
+    //   return false;
+    // }
     if (values.realname === '') {
       this.data.error = '真实姓名不能为空';
       return false;

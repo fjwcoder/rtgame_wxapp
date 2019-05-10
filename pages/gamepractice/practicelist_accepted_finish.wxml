@@ -1,28 +1,11 @@
 <view class="container m-b5">
   <view class="goods-detail-box">
     <view class="header f-28 col-3">
-    <!-- 
-                "id": 20,
-                "order_id": "GPI429191776051307",
-                "game_name": "英雄联盟",
-                "plantform_name": "网通",
-                "area_name": "比尔吉沃特",
-                "game_info": "英雄数量：5,详细说明：58",
-                "special_info": "",
-                "pay_money": "4151.00",
-                "user_mobile": "17560386817",
-                "game_account": "52",
-                "step": 3,
-                "status": 1,
-                "create_time": "2019-04-29 14:26:17"
-    -->
       <view catchtap="bindHeaderTap" class="{{dataType==='0'?'active':''}}" data-type="0">全部</view>
       <block wx:for="{{gemeTypeList}}" wx:key="this" wx:for-item='item'>
         <view bindtap="bindHeaderTap" class="{{dataType==='{{item.id}}'?'active':''}}" data-type="{{item.id}}">{{item.cname}}</view>
-      </block>
-      
+      </block>     
     </view>
-    
     <scroll-view scroll-y="true" bindscrolltolower="onScrollLower" style="height:{{windowHeight}}" lower-threshold='200' scroll-top="{{scrollTop}}">
       <view class="wrapper">
         <view wx:if="{{list.length}}">
@@ -43,7 +26,7 @@
                   </view>
                   <view class="flex-box">                                      
                     <view class="flex-box">
-                      <navigator url="practicelist_detail?order_id={{item.order_id}}&o_id={{item.id}}&fromwhere=0">
+                      <navigator url="practicelist_detail?order_id={{item.order_id}}&o_id={{item.id}}&fromwhere=1">
                         <view class="btn-default">详情 </view>
                       </navigator>
                     </view>

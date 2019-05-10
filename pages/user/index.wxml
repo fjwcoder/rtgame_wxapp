@@ -132,6 +132,18 @@
       <text class="text-grey">抢单列表</text>
     </navigator>
   </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_ing">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">代练中的订单</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_finish">
+      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="text-grey">已完成的代练单</text>
+    </navigator>
+  </view>
   <!-- <view class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-btn text-green"></text>

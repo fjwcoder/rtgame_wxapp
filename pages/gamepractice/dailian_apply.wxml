@@ -62,19 +62,21 @@
         </view>
       </view>
       -->
-      <view style='display:flex;background:red;'>
-        <view style='float:left;background:green;'>
-          擅长的游戏:
+      <view style='display:flex;padding-left: 15px;'>
+        <view style='float:left;'>
+          <view style='display: flex;align-items: center;justify-content: center;width:85px;'>
+            <text class="f-30">游戏擅长</text>
+          </view>
         </view>
-        <view style='float:left;height:200px;background:orange'>
-          
-        </view>
-      
-      </view>
-      
-      <view class="m-textarea">
-        <textarea name="game_id_list" placeholder="{{game_id_list}}" bindinput='getUserGame' maxlength='-1'></textarea>
-      </view>
+        <view style='float:left;height:200px;width:100%'>
+          <checkbox-group bindchange="checkboxChange" name="game_id_list">
+            <view style='margin-top:10rpx;' wx:for="{{gameList}}">
+              <checkbox value="{{item.id}}" checked="{{item.checked}}" />
+              {{item.cname}}
+            </view>
+          </checkbox-group>
+        </view>      
+      </view>          
     </view>
 
     <view class="padding-box m-top35 profile-btn">
