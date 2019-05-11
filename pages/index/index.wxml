@@ -9,7 +9,7 @@
       <!-- banner轮播 -->
     </block>
     <view class='slides'>
-      <swiper autoplay='true' circular indicator-dots indicator-active-color='#1ac189' class='s_banner'>
+      <swiper autoplay='true' circular indicator-dots indicator-active-color='#00baff' class='s_banner'>
         <swiper-item wx:for="{{swiperList}}" wx:key="{{index}}">
           <navigator>
             <image src='{{item.imgSrc}}' mode="widthFix" class='img_banner'></image>
@@ -45,7 +45,7 @@
     <view class="cu-list grid col-2 no-border">
       <view class="cu-item">
         <navigator url="../inputInformation/aovinfo?gid=1">
-          <view class="cuIcon-upstagefill text-blue">
+          <view class="cuIcon iconfont icon-wangzherongyao- text-blue">
             <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
               <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
             </view>
@@ -55,7 +55,7 @@
       </view>
       <view class="cu-item">
         <navigator url="../inputInformation/aovinfo?gid=2">
-          <view class="cuIcon-discoverfill text-orange">
+          <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange">
             <!-- <image src="../../images/wzry.png" class="png" mode="aspectFit"></image> -->
             <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
               <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>

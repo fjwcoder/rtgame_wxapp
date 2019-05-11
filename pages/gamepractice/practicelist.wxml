@@ -37,7 +37,7 @@
                     <text style='float:left;margin-left:20rpx;'>{{item.area_name}}</text>                  
                 </view>
                 <view style="display:flex;align-items: center;justify-content: center;">
-                  <view style="float:left;color:#1ac189;font-size:24rpx;display:flex;">
+                  <view style="float:left;color:#00baff;font-size:24rpx;display:flex;">
                     <text style='float:left'>￥  </text>
                     <text style='float:left'>{{item.pay_money}}</text>
                   </view>

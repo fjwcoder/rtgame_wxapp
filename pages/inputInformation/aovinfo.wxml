@@ -1,7 +1,7 @@
 <view class="cu-bar justify-left bg-white margin-top">
     <view class="action sub-title">
-        <text class="text-xl text-bold text-green">选择服务</text>
-        <text class="bg-green" style="width:2rem"></text>
+        <text class="text-xl text-bold text_color">选择服务</text>
+        <text class="bg-blue" style="width:2rem"></text>
         <!-- last-child选择器 -->
     </view>
 </view>
@@ -46,8 +46,8 @@
 </view>
 <view class="cu-bar justify-left bg-white margin-top">
     <view class="action sub-title">
-        <text class="text-xl text-bold text-green">填写信息</text>
-        <text class="bg-green" style="width:2rem"></text>
+        <text class="text-xl text-bold text_color">填写信息</text>
+        <text class="bg-blue" style="width:2rem"></text>
         <!-- last-child选择器 -->
     </view>
 </view>
@@ -103,7 +103,7 @@
     <view class="cu-dialog">
         <view class="cu-bar bg-white">
             <view class="action text-blue" bindtap="hideModal">取消</view>
-            <view class="action text-green" bindtap="submitData">确定</view>
+            <view class="action text_color" bindtap="submitData">确定</view>
         </view>
         <view class="padding-xl bg-gray light">
             <view class="basis-xl     radius light text-left">
@@ -173,8 +173,8 @@
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+        <button class="cu-btn line-green text_color" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-blue margin-left" bindtap="hideModal">确定</button>
 
       </view>
     </view>

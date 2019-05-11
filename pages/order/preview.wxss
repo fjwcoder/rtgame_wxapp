@@ -153,7 +153,7 @@
     width: 100%;
     text-align: center;
     line-height: 50rpx;
-    color: #1ac189;
+    color: #00baff;
     font-weight: bold;
     font-size: 28rpx;
 }
@@ -184,14 +184,14 @@
 .xinghao{
     float:left;
    
-    color: #1ac189;
+    color: #00baff;
     font-size: 14px;
 }
 .ipn_bor {
     border-bottom:  #C7C7CD 1px solid;
     width: 80%;
     float: left;
-    color: #1ac189;
+    color: #00baff;
 }
 .flow-fixed-footer{
     width: 340px;
@@ -206,7 +206,7 @@
     border-radius: 999px;
     margin: 0 auto;
     line-height: 46px;
-    background-color: #1ac189;
+    background-color: #00baff;
     color: white;
     text-align: center;
     box-shadow: 1px 5px 15px rgba(50, 50, 50, 0.3);

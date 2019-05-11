@@ -579,7 +579,7 @@
 
 .order-bt {
   width: 50%;
-  background-color: #1ac189;
+  background-color: #00baff;
   color: #fff;
   text-align: center;
   line-height: 46px;

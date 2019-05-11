@@ -8,13 +8,13 @@
   width: 100%;
   text-align: center;
   line-height: 70rpx;
-  color: #1ac189;
+  color: #00baff;
   font-weight: bold;
   font-size: 28rpx;
 }
 
 .col_r {
-  color: #1ac189;
+  color: #00baff;
   margin-left: 10rpx;
 }
 
@@ -61,9 +61,9 @@
   width: 120rpx;
   height:50rpx;
   border-radius: 25rpx;
-  border: 1rpx solid #1ac189;
+  border: 1rpx solid #00baff;
   font-size: 24rpx;
-  color: #1ac189;
+  color: #00baff;
   margin-left: 10rpx;
   float: right;
   margin-right:10rpx;

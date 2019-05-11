@@ -27,6 +27,8 @@
     float: left;
     background-color: #f37b1d;
     border-radius: 20px;
+    font-size: 40rpx;
+    font-weight: bold;
 }
 
 ._ing {

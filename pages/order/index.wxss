@@ -16,7 +16,7 @@
 }
 
 .header .active {
-  color: #1ac189;
+  color: #00baff;
 }
 
 .wrapper {
@@ -40,7 +40,7 @@
 .order-header .cont {
   /* display: block; */
   font-size: 30rpx;
-  color: #1ac189;
+  color: #00baff;
 }
 
 .order-cont {
@@ -122,10 +122,10 @@
 
 .btn-main {
   border-radius: 4px;
-  border: 1rpx solid #1ac189;
+  border: 1rpx solid #00baff;
   padding: 6rpx 20rpx;
   font-size: 28rpx;
-  color: #1ac189;
+  color: #00baff;
   margin-left: 10rpx;
   float: right;
   margin-top: 10px;

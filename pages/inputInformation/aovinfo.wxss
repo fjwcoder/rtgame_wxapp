@@ -5,7 +5,7 @@
 }
 .btn_saveData{
     width:80%;
-    background-color: #00d181;
+    background-color: #00baff;
     line-height: 46px;
     color: white;
     margin: 20px auto;
@@ -34,4 +34,7 @@ line-height:60rpx;
 .air_text{
     width: 28%;
     display:inline-block;
+}
+.text_color{
+    color: #00baff;
 }

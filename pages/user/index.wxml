@@ -1,54 +1,54 @@
 <view class="container m-b5">
-  <view class="user-header p-r">
-    <view class="user-bg-box">
-      <!-- <image class="header-bg" src="{{userInfo.avatarUrl}}"></image> -->
-      <open-data class="header-bg" type="userAvatarUrl"></open-data>
+    <view class="user-header p-r">
+        <view class="user-bg-box">
+            <!-- <image class="header-bg" src="{{userInfo.avatarUrl}}"></image> -->
+            <open-data class="header-bg" type="userAvatarUrl"></open-data>
+        </view>
     </view>
-  </view>
-  <view>
-    <view class="user-order">
-      <view class="user-order-cont dis-flex">
-        <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=0">
-            <text class="iconfont icon-form orderListIcon "></text>
-            <text class="listCont">全部订单</text>
-          </navigator>
+    <view>
+        <view class="user-order">
+            <view class="user-order-cont dis-flex">
+                <view class="flex-box p-r">
+                    <navigator hover-class="navigator-hover" url="../order/index?type=0">
+                        <text class="iconfont icon-form orderListIcon "></text>
+                        <text class="listCont">全部订单</text>
+                    </navigator>
+                </view>
+                <view class="flex-box p-r">
+                    <navigator hover-class="navigator-hover" url="../order/index?type=1">
+                        <text class="iconfont icon-daifukuan orderListIcon "></text>
+                        <text class="listCont">待付款</text>
+                        <text class="user-tag p-a" wx:if="{{orderCount.step_1 > 0}}">{{orderCount.step_1}}</text>
+                    </navigator>
+                </view>
+                <view class="p-r" style=" flex:1.4;">
+                    <view class="header-img-box">
+                        <!-- <image src="{{userInfo.avatarUrl}}"></image>  -->
+                        <open-data type="userAvatarUrl"></open-data>
+                    </view>
+                    <!-- <text class="user-admin onelist-hidden">{{userInfo.nickName}}</text> -->
+                    <open-data class="user-admin onelist-hidden" type="userNickName"></open-data>
+                </view>
+                <view class="flex-box p-r">
+                    <navigator hover-class="navigator-hover" url="../order/index?type=3">
+                        <text class="iconfont icon-shalou orderListIcon"></text>
+                        <text class="listCont">代练中</text>
+                        <text class="user-tag p-a" wx:if="{{orderCount.step_3 > 0}}">{{orderCount.step_3}}</text>
+                    </navigator>
+                </view>
+                <view class="flex-box p-r">
+                    <navigator hover-class="navigator-hover" url="../order/index?type=4">
+                        <text class="iconfont icon-wancheng orderListIcon "></text>
+                        <text class="listCont">已完成</text>
+                        <!-- <text class="user-tag p-a" wx:if="{{false}}"></text> -->
+                        <text class="user-tag p-a" wx:if="{{orderCount.step_4 > 0}}">{{orderCount.step_4}}</text>
+                    </navigator>
+                </view>
+            </view>
         </view>
-        <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=1">
-            <text class="iconfont icon-daifukuan orderListIcon "></text>
-            <text class="listCont">待付款</text>
-            <text class="user-tag p-a" wx:if="{{orderCount.step_1 > 0}}">{{orderCount.step_1}}</text>
-          </navigator>
-        </view>
-        <view class="p-r" style=" flex:1.4;">
-          <view class="header-img-box">
-            <!-- <image src="{{userInfo.avatarUrl}}"></image>  -->
-            <open-data type="userAvatarUrl"></open-data>
-          </view>
-          <!-- <text class="user-admin onelist-hidden">{{userInfo.nickName}}</text> -->
-          <open-data class="user-admin onelist-hidden" type="userNickName"></open-data>
-        </view>
-        <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=3">
-            <text class="iconfont icon-shalou orderListIcon"></text>
-            <text class="listCont">代练中</text>
-            <text class="user-tag p-a" wx:if="{{orderCount.step_3 > 0}}">{{orderCount.step_3}}</text>
-          </navigator>
-        </view>
-        <view class="flex-box p-r">
-          <navigator hover-class="navigator-hover" url="../order/index?type=4">
-          <text class="iconfont icon-wancheng orderListIcon "></text>
-          <text class="listCont">已完成</text>
-          <!-- <text class="user-tag p-a" wx:if="{{false}}"></text> -->
-           <text class="user-tag p-a" wx:if="{{orderCount.step_4 > 0}}">{{orderCount.step_4}}</text>
-          </navigator>
-        </view>
-      </view>
     </view>
-  </view>
-<!-- 块型菜单 -->
-  <!-- <view class='us_info_box'>
+    <!-- 块型菜单 -->
+    <!-- <view class='us_info_box'>
     <view class='float_item color_block_1'>
       <navigator class="" url="../user/detail">
         <view class='icon_box'>
@@ -102,8 +102,8 @@
 
   </view> -->
 
-<!-- 块型菜单 end -->
-<!-- card-menu卡片 -->
+    <!-- 块型菜单 end -->
+    <!-- card-menu卡片 -->
 <view class="cu-list menu sm-border card-menu margin-top margin-bottom">
   <view class="cu-item arrow">
     <navigator class="content" hover-class='none' url='detail'>
@@ -111,16 +111,11 @@
       <text class="text-grey">我的信息</text>
     </navigator>
   </view>
-<<<<<<< HEAD
   <view wx:if="{{ waiterInfo.waiter_id<1 }}" class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../gamepractice/dailian_apply">
-=======
-  <view wx:if="{{ show }}" class="cu-item arrow">
-    <view class="content" hover-class="none" bindtap='apply'>
->>>>>>> 9f10fbb90a8b35bfeecf6c210d527153538b2856
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
-    </view>
+    </navigator>
   </view>
   <view class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../inputInformation/aovinfo?gid=2">
@@ -140,26 +135,13 @@
       <text class="text-grey">代练中心</text>
     </navigator>
   </view>
-<<<<<<< HEAD
   <view wx:if="{{ waiterInfo.waiter_id>0 && waiterInfo.status>1}}" class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-service text-pink"></text>
       <text class="text-grey">代练服务已锁定 请联系客服</text>
     </view>
-=======
-  <view class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_ing">
-      <text class="cuIcon-discoverfill text-orange"></text>
-      <text class="text-grey">代练中的订单</text>
-    </navigator>
-  </view>
-  <view class="cu-item arrow">
-    <navigator class="content" hover-class="none" url="../gamepractice/practicelist_accepted_finish">
-      <text class="cuIcon-discoverfill text-orange"></text>
-      <text class="text-grey">已完成的代练单</text>
-    </navigator>
->>>>>>> 9f10fbb90a8b35bfeecf6c210d527153538b2856
-  </view>
+    </view>
+
   <!-- <view class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-btn text-green"></text>
@@ -205,12 +187,12 @@
 
 
 
-  <modal hidden="{{hiddenmodalput}}" title="完善资料" confirm-text="提交" bindconfirm="bindMobile" >
-    <input disabled='{{input_disabled}}' class='tel' bindinput='getPhoneValue' type='text' placeholder="请输入您的手机号" value='{{phone}}' auto-focus maxlength='11' />
+    <modal hidden="{{hiddenmodalput}}" title="完善资料" confirm-text="提交" bindconfirm="bindMobile">
+        <input disabled='{{input_disabled}}' class='tel' bindinput='getPhoneValue' type='text' placeholder="请输入您的手机号" value='{{phone}}' auto-focus maxlength='11' />
 
-    <input class='yanzhengma' bindinput='getCodeValue' type='number' placeholder="验证码" maxlength='6' />
-    <button class='btn1' bindtap='getCode' disabled='{{disabled}}'>{{codename}}</button>
-    <view class='clearfix'></view>
-  </modal>
+        <input class='yanzhengma' bindinput='getCodeValue' type='number' placeholder="验证码" maxlength='6' />
+        <button class='btn1' bindtap='getCode' disabled='{{disabled}}'>{{codename}}</button>
+        <view class='clearfix'></view>
+    </modal>
 
 </view>
