@@ -1,6 +1,6 @@
 <view class="container">
   <scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
-    <view class="col_banner"></view>
+    <!-- <view class="col_banner"></view> -->
     <block wx:for="{{items}}" wx:for-item="item" wx:for-index="item_key" wx:key="this">
       <!-- 搜索框 -->
       <block wx:if="{{item.type === 'search'}}">
@@ -36,35 +36,38 @@
         </navigator>
       </scroll-view>
     </view> -->
-    <view class="cu-bar bg-white " style='margin-top:70rpx;margin-bottom:2rpx;'>
-      <view class="action border-title">
-        <text class="text-xl text-bold text-blue">游戏代练</text>
-        <text class="bg-gradual-blue" style="width:3rem"></text>
+    <view style='width: 88%;margin: 20rpx auto;background-color: #fff;padding: 20rpx;border-radius: 10px;box-shadow: -5rpx 8rpx 5rpx rgba(0, 0, 0, 0.1);'>
+      <view class="cu-bar bg-white " style='margin-bottom:2rpx;'>
+        <view class="action border-title">
+          <text class="text-xl text-bold text-blue">游戏代练</text>
+          <text class="bg-gradual-blue" style="width:3rem"></text>
+        </view>
+      </view>
+      <view class="cu-list grid col-2 no-border">
+        <view class="cu-item">
+          <navigator url="../inputInformation/aovinfo?gid=1">
+            <view class="cuIcon iconfont icon-wangzherongyao- text-blue">
+              <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+              </view>
+            </view>
+            <text>王者荣耀</text>
+          </navigator>
+        </view>
+        <view class="cu-item">
+          <navigator url="../inputInformation/aovinfo?gid=2">
+            <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange">
+              <!-- <image src="../../images/wzry.png" class="png" mode="aspectFit"></image> -->
+              <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+              </view>
+            </view>
+            <text>英雄联盟</text>
+          </navigator>
+        </view>
       </view>
     </view>
-    <view class="cu-list grid col-2 no-border">
-      <view class="cu-item">
-        <navigator url="../inputInformation/aovinfo?gid=1">
-          <view class="cuIcon iconfont icon-wangzherongyao- text-blue">
-            <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-              <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
-            </view>
-          </view>
-          <text>王者荣耀</text>
-        </navigator>
-      </view>
-      <view class="cu-item">
-        <navigator url="../inputInformation/aovinfo?gid=2">
-          <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange">
-            <!-- <image src="../../images/wzry.png" class="png" mode="aspectFit"></image> -->
-            <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-              <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
-            </view>
-          </view>
-          <text>英雄联盟</text>
-        </navigator>
-      </view>
-    </view>
+    
     <!-- <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
       <view class="action">
         <text class="cuIcon-title text-orange "></text> 接单列表

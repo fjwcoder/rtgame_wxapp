@@ -17,7 +17,7 @@
           <text>真实姓名</text>
         </view>
         <view class='inputview'>
-          <input name="realname" placeholder="{{realname}}" bindinput='getUserRealName' maxlength='14'></input>
+          <input name="realname" placeholder="{{realname}}" bindinput='getUserRealName' maxlength='14'  placeholder-class="phClass"></input>
         </view>
       </view>
        <view class='view2'>
@@ -25,7 +25,7 @@
           <text>身份证号</text>
         </view>
         <view class='inputview'>
-          <input maxlength="18" name="id_card" placeholder="请输入身份证号" value="{{id_card}}" bindinput='getUserIdCard'></input>
+          <input maxlength="18" name="id_card" placeholder="请输入身份证号" value="{{id_card}}" bindinput='getUserIdCard' placeholder-class="phClass"></input>
         </view>
       </view>
       <view class='view2'>
@@ -33,7 +33,7 @@
           <text>实际年龄</text>
         </view>
         <view class='inputview'>
-          <input name="age" placeholder="输入身份证号，自动计算年龄" value="{{age}}" bindinput='getUserAge' disabled='false' readonly="readonly"></input>
+          <input name="age" placeholder="输入身份证号，自动计算年龄" value="{{age}}" bindinput='getUserAge' disabled='false' readonly="readonly" placeholder-class="phClass"></input>
         </view>
       </view>
 

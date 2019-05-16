@@ -96,3 +96,10 @@ input{
   padding-top: 10px;
   margin-bottom: 10px;
 }
+.phClass{
+  color: #cdcdcd;
+  font-size: 26rpx;
+}
+input{
+  text-align:right;
+}
