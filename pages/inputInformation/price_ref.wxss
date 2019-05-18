@@ -1,1 +1,4 @@
 /* pages/inputInformation/price_ref.wxss */
+.img{
+    width: 100%;
+}
