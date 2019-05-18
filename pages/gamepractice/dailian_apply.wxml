@@ -1,7 +1,7 @@
 <view style='margin-top:20rpx;'>
   <!-- 表单 -->
   <form bindreset="formReset" bindsubmit="saveData">
-    <view class="address-cont-title b-f b-b">
+    <view class='view1'>
       <!--
       <view class="list address-box dis-flex b-b">
         <view class="left-name">
@@ -12,65 +12,38 @@
         </view>
       </view>
       -->
-      <view class="list address-box dis-flex b-b">
-        <view class="left-name" style='display: flex;align-items: center;justify-content: center;'>
-          <text class="f-30">真实姓名</text>
+      <view class='view2'>
+        <view class='textview'>
+          <text>真实姓名</text>
         </view>
-        <view class="right-cont dis-flex">
-          <input name="realname" placeholder="{{realname}}" bindinput='getUserRealName' maxlength='14'></input>
+        <view class='inputview'>
+          <input name="realname" placeholder="{{realname}}" bindinput='getUserRealName' maxlength='14'  placeholder-class="phClass"></input>
+        </view>
+      </view>
+       <view class='view2'>
+        <view class='textview'>
+          <text>身份证号</text>
+        </view>
+        <view class='inputview'>
+          <input maxlength="18" name="id_card" placeholder="请输入身份证号" value="{{id_card}}" bindinput='getUserIdCard' placeholder-class="phClass"></input>
+        </view>
+      </view>
+      <view class='view2'>
+        <view class='textview'>
+          <text>实际年龄</text>
+        </view>
+        <view class='inputview'>
+          <input name="age" placeholder="输入身份证号，自动计算年龄" value="{{age}}" bindinput='getUserAge' disabled='false' readonly="readonly" placeholder-class="phClass"></input>
         </view>
       </view>
 
-      <!--
-      <view class="list address-box dis-flex  b-b">
-        <view class="left-name">
-          <text class="f-30">性别</text>
+      <view class='view2'>
+        <view class='textview2'>
+          <text>游戏擅长</text>
         </view>
-        <picker bindchange="chengeUserSex" value="{{index}}" range="{{gender_arrey}}" name="user_sex" class='kuandu'>
-          <text wx:if="{{gender_arrey[index]}}" class="f-30 kuandu">{{gender_arrey[index]}}</text>
-          <text wx:else class="f-30 col-7">选择性别</text>
-        </picker>
-      </view>
-      -->
-
-       <view class="list address-box dis-flex b-b">
-        <view class="left-name" style='display: flex;align-items: center;justify-content: center;'>
-          <text class="f-30">身份证号</text>
-        </view>
-        <view class="right-cont dis-flex">
-          <input maxlength="18" name="id_card" placeholder="请输入身份证号" value="{{id_card}}" bindinput='getUserIdCard'></input>
-        </view>
-      </view>
-
-
-      <view class="list address-box dis-flex  b-b">
-        <view class="left-name" style='display: flex;align-items: center;justify-content: center;'>
-          <text class="f-30">年龄</text>
-        </view>
-        <view class="right-cont dis-flex">
-          <input maxlength="18" name="age" placeholder="输入身份证号，自动计算年龄" value="{{age}}" bindinput='getUserAge' disabled='false' readonly="readonly"></input>
-        </view>
-      </view>
-
-      <!--
-      <view class="list address-box dis-flex b-b">
-        <view class="left-name">
-          <text class="f-30">手机号码</text>
-        </view>
-        <view class="right-cont dis-flex">
-          <input name="user_phone" placeholder="{{user_phone}}" bindinput='getUserPhone' maxlength='11' type='number'></input>
-        </view>
-      </view>
-      -->
-      <view style='display:flex;padding-left: 15px;'>
-        <view style='float:left;'>
-          <view style='display: flex;align-items: center;justify-content: center;width:85px;'>
-            <text class="f-30">游戏擅长</text>
-          </view>
-        </view>
-        <view style='float:left;height:200px;width:100%'>
+        <view class='checkboxview'>
           <checkbox-group bindchange="checkboxChange" name="game_id_list">
-            <view style='margin-top:10rpx;' wx:for="{{gameList}}">
+            <view style='margin-top:10px;' wx:for="{{gameList}}">
               <checkbox value="{{item.id}}" checked="{{item.checked}}" />
               {{item.cname}}
             </view>
@@ -79,9 +52,9 @@
       </view>          
     </view>
 
-    <view class="padding-box m-top35 profile-btn">
-      <button formType="submit" disabled="{{disabled}}">保存</button>
-    </view>
+    
+    <button formType="submit" disabled="{{disabled}}" class='btn_saveData'>保存</button>
+    
     <!-- <view class="padding-box m-top20 ">
       <button formType="reset">取消</button>
     </view> -->

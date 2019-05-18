@@ -37,3 +37,10 @@ line-height:60rpx;
 .text_color{
     color: #00baff;
 }
+.phClass{
+  color: #cdcdcd;
+  font-size: 26rpx;
+}
+input{
+  text-align:right;
+}

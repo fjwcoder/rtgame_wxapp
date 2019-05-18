@@ -200,6 +200,7 @@ Page({
       this.setData({
         heroNum: ''
       })
+       
     }
   },
   /**

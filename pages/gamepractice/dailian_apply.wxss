@@ -1,12 +1,5 @@
-/* pages/addchildren/create.wxss */
-.profile-list .admin {
-  padding-left: 15px;
-  font-size: 30rpx;
-  color: #333;
-}
-
 .address-box .left-name {
-  width: 85px;
+  width: 20%;
 }
 
 .address-cont-title .list {
@@ -14,179 +7,18 @@
   padding: 24rpx;
 }
 
-.tui-picker-detail text {
-  padding: 0 10rpx;
-}
-
-.infoText {
-  line-height: 56rpx;
-  display: block;
-}
-
-picker-view {
-  background-color: white;
-  padding: 0;
-  width: 100%;
-  height: 480rpx;
-  bottom: 0;
-  position: fixed;
-}
-
-picker-view-column view {
-  vertical-align: middle;
-  font-size: 28rpx;
-  line-height: 28rpx;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.animation-element-wrapper {
-  display: flex;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 21;
-}
-
-.animation-element {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 570rpx;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.animation-button {
-  margin-top: 20rpx;
-  top: 20rpx;
-  width: 400rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  align-items: center;
-}
-
-.address-text {
-  color: #999;
-  display: inline-flex;
-  position: fixed;
-  margin-top: 20rpx;
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  font-size: 30rpx;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.left-bt {
-  left: 30rpx;
-}
-
-.right-bt {
-  right: 30rpx;
-  color: #ec5151;
-}
-
-.line {
-  display: block;
-  position: fixed;
-  height: 1rpx;
-  width: 100%;
-  margin-top: 89rpx;
-  background-color: #eee;
-}
-
 .address-box .right-cont input {
-  width: 100%;
+  width: 75%;
   font-size: 30rpx;
   color: #444;
+  background: red;
 }
 
-.profile-btn button {
-  background: #00baff;
-  color: white;
-}
-
-.bargain-commont-bg {
-  background: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 20;
-}
-
-.bright789_view_hide {
-  display: none;
-}
-
-.bright789_view_show {
-  display: block;
-}
-
-.f-34 {
-  font-size: 34rpx;
-}
-
-.f-32 {
-  font-size: 32rpx;
-}
-
-.f-31 {
-  font-size: 31rpx;
-}
-
-.f-28 {
-  font-size: 28rpx;
-}
-
-.f-26 {
-  font-size: 26rpx;
-}
-
-.f-24 {
-  font-size: 24rpx;
-}
-
-.f-22 {
-  font-size: 22rpx;
-}
-
-.b-r {
-  border-right: 1rpx solid #eee;
-}
 
 .b-b {
   border-bottom: 1rpx solid #eee;
 }
 
-.b-t {
-  border-top: 1rpx solid #eee;
-}
-
-.m-top4 {
-  margin-top: 4rpx;
-}
-
-.m-top10 {
-  margin-top: 10rpx;
-}
-
-.m-top20 {
-  margin-top: 25rpx;
-}
-
-.m-top35 {
-  margin-top: 35rpx;
-}
-.kuandu{
-  width: 60%;
-}
 .m-game{
   width: 85px;
   font-size: 30rpx;
@@ -202,4 +34,72 @@ picker-view-column view {
   border: 1px #eee solid;
   background: #ffffff;
   font-size: 30rpx;
+}
+.btn_saveData{
+    width:80%;
+    background-color: #00baff;
+    line-height: 46px;
+    color: white;
+    margin: 20px auto;
+}
+.f-30{
+  font-size: 30rpx;
+}
+.view1{
+  width:100%;
+}
+.view2{
+  width:100%;
+  display:flex;
+  background:white;
+  border-bottom:1px solid #eee;
+}
+.textview{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float:left;
+  width:30%;
+  padding-top:15px;
+  padding-bottom:15px;
+  font-size: 30rpx;
+}
+.inputview{
+  float:left;
+  width:100%;
+}
+input{
+  width:100%;
+  height:100%;
+}
+.agetextview{
+  display: flex;
+  align-items: center;
+  float:left;
+  width:30%;
+  padding-top:15px;
+  padding-bottom:15px;
+  font-size: 30rpx;
+}
+.textview2{
+  display: flex;
+  justify-content: center;
+  float:left;
+  width:30%;
+  padding-top:15px;
+  padding-bottom:15px;
+  font-size: 30rpx;
+}
+.checkboxview{
+  float:left;
+  width:100%;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.phClass{
+  color: #cdcdcd;
+  font-size: 26rpx;
+}
+input{
+  text-align:right;
 }
