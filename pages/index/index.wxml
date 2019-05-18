@@ -38,7 +38,7 @@
     </view> -->
     <view class="cu-bar bg-white " style='margin-top:70rpx;margin-bottom:2rpx;'>
       <view class="action border-title">
-        <text class="text-xl text-bold text-blue">游戏代练</text>
+        <text class="text-xl text-bold "style='color:#00baff;'>游戏代练</text>
         <text class="bg-gradual-blue" style="width:3rem"></text>
       </view>
     </view>

@@ -1,5 +1,5 @@
 <view class="big_box">
-    <navigator url="practicelist" hover-class="navigator-hover" open-type="navigate">
+    <navigator url="practicelist?dataType=0" hover-class="navigator-hover" open-type="navigate">
         <view class="dating">
             <view class="img_box">
                 <image class="dating_img" src="../../images/dating1.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
@@ -7,13 +7,13 @@
             <view class="_text text-shadow text-white">抢单大厅</view>
         </view>
     </navigator>
-    <navigator url="practicelist_accepted_ing" hover-class="navigator-hover" open-type="navigate">
+    <navigator url="practicelist_accepted_ing?dataType=0" hover-class="navigator-hover" open-type="navigate">
         <view class="_ing">
             <text class="cuIcon-countdown" ></text>
             代练中
         </view>
     </navigator>
-    <navigator url="practicelist_accepted_finish" hover-class="navigator-hover" open-type="navigate">
+    <navigator url="practicelist_accepted_finish?dataType=0" hover-class="navigator-hover" open-type="navigate">
         <view class="_end" style="background-color:#8dc63f">
             <text class="cuIcon-medal" ></text>
             已完成</view>

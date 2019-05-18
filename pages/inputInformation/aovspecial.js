@@ -7,7 +7,7 @@ Page({
    */
   data: {
     gid: 2, //游戏id 由上个页面传入
-    salary:50,//佣金默认值
+    salary: 50, //佣金默认值
     s_id: 2, //
     input_hidden: true,
     picker_hidden: false, //代练类型为巅峰赛的时候显示picker隐藏input
@@ -160,11 +160,11 @@ Page({
         break;
       case 2:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[2]];
-     
+
         break;
       case 3:
         data.multiArray[1] = _data.area_name_list[_data.plantformIndexList[3]];
-          break;
+        break;
     }
 
     this.setData(data);
@@ -298,11 +298,11 @@ Page({
               },
               fail(res) {
                 wx.navigateTo({
-                  url:'../order/index?type=1'
+                  url: '../order/index?type=1'
                 })
               }
             });
-          }else{
+          } else {
             App.showError(res.data.nonceStr)
           }
         })

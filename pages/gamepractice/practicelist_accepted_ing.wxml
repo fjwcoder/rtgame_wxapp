@@ -3,7 +3,7 @@
     <view class="header f-28 col-3">
       <view catchtap="bindHeaderTap" class="{{dataType==='0'?'active':''}}" data-type="0">全部</view>
       <block wx:for="{{gemeTypeList}}" wx:key="this" wx:for-item='item'>
-        <view bindtap="bindHeaderTap" class="{{dataType==='{{item.id}}'?'active':''}}" data-type="{{item.id}}">{{item.cname}}</view>
+        <view bindtap="bindHeaderTap" class="{{dataType===item.id?'active':''}}" data-type="{{item.id}}">{{item.cname}}</view>
       </block>     
     </view>
     <scroll-view scroll-y="true" bindscrolltolower="onScrollLower" style="height:{{windowHeight}}" lower-threshold='200' scroll-top="{{scrollTop}}">
