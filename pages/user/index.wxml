@@ -131,13 +131,13 @@
   </view>
   <view  wx:if="{{ waiterInfo.waiter_id>0 && waiterInfo.status<2}}" class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../gamepractice/index">
-      <text class="cuIcon-discoverfill text-orange"></text>
+      <text class="cuIcon-explorefill text-mauve"></text>
       <text class="text-grey">代练中心</text>
     </navigator>
   </view>
   <view wx:if="{{ waiterInfo.waiter_id>0 && waiterInfo.status>1}}" class="cu-item arrow">
     <view class="content">
-      <text class="cuIcon-service text-pink"></text>
+      <text class="cuIcon-roundcheckfill text-red"></text>
       <text class="text-grey">代练服务已锁定 请联系客服</text>
     </view>
     </view>

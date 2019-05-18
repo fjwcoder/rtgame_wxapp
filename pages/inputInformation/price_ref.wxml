@@ -1,6 +1,4 @@
 <!--pages/inputInformation/price_ref.wxml-->
-<text>pages/inputInformation/price_ref.wxml</text>
-<text class="" selectable="false" space="false" decode="false">
-价格参考.........
-</text>
+<image class="img" src="https://i.loli.net/2019/05/18/5cdf77b1da15f40506.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+  
   
