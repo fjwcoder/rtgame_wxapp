@@ -356,7 +356,7 @@ App({
     let App = this,
       wxapp;
       wx.setNavigationBarTitle({
-        title: '芮通游戏代练',
+        title: '七剑游艺',
       });
 
   },
