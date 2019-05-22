@@ -361,6 +361,14 @@ App({
 
   },
 
-  
+  /**
+   *  {
+        "pagePath": "pages/gamehall/index",
+        "text": "发现",
+        "iconPath": "images/find.png",
+        "selectedIconPath": "images/find-1.png"
+      },
+   */
 
 });
+

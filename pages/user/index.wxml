@@ -187,12 +187,12 @@
 
 
 
-    <modal hidden="{{hiddenmodalput}}" title="完善资料" confirm-text="提交" bindconfirm="bindMobile">
+    <!-- <modal hidden="false" title="完善资料" confirm-text="提交" bindconfirm="bindMobile">
         <input disabled='{{input_disabled}}' class='tel' bindinput='getPhoneValue' type='text' placeholder="请输入您的手机号" value='{{phone}}' auto-focus maxlength='11' />
 
         <input class='yanzhengma' bindinput='getCodeValue' type='number' placeholder="验证码" maxlength='6' />
         <button class='btn1' bindtap='getCode' disabled='{{disabled}}'>{{codename}}</button>
         <view class='clearfix'></view>
-    </modal>
+    </modal> -->
 
 </view>
