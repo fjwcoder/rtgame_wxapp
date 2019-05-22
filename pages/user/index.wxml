@@ -105,24 +105,24 @@
     <!-- 块型菜单 end -->
     <!-- card-menu卡片 -->
 <view class="cu-list menu sm-border card-menu margin-top margin-bottom">
-  <view class="cu-item arrow">
+  <!-- <view class="cu-item arrow">
     <navigator class="content" hover-class='none' url='detail'>
       <text class="cuIcon-profile text-grey"></text>
       <text class="text-grey">我的信息</text>
     </navigator>
-  </view>
+  </view> -->
   <view wx:if="{{ waiterInfo.waiter_id<1 }}" class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../gamepractice/dailian_apply">
       <text class="cuIcon-btn text-olive"></text>
       <text class="text-grey">申请代练</text>
     </navigator>
   </view>
-  <view class="cu-item arrow">
+  <!-- <view class="cu-item arrow">
     <navigator class="content" hover-class="none" url="../inputInformation/aovinfo?gid=2">
       <text class="cuIcon-discoverfill text-orange"></text>
       <text class="text-grey">我要发单</text>
     </navigator>
-  </view>
+  </view> -->
   <view class="cu-item arrow">
     <view class="content">
       <text class="cuIcon-service text-pink"></text>
