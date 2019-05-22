@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled: false,
     order_id: null,
     order: {},
     oid:'',
@@ -37,7 +38,7 @@ Page({
    */
   onLoad: function (options) {
     this.data.order_id = options.order_id;
-    //this.data.oid =parseInt(options.o_id);
+    this.data.oid =parseInt(options.o_id);
     this.setData({
       order_id: options.order_id,
       oid: parseInt(options.o_id)
@@ -60,6 +61,7 @@ Page({
       if (!waiter && typeof (waiter) != "undefined" && waiter != 0){  //代练人员为空
         waiter = '暂未分配代练人员';
       }
+      _this.data.step = parseInt(result.data.step);
       _this.setData({
         game_name: result.data.game_name,
         game_img: result.data.game_img ,
@@ -78,9 +80,36 @@ Page({
         pay_time: payTime,
         finish_time: finishTime,
         server_list: result.data.detail,
+        status: result.data.status
         
       })
     });
+  },
+
+  changeStatus: function(e){
+    let _this = this;
+    console.log("oid==" + _this.data.oid);
+    console.log("order_id==" + _this.data.order_id);
+    console.log("step==" + _this.data.step);
+    wx.showModal({
+      title: '提示',
+      content: '确定完成该订单么？',
+      success: function (res) {
+        if (res.confirm) {
+          App._post_form('order/changeorderstep', { id: _this.data.oid, order_id: _this.data.order_id, step: _this.data.step, next:4 },            function (result) {
+            App.showSuccess(result.msg, function () {
+              wx.navigateBack();
+            });
+          }, false, function () {
+            // 解除禁用
+            _this.setData({
+              disabled: false
+            });
+          });
+        } 
+      }
+    })
+    
   },
 
   
@@ -91,12 +120,13 @@ Page({
   cancelOrder: function (e) {
     let _this = this;
     let order_id = _this.data.order_id;
+    let oid = _this.data.oid;
     wx.showModal({
       title: "提示",
       content: "确认取消订单？",
       success: function (o) {
         if (o.confirm) {
-          App._post_form('user.order/cancel', { order_id }, function (result) {
+          App._post_form('order/changeorderstatus', { order_id: order_id, id: oid, status: 1 }, function (result) {
             wx.navigateBack();
           });
         }

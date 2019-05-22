@@ -35,10 +35,15 @@
           <view class='insurance_details'>代练要达到的目标：<text class='col_r'>{{item.end_info}}</text></view>
           <view class='insurance_details'>代练服务的金额：<text class='col_r'>￥{{item.server_price}}</text></view>
           <view class='insurance_details'>
-            截图：
-            <view wx:for="{{item.server_img}}" wx:key="this" wx:for-item = 'img_item'>
-              <image style="width: 200rpx; height: 200rpx; background-color: #eeeeee;" mode="{{item.mode}}" src="{{img_item}}"></image>
-            </view>
+            <view>截图：</view>
+            <block wx:if="{{item.server_img}}">
+              <image style="width: 200rpx; height: 200rpx; background-color: #eeeeee;" mode="{{item.mode}}" src="{{item.server_img}}"></image>
+            </block>
+            <block wx:else>
+              <image style="width: 200rpx; height: 200rpx; " src="{{src}}" bindtap='uploadPhoto'></image>
+              <button style='width:100px;height:40px;border-radius:20px;background-color: #00baff;line-height: 40px;color: white;margin: 20px auto;font-size:15px;' bindtap="saveImg" disabled="{{disabled}}" data-sid="{{item.s_id}}" data-img="{{imgSrc}}">保存截图</button>
+            </block>
+            
           </view>
         </view>
       </view>  

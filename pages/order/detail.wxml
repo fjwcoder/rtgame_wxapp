@@ -16,16 +16,23 @@
       <view class='insurance_details'>游戏账号：<text class='col_r'>{{game_account}}</text></view>
       <view class='stepview'>
         <view style='float:left;'>订单进度：
-          <text class='col_r' wx:if="{{step === 1}}">未付款</text>
-          <text class='col_r' else wx:if="{{step === 2}}">待分配</text>
-          <text class='col_r' else wx:if="{{step === 3}}">代练中</text>
-          <text class='col_r' else wx:if="{{step === 4}}">完成</text>
+          <block wx:if="{{status === 1}}">
+            <text class='col_r' wx:if="{{step === 1}}">未付款</text>
+            <text class='col_r' else wx:if="{{step === 2}}">待分配</text>
+            <text class='col_r' else wx:if="{{step === 3}}">代练中</text>
+            <text class='col_r' else wx:if="{{step === 4}}">完成</text>
+          </block>
+          <block wx:if="{{status === 2}}">
+            <text class='col_r' wx:if="{{step === 1}}">已取消</text>
+          </block>
         </view>
         <view class="step_payview"> 
-          <block wx:if="{{step === 1}}">
-            <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
-            <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
-          </block>                              
+          <block wx:if="{{status === 1}}">
+            <block wx:if="{{step === 1}}">
+              <text bindtap="payOrder" class="btn-main" data-oid="{{oid}}" data-orderid="{{order_id}}">付款</text>
+              <text bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</text>
+            </block>  
+          </block>                           
         </view>
       </view>
       <view class='insurance_details'>订单创建时间：<text class='col_r'>{{create_time}}</text></view>
@@ -59,5 +66,8 @@
       </view>  
       <view wx:else>未填写服务信息</view>
     </view>
+    <block wx:if="{{step === 3}}">
+      <button bindtap='changeStatus' class="btn_saveData" disabled="{{disabled}}">完成</button>
+    </block>
     
 </view>

@@ -30,11 +30,12 @@
                     <text style='float:left'>{{item.pay_money}}</text>
                   </view>
                   <view class="flex-box">
-                               
-                    <view class="flex-box" wx:if="{{item.step === 1}}">                     
-                      <view bindtap="payOrder" class="btn-main" data-oid="{{item.id}}" data-orderid="{{item.order_id}}">付款</view>
-                      <view bindtap="cancelOrder" class="btn-default" style='margin-right:10rpx;' data-id="{{item.order_id}}">取消</view>
-                    </view>
+                    <block wx:if="{{item.status === 1}}">
+                      <view class="flex-box" wx:if="{{item.step === 1}}">                     
+                        <view bindtap="payOrder" class="btn-main" data-oid="{{item.id}}" data-orderid="{{item.order_id}}">付款</view>
+                        <view bindtap="cancelOrder" class="btn-default" style='margin-right:10rpx;' data-oid="{{item.id}}" data-id="{{item.order_id}}">取消</view>
+                      </view>
+                    </block>
                     <view class="flex-box">
                       <navigator url="detail?order_id={{item.order_id}}&o_id={{item.id}}">
                         <view class="btn-default">详情 </view>

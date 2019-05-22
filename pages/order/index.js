@@ -7,7 +7,7 @@ Page({
    */
   data: {
     step: null,
-    status: '1',
+    status: 1,
     list: [],
   },
 
@@ -17,10 +17,16 @@ Page({
   onLoad: function (options) {
     console.log(options);
     this.data.step = parseInt(options.type);
+    if(parseInt(options.type) === 0){
+      this.data.status = 0;
+    } else{
+      this.data.status = 1;
+    }
     this.setData({ 
       dataType:options.type, 
       step:parseInt(options.type)
     });
+    this.getOrderList(this.data.step, this.data.status);
   },
 
   /**
@@ -28,7 +34,7 @@ Page({
    */
   onShow: function () {
     // 获取订单列表
-    this.getOrderList(this.data.step);
+    
   },
 
   /**
@@ -36,7 +42,7 @@ Page({
    */
   getOrderList: function (step, status) {
     let _this = this;
-    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'), step: _this.data.step }, function (result) {
+    App._post_form('order/getOrderList', { user_token: App.getGlobalData('user_token'), step: _this.data.step, status: status}, function (result) {
       console.log(result)
      
       _this.setData({
@@ -55,9 +61,13 @@ Page({
        dataType: e.target.dataset.type 
       });
     this.data.step = e.target.dataset.type;
-    if(this.data.step === '6'){
-      this.setData({status: '2'});
+    if(this.data.step === '0'){
+      this.data.status = 0;
+    } else{
+      this.data.status = 1;
     }
+
+    console.log("status==" + this.data.status);
     
     // 获取订单列表
     this.getOrderList(this.data.step, this.data.status);
@@ -68,13 +78,14 @@ Page({
    */
   cancelOrder: function (e) {
     let _this = this;
-    let order_id = e.currentTarget.dataset.id;
+    let oid = e.currentTarget.dataset.oid;
+    let order_id = e.currentTarget.dataset.orderid;
     wx.showModal({
       title: "提示",
       content: "确认取消订单？",
       success: function (o) {
         if (o.confirm) {
-          App._post_form('user.order/cancel', { order_id }, function (result) {
+          App._post_form('order/changeorderstatus', { order_id: order_id, id: oid, status: 1 }, function (result) {
             _this.getOrderList(_this.data.dataType);
           });
         }

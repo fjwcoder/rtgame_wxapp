@@ -83,3 +83,10 @@
   flex: 1;
   float: left;
 }
+.btn_saveData{
+    width:80%;
+    background-color: #00baff;
+    line-height: 46px;
+    color: white;
+    margin: 20px auto;
+}

@@ -12,7 +12,7 @@ Page({
     order_id: null,
     order: {},
     oid: '',
-
+    src:'../../images/add_img.png',
     disabled: false,
     game_name: '',
     game_img: '',
@@ -79,7 +79,8 @@ Page({
         create_time: createTime,
         pay_time: payTime,
         finish_time: finishTime,
-        server_list: result.data.detail,
+        server_list: _this.addImgSrc(result.data.detail),
+        // server_list: result.data.detail,
 
       })
     });
@@ -103,6 +104,47 @@ Page({
         disabled: false
       });
     });
+  },
+
+  uploadPhoto: function(e){
+    let _this = this;
+    App._img_upload('Fileupload/finishImgUpload?img=','file',function (result) {
+      console.log("result=="+result);  
+      _this.setData({
+        src: App.path_root + result,
+        imgSrc: result
+      });
+    }, false, function () {});
+  },
+  saveImg:function(e){
+    let _this = this;
+    let s_id = e.currentTarget.dataset.sid;
+    let imgSrc = e.currentTarget.dataset.img;
+    console.log("s_id=="+s_id);
+    console.log("img=="+imgSrc);
+    App._post_form('order/saveFinishImg', { s_id: s_id, id: _this.data.oid, order_id: _this.data.order_id, server_img: imgSrc}, function (result) {
+
+      App.showSuccess(result.msg, function () {
+        wx.redirectTo({
+          url: 'practicelist_accepted_ing',
+        });
+      });
+    }, false, function () {
+      // 解除禁用
+      _this.setData({
+        disabled: false
+      });
+    });
+    
+  },
+
+//转换img path,添加http头部
+  addImgSrc: function (server_list){
+    for (var index in server_list) {
+      server_list[index].server_img = App.path_root + server_list[index].server_img;
+    }
+    return server_list;
+
   },
 
   timeStampToDate: function (number, format) {
