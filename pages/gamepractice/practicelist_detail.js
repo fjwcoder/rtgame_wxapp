@@ -141,7 +141,11 @@ Page({
 //转换img path,添加http头部
   addImgSrc: function (server_list){
     for (var index in server_list) {
-      server_list[index].server_img = App.path_root + server_list[index].server_img;
+      if (!waiter && typeof (waiter) != "undefined" && waiter != 0) {  //代练人员为空
+        
+      } else{
+        server_list[index].server_img = App.path_root + server_list[index].server_img;
+      }
     }
     return server_list;
 
