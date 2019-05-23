@@ -266,7 +266,8 @@ Page({
     this.setData({
       _values: values,
       showMol: 'show',
-      server_info: server
+      server_info: server,
+      display:"display"
     })
   },
 
@@ -357,7 +358,8 @@ Page({
    */
   hideModal: function (e) {
     this.setData({
-      showMol: null
+      showMol: null,
+      display:''
     })
   },
   /**

@@ -44,3 +44,6 @@ line-height:60rpx;
 input{
   text-align:right;
 }
+.display{
+    display: none;
+  }

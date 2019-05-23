@@ -2404,7 +2404,7 @@ button.icon.lg {
 	line-height: 1em;
 }
 
-.cu-form-group picker {
+/* .cu-form-group picker {
 	flex: 1;
 	padding-right: 40rpx;
 	overflow: hidden;
@@ -2435,7 +2435,7 @@ button.icon.lg {
 	bottom: 0;
 	right: -20rpx;
 	margin: auto;
-}
+} */
 
 .cu-form-group textarea[disabled],
 .cu-form-group textarea[disabled] .placeholder {
