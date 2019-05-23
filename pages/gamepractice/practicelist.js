@@ -75,10 +75,19 @@ Page({
       console.log(result);
       let resultdata = result.data.data;
       if (resultdata == false) {
-        _this.setData({
-          searchLoadingComplete: true, //把“没有数据”设为true，显示  
-          searchLoading: false //把"上拉加载"的变量设为false，隐藏  
-        });
+        console.log("page=="+_this.data.page);
+        if (_this.data.page === 1) {
+          _this.setData({
+            list: resultdata,
+            searchLoadingComplete: false, //把“没有数据”设为true，显示  
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
+          });
+        } else {
+          _this.setData({
+            searchLoadingComplete: true, //把“没有数据”设为true，显示  
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
+          });
+        }
       } else {
         let searchList = [];
         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加  
