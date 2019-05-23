@@ -76,6 +76,10 @@ Page({
             searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
           });
         }
+        _this.setData({
+          list: resultdata, //获取数据数组  
+          searchLoading: true   //把"上拉加载"的变量设为false，显示  
+        });
       } else {
         let searchList = [];
         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加  

@@ -30,7 +30,8 @@ Page({
     create_time: '',
     pay_time: '',
     finish_time: '',
-    server_list: []
+    server_list: [],
+    dailian:0
   },
 
   /**
@@ -59,8 +60,15 @@ Page({
       var finishTime = _this.timeStampToDate(result.data.finish_time, 'Y-M-D h:m:s');
       var waiter = result.data.waiter_name;
       if (!waiter && typeof (waiter) != "undefined" && waiter != 0){  //代练人员为空
-        waiter = '暂未分配代练人员';
+        _this.setData({
+          dalian: 0
+        });
+      } else{
+        _this.setData({
+          dalian: 1
+        });
       }
+      
       _this.data.step = parseInt(result.data.step);
       _this.setData({
         game_name: result.data.game_name,
@@ -74,7 +82,7 @@ Page({
         user_mobile: result.data.user_mobile,
         game_account: result.data.game_account,
         waiter_name: waiter,
-        waiter_headimgurl: result.data.waiter_headimgurl,
+        waiter_headimgurl: result.data.headimgurl,
         step: result.data.step,
         create_time: createTime,
         pay_time: payTime,

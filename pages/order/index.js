@@ -36,6 +36,11 @@ Page({
     // 获取订单列表
     
   },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../user/index'
+    })
+  },
 
   /**
    * 获取订单列表
