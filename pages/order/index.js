@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     console.log(options);
     this.data.step = parseInt(options.type);
     if(parseInt(options.type) === 0){
@@ -141,6 +142,7 @@ Page({
         App.showError(result.msg);
         return false;
       }
+
       // 发起微信支付
       wx.requestPayment({
         timeStamp: result.data.timeStamp,
@@ -150,11 +152,11 @@ Page({
         paySign: result.data.paySign,
         success: function (res) {
           // 跳转到已付款订单
-          wx.navigateTo({
-            url: '../order/detail?order_id=' + order_id
-          });
+
+          _this.onLoad({type:0});
         },
-        fail: function () {
+        fail: function (res) {
+          console.log(res)
           App.showError('订单未支付');
         },
       });
