@@ -56,6 +56,23 @@ Page({
       placeholder2: options.gid === "1" ? '例：王者2星' : '例：铂金一',
       s_id: options.gid === "1" ? 1 : 4,
     })
+    if(!App.isLogin()){
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录小程序',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '../user/index'
+            })
+          } else{
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }
+        }
+      })
+    }
     wx.setNavigationBarTitle({
       title: this.data.game_name + '代练'
     })
