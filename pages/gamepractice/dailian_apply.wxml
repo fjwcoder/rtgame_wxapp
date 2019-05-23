@@ -20,6 +20,14 @@
           <input name="realname" placeholder="{{realname}}" bindinput='getUserRealName' maxlength='14'  placeholder-class="phClass"></input>
         </view>
       </view>
+      <view class='view2'>
+        <view class='textview'>
+          <text>联系方式</text>
+        </view>
+        <view class='inputview'>
+          <input name="mobile" placeholder="{{mobile}}" bindinput='getUserMobile' maxlength='11'  placeholder-class="phClass"></input>
+        </view>
+      </view>
        <view class='view2'>
         <view class='textview'>
           <text>身份证号</text>

@@ -79,12 +79,40 @@ Page({
         create_time: createTime,
         pay_time: payTime,
         finish_time: finishTime,
-        server_list: result.data.detail,
+        server_list: _this.addImgSrc(result.data.detail),
         status: result.data.status
         
       })
     });
   },
+
+  //转换img path,添加http头部
+  addImgSrc: function (server_list) {
+    var url = App.siteInfo.siteroot; //'https://qijian.fjwcoder.com/';
+    console.log("url==" + url);
+    for (var index in server_list) {
+      var img = server_list[index].server_img;
+      if (img != '' && img != null && img != undefined && img != url) {
+        server_list[index].server_img = App.path_root + server_list[index].server_img;
+      } else {
+        server_list[index].server_img = "";
+      }
+      console.log(server_list[index]);
+      // if (!img && typeof (img) != "undefined" && img != 0) {  //服务图片为空
+      //   server_list[index].server_img = "";
+      // } else{
+      //   if(img == url){
+      //     server_list[index].server_img = "";
+      //   } else{
+      //     server_list[index].server_img = App.path_root + server_list[index].server_img;
+      //   }
+      // }
+      console.log("img==" + server_list[index].server_img);
+    }
+    return server_list;
+
+  },
+
 
   changeStatus: function(e){
     let _this = this;
