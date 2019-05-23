@@ -30,7 +30,7 @@ Page({
     pay_time: '',
     finish_time: '',
     server_list: [],
-    fromwhere:0  //0：抢单列表中进入  其他：已抢到的代练单列表中进入
+    fromwhere:0  //0：抢单列表中进入  1：已抢到的代练单列表中进入  2:抢单失败时页面刷新
   },
 
   /**
@@ -92,18 +92,48 @@ Page({
     _this.setData({
       disabled: true
     });
-    App._post_form('order/assignWaiter', { user_token: App.getGlobalData('user_token'), oid: _this.data.oid, order_id: _this.data.order_id }, function (result) {
 
-      App.showSuccess(result.msg, function () {
-        wx.redirectTo({
-          url: 'practicelist_accepted_ing',
+    // var code = 201;
+    // if (code === 200) {
+    //   App.showSuccess(result.msg, function () {
+    //     wx.redirectTo({
+    //       url: 'practicelist_accepted_ing',
+    //     });
+    //   });
+    // } else {
+    //   wx.showToast({
+    //     title: '抢单失败',
+    //     icon: 'none',
+    //     duration: 1000,
+    //     mask: true
+    //   });
+    //   _this.getOrderDetail(_this.data.order_id, parseInt(_this.data.o_id));
+    //   _this.setData({
+    //     fromwhere: 2,
+    //     disabled:false
+    //   });
+    // }
+    App._post_form('order/assignWaiter', { user_token: App.getGlobalData('user_token'), oid: _this.data.oid, order_id: _this.data.order_id }, function (result) {
+      console.log(result);
+      if(result.code === 200){
+        App.showSuccess(result.msg, function () {
+          wx.redirectTo({
+            url: 'practicelist_accepted_ing',
+          });
         });
-      });
-    }, false, function () {
-      // 解除禁用
-      _this.setData({
-        disabled: false
-      });
+      } else{
+        wx.showToast({
+          title: '抢单失败',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        });
+        _this.getOrderDetail(_this.data.order_id, parseInt(_this.data.o_id));
+        _this.setData({
+          fromwhere:2,
+          disabled: false
+        });
+      }
     });
   },
 
