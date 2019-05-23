@@ -18,14 +18,21 @@ Page({
     list: {},
     scrollTop: 0,
 
-    swiperList: [{ imgSrc: "https://i.loli.net/2019/04/25/5cc114f2d73c3.png" }, { imgSrc:" https://i.loli.net/2019/04/25/5cc11396d6e7b.png"}],
+    swiperList: [],
     
   },
 
   onLoad: function() {
     // 设置页面标题
+    let _this = this;
     App.setTitle();
-
+    let swiper = [
+        { imgSrc: App.siteInfo.siteroot+'static/assets/game/banner_1.jpg'},
+        { imgSrc: App.siteInfo.siteroot + 'static/assets/game/banner_2.jpg'}
+      ];
+    _this.setData({
+      swiperList: swiper
+    });
     // 获取首页数据
     //this.getIndexData();
   },

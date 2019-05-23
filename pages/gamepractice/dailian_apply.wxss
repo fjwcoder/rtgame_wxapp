@@ -57,7 +57,7 @@
 .textview{
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-left: 15px;
   float:left;
   width:30%;
   padding-top:15px;
@@ -67,6 +67,7 @@
 .inputview{
   float:left;
   width:100%;
+  margin-right: 15px;
 }
 input{
   width:100%;
