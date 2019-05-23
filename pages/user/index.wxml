@@ -137,10 +137,10 @@
     </view>
     </view>
 <view class="cu-item arrow">
-    <view class="content">
+  <navigator class="content" hover-class="none" url="../index/service">
       <text class="cuIcon-service text-pink"></text>
       <text class="text-grey">平台客服</text>
-    </view>
+    </navigator>
   </view>
   <!-- <view class="cu-item arrow">
     <view class="content">

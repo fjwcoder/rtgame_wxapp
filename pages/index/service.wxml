@@ -1,0 +1,10 @@
+<view class="big_box">
+    <image class="wx_erweima" src="{{wx_erweima}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+    <view class="erweima_text">微信客服二维码</view>
+    <image class="qq_erweima" src="{{qq_erweima}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+    <view class="erweima_text">QQ客服二维码</view>
+
+    <view class="kefu_dianhua">133-6536-9701</view>
+    <view class="erweima_text">客服电话</view>
+      
+</view>

@@ -15,7 +15,7 @@
         </view>
         <view wx:if="{{input_hidden}}" class="cu-form-group">
             <view class="card_title">当前段位</view>
-            <input bindinput="getSPlace" placeholder="例：黄金三2星" placeholder-class="phClass"></input>
+            <input bindinput="getSPlace" placeholder="{{placeholder1}}" placeholder-class="phClass"></input>
         </view>
         <view wx:if="{{picker_hidden}}" class="cu-form-group">
             <view class="card_title">当前分数</view>
@@ -23,7 +23,7 @@
         </view>
         <view wx:if="{{input_hidden}}" class="cu-form-group">
             <view class="card_title">目标段位</view>
-            <input bindinput="getOPlace" placeholder="例：王者2星" placeholder-class="phClass"></input>
+            <input bindinput="getOPlace" placeholder="{{placeholder2}}" placeholder-class="phClass"></input>
         </view>
         <view wx:if="{{picker_hidden}}" class="cu-form-group border-top">
             <view class="card_title">目标分数</view>
@@ -92,14 +92,14 @@
                 </view>
             </view>
             <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
-            <view class="cu-form-group margin-top">
+            <view class="cu-form-group {{display}}">
                 <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入更多账号资料及详情" name="info" placeholder-class="phClass"></textarea>
             </view>
         </view>
     </view>
     <button form-type="submit" class="btn_saveData">提交</button>
 </form>
-<view class="cu-modal bottom-modal {{showMol}}">
+<view class="cu-modal bottom-modal {{showMol}}" style="z-index:99999">
     <view class="cu-dialog">
         <view class="cu-bar bg-white">
             <view class="action text-blue" bindtap="hideModal">取消</view>
