@@ -1,5 +1,5 @@
 <view class="container">
-  <scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+  <scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0>
     <!-- <view class="col_banner"></view> -->
     <block wx:for="{{items}}" wx:for-item="item" wx:for-index="item_key" wx:key="this">
       <!-- 搜索框 -->
