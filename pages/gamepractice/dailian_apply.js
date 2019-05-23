@@ -16,7 +16,7 @@ Page({
     user_sex: '',
     gender_arrey: ['男', '女'],
     index: 0,
-    user_phone: '请输入手机号码',
+    mobile: '请输入手机号码',
     error: '',
     game_id_list: '请输入擅长的游戏',
     age:'',
@@ -83,9 +83,9 @@ Page({
   /**
    * 填写紧急联系人手机号
    */
-  getUserPhone: function (e) {
+  getUserMobile: function (e) {
     this.setData({
-      user_phone: e.detail.value
+      mobile: e.detail.value
     })
   },
   checkboxChange(e) {
@@ -150,19 +150,19 @@ Page({
       this.data.error = '身份证号码不合规范';
       return false;
     }
-    // if (values.user_phone.length < 1) {
-    //   this.data.error = '手机号不能为空';
-    //   return false;
-    // }
-    // if (values.user_phone.length !== 11) {
-    //   this.data.error = '手机号长度有误';
-    //   return false;
-    // }
-    // let reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    // if (!reg.test(values.user_phone)) {
-    //   this.data.error = '手机号不符合要求';
-    //   return false;
-    // }
+    if (values.mobile.length < 1) {
+      this.data.error = '手机号不能为空';
+      return false;
+    }
+    if (values.mobile.length !== 11) {
+      this.data.error = '手机号长度有误';
+      return false;
+    }
+    let reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (!reg.test(values.mobile)) {
+      this.data.error = '手机号不符合要求';
+      return false;
+    }
     if (values.realname === '') {
       this.data.error = '真实姓名不能为空';
       return false;

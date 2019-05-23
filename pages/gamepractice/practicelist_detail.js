@@ -73,6 +73,7 @@ Page({
 
         user_mobile: result.data.user_mobile,
         game_account: result.data.game_account,
+        game_password: result.data.game_password,
         waiter_name: waiter,
         waiter_headimgurl: result.data.waiter_headimgurl,
         step: result.data.step,
@@ -140,13 +141,26 @@ Page({
 
 //转换img path,添加http头部
   addImgSrc: function (server_list){
+    var url = App.siteInfo.siteroot; //'https://qijian.fjwcoder.com/';
+    console.log("url=="+url);
     for (var index in server_list) {
       var img = server_list[index].server_img;
-      if (!img && typeof (img) != "undefined" && img != 0) {  //服务图片为空
-        
-      } else{
+      if(img != '' && img != null && img != undefined && img != url){
         server_list[index].server_img = App.path_root + server_list[index].server_img;
+      }else{
+        server_list[index].server_img = "";
       }
+      console.log(server_list[index]);
+      // if (!img && typeof (img) != "undefined" && img != 0) {  //服务图片为空
+      //   server_list[index].server_img = "";
+      // } else{
+      //   if(img == url){
+      //     server_list[index].server_img = "";
+      //   } else{
+      //     server_list[index].server_img = App.path_root + server_list[index].server_img;
+      //   }
+      // }
+      console.log("img==" + server_list[index].server_img);
     }
     return server_list;
 
