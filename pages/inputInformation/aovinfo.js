@@ -41,7 +41,8 @@ Page({
     showMol: null,
 
     server_info: {},
-    winNumShow: false
+    winNumShow: false,
+    display:""
   },
 
   /**
@@ -51,6 +52,8 @@ Page({
     this.setData({
       gid: parseInt(options.gid),
       game_name: options.gid === "1" ? '王者荣耀' : '英雄联盟',
+      placeholder1: options.gid === "1" ? '例：黄金一2星' : '例：黄金一',
+      placeholder2: options.gid === "1" ? '例：王者2星' : '例：铂金一',
       s_id: options.gid === "1" ? 1 : 4,
     })
     wx.setNavigationBarTitle({
@@ -472,7 +475,8 @@ Page({
     this.setData({
       _values: values,
       showMol: 'show',
-      server_info: server
+      server_info: server,
+      display:"display"
     })
     // console.log(this.data)
     //console.log(area_name)
@@ -586,7 +590,8 @@ Page({
    */
   hideModal: function (e) {
     this.setData({
-      showMol: null
+      showMol: null,
+      display:""
     })
   },
   /**

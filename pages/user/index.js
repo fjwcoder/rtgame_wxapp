@@ -33,9 +33,11 @@ Page({
   onShow: function () {
 
     // 获取当前用户信息
+   // if (App.isLogin()){
+      this.getUserDetail();
+      this.getUserIndex()
+//}
 
-    this.getUserDetail();
-    this.getUserIndex()
 
     // console.log(wx.getStorageSync('user_id'));
     // console.log(wx.getStorageSync('user_token'));

@@ -72,7 +72,7 @@
                 </view>
             </view>
             <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
-            <view class="cu-form-group margin-top">
+            <view class="cu-form-group {{display}}">
                 <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入更多账号资料及详情" name="info" placeholder-class="phClass"></textarea>
             </view>
         </view>
