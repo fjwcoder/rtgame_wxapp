@@ -40,13 +40,16 @@
       <view class='insurance_details'>完成时间：<text class='col_r'>{{finish_time}}</text></view>
     </view>
 
-    <view class='box_a'>
-      <view class='title_details'>代练人员信息</view>
-      <view class='title_details'>
-        <image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;border-radius:100%;overflow:hidden;" mode="{item.mode}}" src="{{waiter_headimgurl}}"></image>
+    <block wx:if="{{dailian}}">
+      <view class='box_a'>
+        <view class='title_details'>代练人员信息</view>
+        <view class='title_details'>
+          <image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;border-radius:100%;overflow:hidden;" mode="{item.mode}}" src="{{waiter_headimgurl}}"></image>
+        </view>
+        <view class='insurance_details'>代练人员名称：<text class='col_r'>{{waiter_name}}</text></view>
       </view>
-      <view class='insurance_details'>代练人员名称：<text class='col_r'>{{waiter_name}}</text></view>
-    </view>
+    </block>
+    
 
     <view class='box_a'> 
       <view class='title_details'>服务信息</view>
