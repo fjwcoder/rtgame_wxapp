@@ -26,7 +26,6 @@ Page({
       dataType:options.type, 
       step:parseInt(options.type)
     });
-    this.getOrderList(this.data.step, this.data.status);
   },
 
   /**
@@ -34,7 +33,7 @@ Page({
    */
   onShow: function () {
     // 获取订单列表
-    
+    this.getOrderList(this.data.step, this.data.status);
   },
   onUnload: function () {
     wx.reLaunch({
@@ -61,7 +60,8 @@ Page({
    * 切换标签
    */
   bindHeaderTap: function (e) {
-    console.log(e)
+    console.log(e);
+    this.data.dataType = e.target.dataset.type;
     this.setData({
        dataType: e.target.dataset.type 
       });
@@ -84,14 +84,22 @@ Page({
   cancelOrder: function (e) {
     let _this = this;
     let oid = e.currentTarget.dataset.oid;
-    let order_id = e.currentTarget.dataset.orderid;
+    let order_id = e.currentTarget.dataset.id;
+    console.log(oid);
+    console.log(order_id);
     wx.showModal({
       title: "提示",
       content: "确认取消订单？",
       success: function (o) {
         if (o.confirm) {
           App._post_form('order/changeorderstatus', { order_id: order_id, id: oid, status: 1 }, function (result) {
-            _this.getOrderList(_this.data.dataType);
+            console.log(result);
+            if (_this.data.step === '0') {
+              _this.data.status = 0;
+            } else {
+              _this.data.status = 1;
+            }
+            _this.getOrderList(_this.data.step, _this.data.status);
           });
         }
       }
