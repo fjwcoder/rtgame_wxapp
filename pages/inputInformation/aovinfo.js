@@ -531,10 +531,22 @@ Page({
               signType: res.data.signType,
               paySign: res.data.paySign,
               success(res) {
-                console.log(res)
+                wx.showToast({
+                  title: '支付成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+                wx.redirectTo({
+                  url:'../order/index?type=0'
+                })
               },
               fail(res) {
-                wx.navigateTo({
+                wx.showToast({
+                  title: '支付失败',
+                  icon: 'none',
+                  duration: 2000
+                })
+                wx.redirectTo({
                   url:'../order/index?type=1'
                 })
               }
