@@ -10,20 +10,26 @@
         <view class="cu-form-group border-top">
             <view class="card_title">代练类型</view>
             <picker mode="selector" bindchange="selectService" value="{{ServiceIndex}}" range="{{ServiceArray}}">
-                <view class="picker_text" style='text-align:right;'>{{ServiceArray[ServiceIndex]}}</view>
+                <view class="picker_text" style='text-align:right;'>
+                    {{ServiceArray[ServiceIndex]}}
+                </view>
             </picker>
         </view>
         <view wx:if="{{input_hidden}}" class="cu-form-group">
             <view class="card_title">当前段位</view>
-            <input bindinput="getSPlace" placeholder="{{placeholder1}}" placeholder-class="phClass"></input>
+            <picker mode="selector" bindchange="chooseStartPlace" value="{{start_place}}" range="{{name_list}}">
+                <view class="picker_text">{{start_place?name_list[start_place]:"请选择"}}</view>
+            </picker>
         </view>
         <view wx:if="{{picker_hidden}}" class="cu-form-group">
             <view class="card_title">当前分数</view>
-            <input value="{{initialNum}}" bindblur="getInitial" type="number" placeholder="例：1500"          placeholder-class="phClass"></input>
+            <input value="{{initialNum}}" bindblur="getInitial" type="number" placeholder="例：1500" placeholder-class="phClass"></input>
         </view>
         <view wx:if="{{input_hidden}}" class="cu-form-group">
             <view class="card_title">目标段位</view>
-            <input bindinput="getOPlace" placeholder="{{placeholder2}}" placeholder-class="phClass"></input>
+            <picker mode="selector" bindchange="chooseEndPlace" value="{{end_place}}" range="{{name_list}}">
+                <view class="picker_text">{{end_place?name_list[end_place]:"请选择"}}</view>
+            </picker>
         </view>
         <view wx:if="{{picker_hidden}}" class="cu-form-group border-top">
             <view class="card_title">目标分数</view>
@@ -37,10 +43,18 @@
         </view>
         <view class="cu-form-group">
             <view class="card_title">订单佣金</view>
-            <input bindblur="getSalary" value="{{salary}}" type="number" placeholder="请输入您的订单佣金金额" placeholder-class="phClass"></input>
+            <input bindblur="getSalary" value="{{all_price}}" type="number" placeholder-class="phClass" disabled="{{price_disabled}}" style="color:#00baff"></input>
             <button class="cu-btn bg-grey shadow round sm" bindtap="jumpPriceReference">
                 佣金参考
             </button>
+        </view>
+        <view class="cu-form-group">
+            <view class="card_title">指定英雄</view>
+            <input bindblur="appointHero" type="text" value="{{appoint_hero}}" placeholder-class="phClass" placeholder="请输入您指定的英雄名称"></input>
+        </view>
+        <view class="cu-form-group" style="min-height:50rpx;color:#666 ;padding-bottom:20rpx;justify-content:left;">
+            <text class="cuIcon-info" style="color:#00baff;margin-right:10px;"></text>
+            注：指定英雄需加价30%
         </view>
     </view>
 </view>
@@ -58,7 +72,7 @@
             <view class="cu-form-group border-top">
                 <view class="card_title">选择区服</view>
                 <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-                    <view class="picker_text"  style='text-align:right;'>
+                    <view class="picker_text" style='text-align:right;'>
                         {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
                     </view>
                 </picker>

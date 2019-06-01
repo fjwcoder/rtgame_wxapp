@@ -17,7 +17,7 @@ Page({
       wx_erweima:App.siteInfo.siteroot+'static/assets/game/wx_kefu.png',
       qq_erweima:App.siteInfo.siteroot+'static/assets/game/qq_kefu.png',
     })
-    console.log(App.siteInfo.siteroot)
+
   },
 
   /**
@@ -31,14 +31,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+/*       for($i=0; $i<$v['star']; $i++){
+              $king_star += 1;
+              $name = '最强王者'.$king_star.'星';
+              $name_list[] = $name;
+              $temp = ['name'=>$name, 'stars'=>$star, 'star_level'=>$v['star_level']];
+              $level_list[] = $temp;
+              $star ++;
+          }
+ */
   },
 
   /**

@@ -1,28 +1,32 @@
 /* pages/user/fadan.wxss */
-.picker_text{
+.picker_text {
   color: #555;
   font-size: 30rpx;
   margin: 0
 }
-.btn_saveData{
-  width:80%;
+
+.btn_saveData {
+  width: 80%;
   background-color: #00baff;
   line-height: 46px;
   color: white;
   margin: 20px auto;
 }
-.border-top{
+
+.border-top {
   border-top: #eee solid 1rpx;
 }
-.card_title{
-  text-align:justify;
-  padding-right:30rpx;
-  font-size:30rpx;
-  position:relative;
-  height:60rpx;
-  line-height:60rpx;
+
+.card_title {
+  text-align: justify;
+  padding-right: 30rpx;
+  font-size: 30rpx;
+  position: relative;
+  height: 60rpx;
+  line-height: 60rpx;
 }
-.yulan_BT{
+
+.yulan_BT {
   color: #555;
   display: block;
   width: 100%;
@@ -30,22 +34,27 @@
   line-height: 30px;
   text-align: center;
   padding-bottom: 5px;
-    
+
 }
-.air_text{
+
+.air_text {
   width: 28%;
-  display:inline-block;
+  display: inline-block;
 }
-.text_color{
+
+.text_color {
   color: #00baff;
 }
-.phClass{
+
+.phClass {
   color: #cdcdcd;
   font-size: 26rpx;
 }
-input{
-  text-align:right;
+
+input {
+  text-align: right;
 }
-.display{
+
+.display {
   display: none;
 }

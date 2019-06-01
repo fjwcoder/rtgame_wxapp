@@ -7,7 +7,7 @@ Page({
    */
   data: {
     gid: 2, //游戏id 由上个页面传入
-    salary:50,//订单佣金初始默认值
+    salary: 50, //订单佣金初始默认值
 
     ServiceIndex: "0", //选择服务picker初始值
     ServiceArray: [], //picker代练列表
@@ -42,7 +42,13 @@ Page({
 
     server_info: {},
     winNumShow: false,
-    display:""
+    display: "",
+
+    start_place: null, //段位选择器索引值
+    end_place: null,
+
+    all_price: 0, //价格
+    price_disabled: true
   },
 
   /**
@@ -56,7 +62,7 @@ Page({
       placeholder2: options.gid === "1" ? '例：王者2星' : '例：铂金一',
       s_id: options.gid === "1" ? 1 : 4,
     })
-    if(!App.isLogin()){
+    if (!App.isLogin()) {
       wx.showModal({
         title: '提示',
         content: '您还未登录小程序',
@@ -65,7 +71,7 @@ Page({
             wx.switchTab({
               url: '../user/index'
             })
-          } else{
+          } else {
             wx.switchTab({
               url: '../index/index'
             })
@@ -79,6 +85,9 @@ Page({
     this.getGameServer();
     this.getServerList();
     this.winNum_show(this.data.gid); //胜点输入框显示     options.pid
+    options.gid === "1" ? this.generatedData() : this.generatedDataLOL()
+    //生成选择段位数据
+
   },
 
   /**
@@ -200,7 +209,8 @@ Page({
           input_hidden: false,
           picker_hidden: true,
           numOrText: "number",
-
+          price_disabled: false,
+          all_price: 0,
           scoreArr: this.autoincrementArray(36)
         })
         console.log(this.data.s_place)
@@ -238,9 +248,442 @@ Page({
           ServiceIndex: e.detail.value,
           s_id: this.data.ServiceIndexArray[e.detail.value],
         })
-        console.log(this.data.ServiceIndexArray[e.detail.value])
-        console.log(this.data.s_id)
+
       }
+    }
+    console.log(this.data.ServiceIndexArray[e.detail.value])
+    console.log(this.data.s_id)
+  },
+  /**
+   *  王者荣耀生成选择段位数据 
+   */
+  generatedData: function () {
+    var level_list = []; // 段位数组，包含：名称（name），当前段位共获得的星数（stars），价格分级对应的层级（star_level）
+    var name_list = []; //  放到picker里显示
+    var star = 1;
+    var king_star = 0;
+    var big_num = {
+      1: '一',
+      2: '二',
+      3: '三',
+      4: '四',
+      5: '五'
+    };
+    var level_name = {
+      0: {
+        name: '倔强青铜',
+        level: 3,
+        star: 3,
+        star_level: 1
+      },
+      1: {
+        name: '秩序白银',
+        level: 3,
+        star: 3,
+        star_level: 1
+      },
+      2: {
+        name: '荣耀黄金',
+        level: 4,
+        star: 4,
+        star_level: 2
+      },
+      3: {
+        name: '尊贵铂金',
+        level: 4,
+        star: 4,
+        star_level: 3
+      },
+      4: {
+        name: '永恒钻石',
+        level: 5,
+        star: 5,
+        star_level: 4
+      },
+      5: {
+        name: '至尊星耀',
+        level: 5,
+        star: 5,
+        star_level: 5
+      },
+      6: {
+        name: '王者1-10星',
+        level: 1,
+        star: 10,
+        star_level: 6
+      },
+      7: {
+        name: '王者11-20星',
+        level: 1,
+        star: 10,
+        star_level: 7
+      },
+      8: {
+        name: '王者21-30星',
+        level: 1,
+        star: 10,
+        star_level: 8
+      },
+      9: {
+        name: '王者31-40星',
+        level: 1,
+        star: 10,
+        star_level: 9
+      },
+      10: {
+        name: '王者41-50星',
+        level: 1,
+        star: 10,
+        star_level: 10
+      },
+      11: {
+        name: '王者50星以上',
+        level: 1,
+        star: 100,
+        star_level: 11
+      }
+    };
+    console.log(level_name);
+    var x;
+    for (x in level_name) {
+      if (x < 6) {
+        for (var i = level_name[x]["level"]; i > 0; i--) {
+          var l = big_num[i];
+          for (var j = 1; j <= level_name[x]["star"]; j++) {
+            var name = level_name[x]["name"] + l + j + "星";
+            name_list.push(name);
+            var temp = {
+              "name": name,
+              'stars': star,
+              'star_level': level_name[x]["star_level"]
+            }
+            level_list.push(temp);
+            star++;
+          }
+        }
+      } else {
+        for (var i = 0; i < level_name[x]["star"]; i++) {
+          king_star += 1;
+          var name = "最强王者" + king_star + "星";
+          name_list.push(name);
+          var temp = {
+            "name": name,
+            'stars': star,
+            'star_level': level_name[x]["star_level"]
+          };
+          level_list.push(temp);
+          star++;
+        }
+      }
+    }
+    this.setData({
+      level_list: level_list,
+      name_list: name_list
+    })
+    console.log(level_list)
+    console.log(name_list)
+
+
+  },
+  /**
+   * 英雄联盟生成段位选择数据
+   */
+  generatedDataLOL: function () {
+    var level_list = []; // 段位数组，包含：名称（name），当前段位共获得的星数（stars），价格分级对应的层级（star_level）
+    var name_list = []; //  放到picker里显示
+    var big_num = {
+      1: '一',
+      2: '二',
+      3: '三',
+      4: '四',
+      5: '五'
+    };
+    var level_name = {
+      0: {
+        name: '坚韧黑铁',
+        level: 4,
+        star_level: 1,
+        level_price: 2.5
+      },
+      1: {
+        name: '英勇黄铜',
+        level: 4,
+        star_level: 2,
+        level_price: 15
+      },
+      2: {
+        name: '不屈白银',
+        level: 4,
+        star_level: 3,
+        level_price: 20
+      },
+      3: {
+        name: '荣耀黄金',
+        level: 4,
+        star_level: 4,
+        level_price: 30
+      },
+      4: {
+        name: '华贵铂金',
+        level: 4,
+        star_level: 5,
+        level_price: 50
+      },
+      5: {
+        name: '璀璨钻石',
+        level: 4,
+        star_level: 6,
+        level_price: 100
+      },
+    };
+    this.setData({
+      level_name: level_name
+    })
+    console.log(level_name);
+
+    function objlen() {
+      var objLen = 0;
+      for (var i in level_name) {
+        objLen++;
+      }
+      return objLen;
+    }
+    var objLength = objlen()
+    var total_level = 1
+    for (var i = 0; i < objLength; i++) {
+      var now_lever = 1
+      for (var j = level_name[i].level; j > 0; j--) {
+        var l = big_num[j];
+        var name = level_name[i]["name"] + l;
+        name_list.push(name);
+        var temp = {
+          "name": name,
+          'star_level': level_name[i]["star_level"], //价格区间
+          'level_price': level_name[i]["level_price"], //价格
+          'total_level': total_level, //总排列段位数
+          'now_lever': now_lever, //当前项在此大段中的数量排列
+          'level_num': level_name[i]["level"] //当前大段的小段数量
+        }
+        level_list.push(temp);
+        total_level++;
+        now_lever++;
+      }
+    }
+    this.setData({
+      level_list: level_list,
+      name_list: name_list
+    })
+    console.log(level_list)
+    console.log(name_list)
+
+  },
+  /**
+   * 王者荣耀排位当前段位
+   */
+  chooseStartPlace: function (e) {
+
+    this.setData({
+      start_place: e.detail.value,
+      appoint_hero: ''
+    })
+    if (this.data.end_place !== null) {
+      this.setData({
+        end_place: null,
+        all_price: 0
+      })
+    }
+  },
+  /**
+   * 王者荣耀排位目标段位
+   */
+  chooseEndPlace: function (e) {
+    //console.log(_this.data.start_place)
+    let _this = this;
+
+    _this.setData({
+      end_place: e.detail.value,
+      appoint_hero: ''
+    })
+
+    if (parseInt(_this.data.start_place) >= parseInt(_this.data.end_place) || _this.data.end_place === null) {
+      wx.showToast({
+        title: '目标段位不可低于当前段位',
+        icon: 'none',
+        duration: 2000
+      })
+      _this.setData({
+        end_place: null,
+        all_price: 0
+      })
+      return false;
+    }
+    if (_this.data.start_place === null) {
+      wx.showToast({
+        title: '请先选择当前段位',
+        icon: 'none',
+        duration: 2000
+      })
+      _this.setData({
+        end_place: null,
+        all_price: 0
+      })
+      return false;
+    }
+    //处理价格
+    if (_this.data.gid === 1) {
+      var a_data = {
+        1: {
+          "total_stars": 18,
+          "level_stars": 18,
+          "star_price": 1
+        }, //青铜--黄金
+        2: {
+          "total_stars": 34,
+          "level_stars": 16,
+          "star_price": 2
+        }, //黄金--铂金
+        3: {
+          "total_stars": 50,
+          "level_stars": 16,
+          "star_price": 3
+        }, //铂金--钻石
+        4: {
+          "total_stars": 75,
+          "level_stars": 25,
+          "star_price": 5
+        }, //钻石到星耀
+        5: {
+          "total_stars": 100,
+          "level_stars": 25,
+          "star_price": 6
+        }, //星耀
+        6: {
+          "total_stars": 110,
+          "level_stars": 10,
+          "star_price": 7
+        }, //王者1--10
+        7: {
+          "total_stars": 120,
+          "level_stars": 10,
+          "star_price": 8
+        }, //王者11--20
+        8: {
+          "total_stars": 130,
+          "level_stars": 10,
+          "star_price": 13
+        }, //王者21--30
+        9: {
+          "total_stars": 140,
+          "level_stars": 10,
+          "star_price": 15
+        }, //王者31--40
+        10: {
+          "total_stars": 150,
+          "level_stars": 10,
+          "star_price": 18
+        }, //王者41--50
+        11: {
+          "total_stars": 160,
+          "level_stars": 10,
+          "star_price": 25
+        }, //王者51星以上
+      }
+      //
+      var all_price;
+      if (_this.data.level_list[_this.data.start_place].star_level === _this.data.level_list[_this.data.end_place].star_level) {
+        all_price = (_this.data.level_list[_this.data.end_place].stars - _this.data.level_list[_this.data.start_place].stars) * a_data[_this.data.level_list[_this.data.start_place].star_level].star_price
+        _this.setData({
+          all_price: all_price
+        })
+      } else {
+        var s_price = (a_data[_this.data.level_list[_this.data.start_place].star_level].total_stars - _this.data.level_list[_this.data.start_place].stars) * a_data[_this.data.level_list[_this.data.start_place].star_level].star_price
+        var o_price = (_this.data.level_list[_this.data.end_place].stars - a_data[_this.data.level_list[_this.data.end_place].star_level - 1].total_stars) * a_data[_this.data.level_list[_this.data.end_place].star_level].star_price
+        var c_price = 0
+
+        for (var i = _this.data.level_list[_this.data.start_place].star_level + 1; i < _this.data.level_list[_this.data.end_place].star_level; i++) {
+          c_price = a_data[i].level_stars * a_data[i].star_price + c_price
+        }
+        _this.setData({
+          all_price: s_price + o_price + c_price
+        })
+      }
+    } else if (_this.data.gid === 2) {
+      var all_price;
+      if (_this.data.level_list[_this.data.start_place].star_level === _this.data.level_list[_this.data.end_place].star_level) {
+        all_price = (_this.data.level_list[_this.data.end_place].total_level - _this.data.level_list[_this.data.start_place].total_level) * _this.data.level_list[_this.data.end_place].level_price
+        _this.setData({
+          all_price: all_price
+        })
+      } else {
+        var s_price = (_this.data.level_list[_this.data.start_place].level_num - _this.data.level_list[_this.data.start_place].now_lever + 1) * _this.data.level_list[_this.data.start_place].level_price
+        var o_price = (_this.data.level_list[_this.data.end_place].now_lever - 1) * _this.data.level_list[_this.data.end_place].level_price
+        var c_price = 0
+        for (var i = _this.data.level_list[_this.data.start_place].star_level; i < _this.data.level_list[_this.data.end_place].star_level - 1; i++) {
+
+          c_price = _this.data.level_name[i].level * _this.data.level_name[i].level_price + c_price
+        }
+
+        _this.setData({
+          all_price: s_price + o_price + c_price
+        })
+      }
+
+    }
+    console.log(_this.data.all_price)
+
+  },
+  /**
+   * 指定英雄
+   */
+  appointHero: function (e) {
+    if (this.data.gid === 1) {
+      if (this.data.s_id === 1) {
+        if (this.data.all_price === 0) {
+          wx.showToast({
+            title: '请先选择您的当前段位及目标段位',
+            icon: 'none',
+            duration: 2000
+          })
+          this.setData({
+            appoint_hero: ''
+          })
+
+        } else {
+          if (e.detail.value != '') {
+            var add_all_price = this.data.all_price * 0.3 + this.data.all_price
+            this.setData({
+              all_price: add_all_price,
+              appoint_hero: e.detail.value
+            })
+          }
+        }
+      } else {
+        this.setData({
+          appoint_hero: e.detail.value
+        })
+
+      }
+    } else {
+      if (this.data.all_price === 0) {
+        wx.showToast({
+          title: '请先选择您的当前段位及目标段位',
+          icon: 'none',
+          duration: 2000
+        })
+        this.setData({
+          appoint_hero: ''
+        })
+
+      } else {
+        if (e.detail.value != '') {
+          var add_all_price = this.data.all_price * 0.3 + this.data.all_price
+          this.setData({
+            all_price: add_all_price,
+            appoint_hero: e.detail.value
+          })
+        }
+      }
+
     }
   },
   /**
@@ -368,6 +811,12 @@ Page({
       this.setData({
         win_num: e.detail.value
       })
+      if (this.data.level_list[this.data.start_place].star_level >= 5) {
+        var win_all_price = this.data.all_price - e.detail.value * 0.1
+        this.setData({
+          all_price: win_all_price
+        })
+      }
     }
   },
   /**
@@ -439,8 +888,8 @@ Page({
     if (_this.data.gid === 1) {
       server.server_type = _this.data.s_id === 1 ? '排位赛' : '巅峰赛'
       if (_this.data.s_id === 1) { //如果选择段位赛
-        server.server_begin_info = data_arr.begin_info = _this.data.s_place //当前段位（当前分值）
-        server.server_end_info = data_arr.end_info = _this.data.o_place
+        server.server_begin_info = data_arr.begin_info = _this.data.name_list[_this.data.start_place] //当前段位（当前分值）
+        server.server_end_info = data_arr.end_info = _this.data.name_list[_this.data.end_place]
       } else
       // if (_this.data.s_id === 2) 
       { //巅峰赛 
@@ -449,11 +898,15 @@ Page({
       }
     } else {
       server.server_type = _this.data.s_id === 4 ? '单双排' : '灵活排位'
-      server.server_begin_info = data_arr.begin_info = _this.data.s_place + ',' + _this.data.win_num + '胜点' //当前段位（当前分值）
-      server.server_end_info = data_arr.end_info = _this.data.o_place
+      server.server_begin_info = data_arr.begin_info = _this.data.name_list[_this.data.start_place] + ',' + _this.data.win_num + '胜点' //当前段位（当前分值）
+      server.server_end_info = data_arr.end_info = _this.data.name_list[_this.data.end_place]
       server.win_num = _this.data.win_num
     }
-    server.server_price = data_arr.server_price = _this.data.salary //佣金
+    if (_this.data.gid === 1 && _this.data.s_id === 1) {
+      server.server_price = data_arr.server_price = _this.data.all_price //佣金
+    } else {
+      server.server_price = data_arr.server_price = _this.data.all_price //佣金
+    }
     var dataArray = {
       0: data_arr
     }
@@ -493,7 +946,7 @@ Page({
       _values: values,
       showMol: 'show',
       server_info: server,
-      display:"display"
+      display: "display"
     })
     // console.log(this.data)
     //console.log(area_name)
@@ -537,7 +990,7 @@ Page({
                   duration: 2000
                 })
                 wx.redirectTo({
-                  url:'../order/index?type=0'
+                  url: '../order/index?type=0'
                 })
               },
               fail(res) {
@@ -547,7 +1000,7 @@ Page({
                   duration: 2000
                 })
                 wx.redirectTo({
-                  url:'../order/index?type=1'
+                  url: '../order/index?type=1'
                 })
               }
             });
@@ -565,6 +1018,7 @@ Page({
    */
 
   validation: function (values, arr) {
+
     if (arr["begin_info"] === '' || arr["begin_info"] === undefined) {
       this.data.error = '当前段位(分数)不可为空';
       return false;
@@ -577,6 +1031,7 @@ Page({
       this.data.error = '佣金不可为空';
       return false;
     }
+
     if (values["game_account"] === '') {
       this.data.error = '游戏账号不可为空';
       return false;
@@ -620,7 +1075,7 @@ Page({
   hideModal: function (e) {
     this.setData({
       showMol: null,
-      display:""
+      display: ""
     })
   },
   /**
