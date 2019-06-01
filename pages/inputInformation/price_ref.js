@@ -1,11 +1,11 @@
-// pages/inputInformation/price_ref.js
+let App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    img: App.siteInfo.siteroot + 'static/assets/game/price.jpg'
   },
 
   /**

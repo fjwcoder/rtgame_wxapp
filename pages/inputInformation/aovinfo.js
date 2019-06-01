@@ -937,9 +937,7 @@ Page({
     var values = e.detail.value
     // console.log(values);
     values.dataArray = JSON.stringify(dataArray)
-    console.log( _this.data.appoint_hero)
-    console.log(values.info)
-    values.info = _this.data.appoint_hero? values.info + "指定英雄：" + _this.data.appoint_hero:values.info
+    values.info = _this.data.appoint_hero? values.info + "，指定英雄->" + _this.data.appoint_hero:values.info
     if (_this.data.gid === 2) {
       if (server.win_num === '' || server.win_num === undefined) {
         App.showError("当前胜点不可为空")
@@ -961,7 +959,11 @@ Page({
     values.game_id = _this.data.gid
     values.plantform_id = pid
     values.area_name = this.data.area_name_list[pid][this.data.multiIndex[1]]
-    _this.data.gid === 1 ? values.game_info = '英雄数量：' + values["hreonum"] + ',' + '铭文等级：' + values["runenum"] + ',' + '详细说明：' + values["info"] : values.game_info = '英雄数量：' + values["hreonum"] + ',' + '详细说明：' + values["info"]
+   if(_this.data.gid === 1 ){
+    values.game_info =values["info"]? '英雄数量：' + values["hreonum"] + ',' + '铭文等级：' + values["runenum"] + ',' + '详细说明：' + values["info"] :'英雄数量：' + values["hreonum"] + ',' + '铭文等级：' + values["runenum"] 
+   }else{
+    values.game_info = values["info"]?'英雄数量：' + values["hreonum"] + ',' + '详细说明：' + values["info"]:'英雄数量：' + values["hreonum"] 
+   }
     console.log(values);
     //console.log(values["dataArray"][0]["server_price"])
 

@@ -1,4 +1,4 @@
 <!--pages/inputInformation/price_ref.wxml-->
-<image class="img" src="https://i.loli.net/2019/05/18/5cdf77b1da15f40506.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+<image class="img" src="{{img}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
   
   
