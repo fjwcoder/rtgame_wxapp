@@ -41,17 +41,18 @@
             <view class="card_title">当前胜点</view>
             <input bindblur="getWinNum" type="number" maxlength="3" value="{{win_num}}" placeholder-class="phClass"></input>
         </view>
+           <view class="cu-form-group">
+            <view class="card_title">指定英雄</view>
+            <input bindblur="appointHero" type="text" value="{{appoint_hero}}" placeholder-class="phClass" placeholder="请输入您指定的英雄名称"></input>
+        </view>
         <view class="cu-form-group">
             <view class="card_title">订单佣金</view>
-            <input bindblur="getSalary" value="{{all_price}}" type="number" placeholder-class="phClass" disabled="{{price_disabled}}" style="color:#00baff"></input>
+            <input bindblur="getSalary" value="{{all_price}}" type="number" placeholder-class="phClass"  style="color:#00baff"></input>
             <button class="cu-btn bg-grey shadow round sm" bindtap="jumpPriceReference">
                 佣金参考
             </button>
         </view>
-        <view class="cu-form-group">
-            <view class="card_title">指定英雄</view>
-            <input bindblur="appointHero" type="text" value="{{appoint_hero}}" placeholder-class="phClass" placeholder="请输入您指定的英雄名称"></input>
-        </view>
+     
         <view class="cu-form-group" style="min-height:50rpx;color:#666 ;padding-bottom:20rpx;justify-content:left;">
             <text class="cuIcon-info" style="color:#00baff;margin-right:10px;"></text>
             注：指定英雄需加价30%

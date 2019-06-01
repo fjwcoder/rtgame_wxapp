@@ -48,7 +48,10 @@ Page({
     end_place: null,
 
     all_price: 0, //价格
-    price_disabled: true
+    price_disabled: true,
+
+    add_boolean:true,//是否执行加价
+    appoint_hero:''
   },
 
   /**
@@ -649,12 +652,22 @@ Page({
           })
 
         } else {
-          if (e.detail.value != '') {
-            var add_all_price = this.data.all_price * 0.3 + this.data.all_price
+          if (e.detail.value != '' && this.data.add_boolean) {
+            var add_price = this.data.all_price * 0.3
             this.setData({
-              all_price: add_all_price,
-              appoint_hero: e.detail.value
+              all_price: add_price + this.data.all_price,
+              appoint_hero: e.detail.value,
+              add_boolean:false,
+              add_price:add_price
             })
+          }
+          if(e.detail.value == '' && !this.data.add_boolean){
+            this.setData({
+              all_price:this.data.all_price - this.data.add_price,
+              appoint_hero: e.detail.value,
+              add_boolean:true
+            })
+
           }
         }
       } else {
@@ -675,11 +688,20 @@ Page({
         })
 
       } else {
-        if (e.detail.value != '') {
-          var add_all_price = this.data.all_price * 0.3 + this.data.all_price
+        if (e.detail.value != '' && this.data.add_boolean) {
+          var add_price = this.data.all_price * 0.3
           this.setData({
-            all_price: add_all_price,
-            appoint_hero: e.detail.value
+            all_price: add_price + this.data.all_price,
+            appoint_hero: e.detail.value,
+            add_boolean:false,
+            add_price:add_price
+          })
+        }
+        if(e.detail.value == '' && !this.data.add_boolean){
+          this.setData({
+            all_price:this.data.all_price - this.data.add_price,
+            appoint_hero: e.detail.value,
+            add_boolean:true
           })
         }
       }
@@ -777,19 +799,19 @@ Page({
    * 佣金
    */
   getSalary: function (e) {
-    if (e.detail.value < 10) {
+    if (e.detail.value < this.data.all_price) {
       wx.showToast({
-        title: '佣金太低啦~',
+        title: '佣金不可低于参考价格',
         icon: 'none',
         duration: 1500,
         mask: false,
       });
       this.setData({
-        salary: ''
+        all_price: this.data.all_price
       })
     } else {
       this.setData({
-        salary: e.detail.value.toString()
+        all_price: e.detail.value
       })
     }
   },
@@ -915,6 +937,9 @@ Page({
     var values = e.detail.value
     // console.log(values);
     values.dataArray = JSON.stringify(dataArray)
+    console.log( _this.data.appoint_hero)
+    console.log(values.info)
+    values.info = _this.data.appoint_hero? values.info + "指定英雄：" + _this.data.appoint_hero:values.info
     if (_this.data.gid === 2) {
       if (server.win_num === '' || server.win_num === undefined) {
         App.showError("当前胜点不可为空")
