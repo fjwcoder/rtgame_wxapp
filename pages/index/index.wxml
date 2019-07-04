@@ -68,7 +68,7 @@
       </view>
     </view>
     
-    <!-- <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
+    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-top:30px;'>
       <view class="action">
         <text class="cuIcon-title text-orange "></text> 接单列表
       </view>

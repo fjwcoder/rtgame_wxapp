@@ -88,7 +88,7 @@
             </view>
             <view class="cu-form-group">
                 <view class="card_title">角色名字</view>
-                <input placeholder="请输入您的角色名字" name="game_user" placeholder-class="phClass"></input>
+                <input placeholder="请输入您的角色名字（选填）" name="game_user" placeholder-class="phClass"></input>
             </view>
             <view class="cu-form-group">
                 <view class="card_title">英雄数量</view>

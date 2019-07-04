@@ -51,7 +51,7 @@
         </view>
         <view class='checkboxview'>
           <checkbox-group bindchange="checkboxChange" name="game_id_list">
-            <view style='margin-top:10px;' wx:for="{{gameList}}">
+            <view style='margin-top:10px;' wx:for="{{gameList}}" wx:key>
               <checkbox value="{{item.id}}" checked="{{item.checked}}" />
               {{item.cname}}
             </view>

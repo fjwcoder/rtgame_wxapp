@@ -1064,10 +1064,7 @@ Page({
       this.data.error = '游戏密码不可为空';
       return false;
     }
-    if (values["game_user"] === '') {
-      this.data.error = '游戏角色名称不可为空';
-      return false;
-    }
+   
     if (values["hreonum"] === '') {
       this.data.error = '英雄数量不可为空';
       return false;
