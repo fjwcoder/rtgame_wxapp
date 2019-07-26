@@ -17,25 +17,6 @@
         </swiper-item>
       </swiper>
     </view>
-    <!-- 商品推荐 -->
-    <!-- <view class="recommended-index-list m-top20">
-      <view class="title-header b-f t-c f-32 col-3">新品推荐</view>
-    </view>
-    <view class="index_sale ">
-      <scroll-view scroll-x="true">
-        <navigator hover-class="none" style="display: inline-block;" url="../goods/index?goods_id={{item.goods_id}}" wx:for="{{newest}}" wx:key="this">
-          <view class="page-column">
-            <view class="sale_img">
-              <image mode="aspectFill" src="{{item.image[0].file_path}}"></image>
-            </view>
-            <view class="content onelist-hidden">
-              <text>{{item.goods_name}}</text>
-            </view>
-            <text class="price col-m f-30">￥{{item.spec[0].goods_price}}</text>
-          </view>
-        </navigator>
-      </scroll-view>
-    </view> -->
     <view style='width: 88%;margin: 20rpx auto;background-color: #fff;padding: 20rpx;border-radius: 10px;box-shadow: -5rpx 8rpx 5rpx rgba(0, 0, 0, 0.1);'>
       <view class="cu-bar bg-white " style='margin-bottom:2rpx;'>
         <view class="action border-title">
@@ -77,7 +58,7 @@
       <view class="cu-list grid col-2 no-border">
         <view class="cu-item">
           <navigator url="../inputInformation/accompany?gid=4">
-            <view class="cuIcon iconfont icon-wangzherongyao- text-blue">
+            <view class="cuIcon iconfont icon-wuqianniu text-blue">
               <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
                 <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
               </view>
@@ -96,21 +77,36 @@
     <view class="cu-list menu-avatar">
       <block wx:if="{{orderList.length}}">
         <block wx:for="{{orderList}}" wx:key="this" wx:for-item='item' class='a_item'>       
-          <view class="cu-item border_bottom">
-            <view class="cu-avatar round lg" style="background-image:url                                          (https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+          <view class="cu-item border_bottom" >
+           <!-- class="cuIcon iconfont icon-wangzherongyao- text-blue" -->
+            <block wx:if="{{item.game_id === 1}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-wangzherongyao- text-blue" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
             </view>
+            </block>
+            <block wx:if="{{item.game_id === 2}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
+            </view>
+            </block>
+            <block wx:if="{{item.game_id === 4}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-wuqianniu" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
+            </view>
+            </block>
             <view class="content" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
-              <view class="text-grey" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>{{item.begin_info}}—{{item.end_info}}</view>
+              <view class="text-grey" style='display: flex;flex-direction: row;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>  
+                <view style='flex:1' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>{{item.begin_info}}—{{item.end_info}}</view>
+                <view style='width:70rpx;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                  <image src='../../images/top2.png' mode='widthFix'></image>
+                </view>
+              </view>
+              
               <view class="text-gray text-sm flex" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <text class="text-cut" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
-                  <text class="cuIcon-choicenessfill text-orange  margin-right-xs"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></text> {{item.server_price}}元
-                  
+                  <text class="cuIcon-choicenessfill text-orange  margin-right-xs" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></text> {{item.server_price}}元
                 </text>
               </view>
-            </view>
-            <view>
-              <text style='background:red;color:white;font-size:20rpx;padding-top:10rpx;padding-bottom:10rpx;padding-left:20rpx;padding-right:20rpx;border-radius:10rpx;'>置顶</text> 
-              <!-- <button class="cu-btn round bg-green shadow" style='font-size:20rpx;'>接单</button> -->
             </view>
           </view>   
         </block>
@@ -118,8 +114,23 @@
       <block wx:if="{{rorderList.length}}">
         <block wx:for="{{rorderList}}" wx:key="this" wx:for-item='item' class='a_item'>       
           <view class="cu-item border_bottom" bindtap='detail' data-id="{{item.id}}" data-orderid="{{item.order_id}}" data-type="2">
-            <view class="cu-avatar round lg" style="background-image:url                                          (https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type="2">
+            <block wx:if="{{item.game_id === 1}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-wangzherongyao- text-blue" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
             </view>
+            </block>
+            <block wx:if="{{item.game_id === 2}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
+            </view>
+            </block>
+            <block wx:if="{{item.game_id === 4}}">              
+              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+                <view class="cuIcon iconfont icon-wuqianniu" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
+            </view>
+            </block>
+            <!-- <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type="2">
+            </view> -->
             <view class="content"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type="2">
               <view class="text-grey"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type="2">{{item.begin_info}}—{{item.end_info}}</view>
               <view class="text-gray text-sm flex"  bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type="2">
