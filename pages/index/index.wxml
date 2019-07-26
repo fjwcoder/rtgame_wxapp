@@ -80,17 +80,17 @@
           <view class="cu-item border_bottom" >
            <!-- class="cuIcon iconfont icon-wangzherongyao- text-blue" -->
             <block wx:if="{{item.game_id === 1}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-wangzherongyao- text-blue" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
             </view>
             </block>
             <block wx:if="{{item.game_id === 2}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
             </view>
             </block>
             <block wx:if="{{item.game_id === 4}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-wuqianniu" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'></view>
             </view>
             </block>
@@ -115,17 +115,17 @@
         <block wx:for="{{rorderList}}" wx:key="this" wx:for-item='item' class='a_item'>       
           <view class="cu-item border_bottom" bindtap='detail' data-id="{{item.id}}" data-orderid="{{item.order_id}}" data-type="2">
             <block wx:if="{{item.game_id === 1}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-wangzherongyao- text-blue" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
             </view>
             </block>
             <block wx:if="{{item.game_id === 2}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-fenlei-yingxionglianmeng text-orange" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
             </view>
             </block>
             <block wx:if="{{item.game_id === 4}}">              
-              <view class="cu-avatar round lg" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
+              <view class="cu-avatar round lg" style='background:white;' bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='1'>
                 <view class="cuIcon iconfont icon-wuqianniu" bindtap='detail' data-id='{{item.id}}' data-orderid='{{item.order_id}}' data-type='2'></view>
             </view>
             </block>
