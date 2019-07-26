@@ -229,6 +229,7 @@ App({
     let request = function() {
       // data.token = wx.getStorageSync('token');
       data.user_token = App.getGlobalData('user_token'),
+      data.access_token = App.access_token,
       wx.request({
         url: App.api_root + url,
         header: {
@@ -280,7 +281,7 @@ App({
     wx.showNavigationBarLoading();
     let App = this;
     data.wxapp_id = App.siteInfo.uniacid;
-    
+    data.access_token = App.access_token,
     data.user_token = App.getGlobalData('user_token'),
     wx.request({
       url: App.api_root + url,

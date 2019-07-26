@@ -31,13 +31,33 @@ Page({
     pay_time: '',
     finish_time: '',
     server_list: [],
-    dailian:0
+    dailian:0,
+    order_type: 1,
+    server_type: 1,
+    server_con: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!App.isLogin()) {
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录小程序',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '../user/index'
+            })
+          } else {
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }
+        }
+      })
+    }
     this.data.order_id = options.order_id;
     this.data.oid =parseInt(options.o_id);
     this.setData({
@@ -90,7 +110,8 @@ Page({
         pay_time: payTime,
         finish_time: finishTime,
         server_list: _this.addImgSrc(result.data.detail),
-        status: result.data.status
+        status: result.data.status,
+        order_type: result.data.order_type
         
       })
     });

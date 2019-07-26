@@ -19,7 +19,8 @@
     "pages/gamepractice/practicelist_accepted_ing",
     "pages/gamepractice/practicelist_accepted_finish",
     "pages/gamepractice/practicelist_detail",
-    "pages/index/service"
+    "pages/index/service",
+    "pages/inputInformation/accompany"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

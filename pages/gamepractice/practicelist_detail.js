@@ -30,30 +30,57 @@ Page({
     pay_time: '',
     finish_time: '',
     server_list: [],
-    fromwhere:0  //0：抢单列表中进入  1：已抢到的代练单列表中进入  2:抢单失败时页面刷新
+    fromwhere:0,  //0：抢单列表中进入  1：已抢到的代练单列表中进入  2:抢单失败时页面刷新
+    order_type:1,
+    server_type:1,
+    server_con:'',
+    true_type:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!App.isLogin()) {
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录小程序',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '../user/index'
+            })
+          } else {
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }
+        }
+      })
+    }
     this.data.order_id = options.order_id;
     this.data.oid =parseInt(options.o_id);
+    this.true_type = options.true_type;
     this.setData({
       order_id: options.order_id,
       oid: parseInt(options.o_id),
       fromwhere:parseInt(options.fromwhere)
     });
-    this.getOrderDetail(options.order_id, parseInt(options.o_id));
+    this.getOrderDetail(options.order_id, parseInt(options.o_id), options.true_type);
+    //获取用户当前状态，
+    this.getUserStatus();
   },
 
   /**
    * 获取订单详情
    */
-  getOrderDetail: function (order_id, o_id) {
+  getOrderDetail: function (order_id, o_id, true_type) {
+    console.log("order_id=="+order_id);
+    console.log("o_id==" + o_id);
+    console.log("true_type==" + true_type);
 
     let _this = this;
-    App._post_form('order/getOrderDetail', { user_token: App.getGlobalData('user_token'), oid: o_id, order_id: order_id }, function (result) {
+    App._post_form('order/getOrderDetail', { user_token: App.getGlobalData('user_token'), oid: o_id, order_id: order_id, true_type: true_type}, function (result) {
       console.log(result);
       var createTime = _this.timeStampToDate(result.data.create_time, 'Y-M-D h:m:s');
       var payTime = _this.timeStampToDate(result.data.pay_time, 'Y-M-D h:m:s');
@@ -81,6 +108,7 @@ Page({
         pay_time: payTime,
         finish_time: finishTime,
         server_list: _this.addImgSrc(result.data.detail),
+        order_type: result.data.order_type
         // server_list: result.data.detail,
 
       })
@@ -123,12 +151,12 @@ Page({
         });
       } else{
         wx.showToast({
-          title: '抢单失败',
+          title: result.msg,
           icon: 'none',
           duration: 1000,
           mask: true
         });
-        _this.getOrderDetail(_this.data.order_id, parseInt(_this.data.o_id));
+        _this.getOrderDetail(_this.data.order_id, parseInt(_this.data.o_id), _this.data.true_type);
         _this.setData({
           fromwhere:2,
           disabled: false
@@ -215,6 +243,24 @@ Page({
       format = format.replace(formateArr[i], returnArr[i]);
     }
     return format;
+  },
+
+  getUserStatus:function(){
+    let _this = this;
+    App._post_form('waiter/waiterIndex', { user_token: App.getGlobalData('user_token') }, function (result) {
+      console.log(result);
+      _this.setData({
+        id: result.data.waiter_info.id,
+        status: result.data.waiter_info.status
+        
+
+      })
+    });
+  },
+  apply:function(){
+    wx.navigateTo({
+      url: 'dailian_apply',
+    })
   }
 
 });

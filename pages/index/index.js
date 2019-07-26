@@ -35,6 +35,21 @@ Page({
     });
     // 获取首页数据
     //this.getIndexData();
+    // 获取接单列表
+    _this.getOrderLists();
+  },
+
+  //获取接单列表
+  getOrderLists:function(){
+    let _this = this;
+    App._get('order/getIndexOrder', {}, function (res) {
+      console.log(res);
+      _this.setData({
+        orderList: Object.values(res.data.order),
+        rorderList: Object.values(res.data.rorder)
+        // orderList :orderList
+      });
+    });
   },
 
   /**
@@ -42,16 +57,17 @@ Page({
    */
   getIndexData: function() {
     let _this = this;
-    // App._get('index/page', {}, function (res) {
-    //   console.log(res);
-    //   _this.setData(res.data);
-    // });
-    App._get('Insurance/wxappGetInsuranceList', {}, function(res) {
-
-      _this.setData({
-        list: Object.values(res.data)
-      });
+    App._get('index/page', {}, function (res) {
+      console.log(res);
+      _this.setData(res.data);
     });
+    // App._get('Insurance/wxappGetInsuranceList', {}, function(res) {
+    //   console.log(res);
+
+    //   _this.setData({
+    //     list: Object.values(res.data)
+    //   });
+    // });
   },
  
   /**
@@ -112,5 +128,18 @@ Page({
       desc: "",
       path: "/pages/index/index"
     };
+  },
+
+//跳转到接单列表详情页
+  detail:function(e){
+    console.log(e);
+    var id = e.target.dataset.id;
+    var order_id = e.target.dataset.orderid;
+    var true_type = e.target.dataset.type;
+    console.log("id=="+id);
+    console.log("order_id=="+order_id);
+    wx.navigateTo({
+      url: '../gamepractice/practicelist_detail?order_id=' + order_id + '&o_id=' + id + '&fromwhere=0&true_type=' + true_type,
+    })
   }
 });

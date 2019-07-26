@@ -8,12 +8,18 @@
       <view class='insurance_details'>订单编号：<text class='col_r'>{{order_id}}</text></view>
       <view class='insurance_details'>游戏名称：<text class='col_r'>{{game_name}}</text></view>
       <view class='insurance_details'>平台名称：<text class='col_r'>{{plantform_name}}</text></view>
-      <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
+      <block wx:if="{{order_type === 1}}">
+        <view class='insurance_details'>区服名称：<text class='col_r'>{{area_name}}</text></view>
+      </block>
       <view class='insurance_details'>游戏信息：<text class='col_r'>{{game_info}}</text></view>
-      <view class='insurance_details'>特殊信息/要求：<text class='col_r'>{{special_info}}</text></view>
+      <block wx:if="{{order_type === 1}}">
+        <view class='insurance_details'>特殊信息/要求：<text class='col_r'>{{special_info}}</text></view>
+      </block>           
       <view class='insurance_details'>订单总金额：<text class='col_r'>￥{{pay_money}}</text></view>
       <view class='insurance_details'>用户联系方式：<text class='col_r'>{{user_mobile}}</text></view>
-      <view class='insurance_details'>游戏账号：<text class='col_r'>{{game_account}}</text></view>
+      <block wx:if="{{order_type === 1}}">
+        <view class='insurance_details'>游戏账号：<text class='col_r'>{{game_account}}</text></view>
+      </block>
       <view class='stepview'>
         <view style='float:left;'>订单进度：
           <block wx:if="{{status === 1}}">
@@ -55,10 +61,22 @@
       <view class='title_details'>服务信息</view>
       <view wx:if="{{server_list.length}}">
         <view class="m-top20 " wx:for="{{server_list}}" wx:key="this" wx:for-item='item' class='a_item'>
-          <view class='insurance_details'>服务名称：<text class='col_r'>{{item.server_name}}</text></view>
-          <view class='insurance_details'>未代练前的信息：<text class='col_r'>{{item.begin_info}}</text></view>
-          <view class='insurance_details'>代练要达到的目标：<text class='col_r'>{{item.end_info}}</text></view>
-          <view class='insurance_details'>代练服务的金额：<text class='col_r'>￥{{item.server_price}}</text></view>
+          <block wx:if="{{order_type === 1}}">
+            <view class='insurance_details'>服务名称：<text class='col_r'>{{item.server_name}}</text></view>          
+            <view class='insurance_details'>未代练前的信息：<text class='col_r'>{{item.begin_info}}</text></view>
+            <view class='insurance_details'>代练要达到的目标：<text class='col_r'>{{item.end_info}}</text></view>
+          </block>
+          <block wx:else>
+            <block wx:if="{{item.server_type === 1}}">
+              <view class='insurance_details'>服务名称：<text class='col_r'>按小时</text></view>
+              <view class='insurance_details'>服务内容：<text class='col_r'>{{item. server_con}}小时</text></view>
+            </block>
+            <block wx:else if="{{item.server_type === 2}}">
+              <view class='insurance_details'>服务名称：<text class='col_r'>按局数</text></view>
+              <view class='insurance_details'>服务内容：<text class='col_r'>{{item. server_con}}局</text></view>
+            </block>
+          </block>
+          <view class='insurance_details'>服务金额：<text class='col_r'>￥{{item.server_price}}</text></view>
           <view class='insurance_details'>
             截图：
             <block wx:if="{{item.server_img}}">
